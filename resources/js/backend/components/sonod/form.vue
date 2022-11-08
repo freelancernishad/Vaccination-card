@@ -2,7 +2,7 @@
     <div>
         <form @submit.stop.prevent="onSubmit">
             <div class="panel-heading"
-                style="font-weight: bold; font-size: 20px;background:#159513;text-align:center;color:white">তথ্য পুরুন
+                style="font-weight: bold; font-size: 20px;background:#159513;text-align:center;color:white">প্রসব অনুমোদন করুন
             </div>
             <div class="form-pannel">
 
@@ -160,7 +160,7 @@
 
                 </div>
                 <div style="text-align:center">
-                    <b-button type="submit" variant="primary">সাবমিট</b-button>
+                    <b-button type="submit" variant="primary">অনুমোদন করুন</b-button>
                 </div>
                 <!-- <b-button class="ml-2" @click="resetForm()">রিসেট</b-button> -->
             </div>

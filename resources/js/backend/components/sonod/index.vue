@@ -75,21 +75,20 @@
                             <td class="sonodTd">{{ dateformatGlobal(item.created_at)[6] }}</td>
                             <td class="sonodTd">
 
-                                <router-link size="sm" :to="{ name: editRoute, params: { id: item.id } }" v-if="editRoute != ''" class="btn btn-info mr-1 mt-1">তথ্য পূরণ করুন</router-link>
+                                <router-link size="sm" :to="{ name: editRoute, params: { id: item.id } }" v-if="editRoute != ''" class="btn btn-info mr-1 mt-1">প্রসব অনুমোদন করুন</router-link>
 
-                                <!-- <router-link size="sm" :to="{ name: editRoute, params: { id: item.id } }" v-if="editRoute != ''" class="btn btn-success mr-1 mt-1">এডিট করুন</router-link> -->
-                                
-                                <!-- <span size="sm" @click="deletefun(item, index, $event.target)" class="btn btn-danger mr-1 mt-1">Delete</span> -->
+
+                                <router-link size="sm" :to="{ name: Vaccination, params: { id: item.id } }"
+                                    v-if="Vaccination != ''" class="btn btn-success mr-1 mt-1">টিকা প্রদান করুন</router-link>
+
+
+
                                 <a size="sm" target="_blank" :href="applicationRoute+'/d/' + item.id"
                                     v-if="applicationRoute != ''" class="btn btn-success mr-1 mt-1">টিকা কার্ড</a>
-                                <!-- <router-link size="sm" :to="{ name: EditRoute, params: { id: item.id } }" class="btn btn-info mr-1 mt-1">Edit</router-link> -->
-                                <span size="sm" v-if="buttonLoader" class="btn btn-info mr-1 mt-1"><img width="20px"
-                                        src="https://i.gifer.com/origin/b4/b4d657e7ef262b88eb5f7ac021edda87.gif"
-                                        alt=""></span>
 
 
-                                <span size="sm" @click="info(item, index, $event.target)" v-else-if="viewRoute != ''"
-                                    class="btn btn-info mr-1 mt-1">আবেদনপত্র দেখুন</span>
+
+                                <span size="sm" @click="info(item, index, $event.target)" v-if="viewRoute != ''" class="btn btn-info mr-1 mt-1">আবেদনপত্র দেখুন</span>
 
 
                                     <a size="sm" target="_blank"
@@ -229,12 +228,15 @@ export default {
             buttonLoader: false,
             Type: '',
             sonod_id: '',
+            Vaccination: '',
+            editRoute: '',
+            viewRoute: '',
             cancelRoute: '',
             approveRoute: '',
             approveType: '',
             payRoute: '',
-            applicationRoute: '/card',
-            applicationRoute2: '/information',
+            applicationRoute: '',
+            applicationRoute2: '',
             items: [],
             f: {
                 paymentType: '',
@@ -301,31 +303,71 @@ export default {
         },
         actionAccess() {
 
+            if(this.$route.params.type=='applied'){
 
-                // this.deleteRoute='/api/sonod/delete';
-                this.editRoute='sonodedit';
-                // this.editRoute = '';
-                this.viewRoute = 'sonodview';
-                this.approveRoute = '';
-                this.approveType = 'vueAction';
-                this.approveData = 'sec_approved';
-                if (localStorage.getItem('position') == 'District_admin' || localStorage.getItem('position') == 'Thana_admin') {
-                    // this.cancelRoute = '';
-                    this.approveRoute = '';
-                    this.approveType = 'vueAction';
-                    this.approveData = 'sec_approved';
-                } else if (localStorage.getItem('position') == 'Family_planning_worker') {
+                if (localStorage.getItem('position') == 'Vaccination_workers') {
+                    this.editRoute='sonodedit';
+                    this.viewRoute = 'sonodview';
                     this.approveRoute = '/api/sonod';
                     this.approveType = 'apiAction';
                     this.approveData = `approved`;
-                    // this.cancelRoute = '/api/sonod';
-                } else {
-                    // this.cancelRoute = '/api/sonod';
-                    this.approveRoute = 'approvetrade';
-                    this.approveType = 'vueAction';
-                    this.approveData = `${localStorage.getItem('position')}_approved`;
+                    this.applicationRoute = '';
+                    this.applicationRoute2 = '';
+                    this.Vaccination = '';
+                }else if (localStorage.getItem('position') == 'Family_planning_worker') {
+                    this.editRoute='sonodedit';
+                    this.viewRoute = 'sonodview';
+                    this.approveRoute = '/api/sonod';
+                    this.approveType = 'apiAction';
+                    this.approveData = `approved`;
+                    this.applicationRoute = '';
+                    this.applicationRoute2 = '';
+                    this.Vaccination = '';
+                } else if (localStorage.getItem('position') == 'Secretary') {
+                    this.editRoute='';
+                    this.viewRoute = '';
+                    this.approveRoute = '';
+                    this.approveType = '';
+                    this.approveData = '';
+                    this.applicationRoute = '';
+                    this.applicationRoute2 = '/information';
+                    this.Vaccination = '';
                 }
-                this.Type = 'নতুন আবেদন';
+            }else if(this.$route.params.type=='approved'){
+                // console.log(localStorage.getItem('position'))
+                if (localStorage.getItem('position') == 'Vaccination_workers') {
+                    this.editRoute='';
+                    this.viewRoute = 'sonodview';
+                    this.approveRoute = '/api/sonod';
+                    this.approveType = 'apiAction';
+                    this.approveData = `approved`;
+                    this.applicationRoute = '/card';
+                    this.applicationRoute2 = '/information';
+                    this.Vaccination = 'Vaccination';
+                } else if (localStorage.getItem('position') == 'Family_planning_worker') {
+                    this.editRoute='';
+                    this.viewRoute = 'sonodview';
+                    this.approveRoute = '/api/sonod';
+                    this.approveType = 'apiAction';
+                    this.approveData = `approved`;
+                    this.applicationRoute = '/card';
+                    this.applicationRoute2 = '/information';
+                    this.Vaccination = '';
+                } else if (localStorage.getItem('position') == 'Secretary') {
+                    this.editRoute='';
+                    this.viewRoute = '';
+                    this.approveRoute = '';
+                    this.approveType = '';
+                    this.approveData = '';
+                    this.applicationRoute = '';
+                    this.applicationRoute2 = '/information';
+                    this.Vaccination = '';
+                }
+            }
+
+
+
+
         },
         async info(item, index, button) {
             console.log(item)
@@ -447,9 +489,9 @@ export default {
                 if (sondId) {
                     var res = await this.callApi('get', `/api/sonod/list?id_no=${sondId}`, []);
                 } else {
-                    var res = await this.callApi('get', `/api/sonod/list?page=${page}`, []);
+                    var res = await this.callApi('get', `/api/sonod/list?page=${page}&stutus=${this.$route.params.type}`, []);
                 }
-                console.log('sdf')
+                // console.log('sdf')
                 // var res = await this.callApi('get', `/api/sonod/list?page=${page}&sonod_name=${this.$route.params.name}${unioun}&filter[stutus]=${stutus}&filter[payment_status]=${payment_status}`, []);
                 this.items = res.data.data
                 this.TotalRows = `${res.data.total}`;

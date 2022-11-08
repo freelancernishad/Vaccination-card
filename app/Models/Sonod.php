@@ -12,7 +12,9 @@ class Sonod extends Model
     protected $fillable = [
         'id_no',
         'name',
+        'pregnant_woman_nid',
         'husband_name',
+        'husband_name_nid',
         'division',
         'district',
         'upazila',
@@ -30,6 +32,10 @@ class Sonod extends Model
         'gender',
         'childs_name',
         'place_of_childbirth',
+        'first_dose',
+        'second_dose',
+        'third_dose',
+        'forth_dose',
         'status',
     ];
 }

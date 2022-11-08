@@ -754,15 +754,15 @@ class SonodController extends Controller
         if ($sondId) {
             // return $sondId;
             // return 'sss';
-            return Sonod::where("id_no", "LIKE", "%$sondId%")->orderBy('id', 'DESC')->paginate(20);
+            return Sonod::where('status',$stutus)->where("id_no", "LIKE", "%$sondId%")->orderBy('id', 'DESC')->paginate(20);
         }
         if ($unioun_name) {
             if ($payment_status) {
-                return Sonod::orderBy('id', 'DESC')->paginate(20);
+                return Sonod::where('status',$stutus)->orderBy('id', 'DESC')->paginate(20);
             }
-            return Sonod::orderBy('id', 'DESC')->paginate(20);
+            return Sonod::where('status',$stutus)->orderBy('id', 'DESC')->paginate(20);
         }
-        return Sonod::orderBy('id', 'DESC')->paginate(20);
+        return Sonod::where('status',$stutus)->orderBy('id', 'DESC')->paginate(20);
 
     }
     public function sonodDownload(Request $request, $name, $id)
@@ -834,8 +834,9 @@ class SonodController extends Controller
         $row = Sonod::find($id);
 
 
+            // return view('userdocument',compact('row'));
             // return view('card',compact('row'));
-            $pdf = LaravelMpdf::loadView('card', compact('row'));
+            $pdf = LaravelMpdf::loadView('userdocument', compact('row'));
             return $pdf->stream("$row->id_no.pdf");
 
     }

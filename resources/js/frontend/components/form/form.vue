@@ -33,11 +33,27 @@
                         </div>
                     </div>
 
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="" class="labelColor">গর্ভবতী মহিলার জাতীয় পরিচয়পত্র<span
+                                    class="text-danger"></span></label>
+                            <input type="text" class="form-control" v-model="form.pregnant_woman_nid" required>
+                        </div>
+                    </div>
+
 
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="" class="labelColor">স্বামীর নাম<span class="text-danger"></span></label>
                             <input type="text" class="form-control" v-model="form.husband_name" required>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="" class="labelColor">স্বামীর জাতীয় পরিচয়পত্র<span class="text-danger"></span></label>
+                            <input type="text" class="form-control" v-model="form.husband_name_nid" required>
                         </div>
                     </div>
 
@@ -146,6 +162,12 @@
                     </div>
                 </div>
 
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="" class="labelColor">গ্রাভিড (কত তম গর্ভ)</label>
+                        <input type="number" class="form-control" v-model="form.how_many_wombs" required>
+                    </div>
+                </div>
 
                 </div>
 
@@ -184,7 +206,9 @@
 
 <div class="col-md-4"><b>আইডি নং :</b> {{ form.id_no }}</div>
 <div class="col-md-4"><b>গর্ভবতী মহিলার নাম :</b> {{ form.name }}</div>
+<div class="col-md-4"><b>গর্ভবতী মহিলার জাতীয় পরিচয়পত্র :</b> {{ form.pregnant_woman_nid }}</div>
 <div class="col-md-4"><b>স্বামীর নাম :</b> {{ form.husband_name }}</div>
+<div class="col-md-4"><b>স্বামীর জাতীয় পরিচয়পত্র :</b> {{ form.husband_name_nid }}</div>
 <div class="col-md-4"><b>মোবাইল নম্বর :</b> {{ form.mobile_no }}</div>
 <div class="col-md-4"><b>বিভাগ :</b> {{ form.division }}</div>
 <div class="col-md-4"><b>জেলা :</b> {{ form.district }}</div>
@@ -230,7 +254,9 @@ export default {
             form: {
                 id_no:'',
                 name:'',
+                pregnant_woman_nid:'',
                 husband_name:'',
+                husband_name_nid:'',
                 mobile_no:'',
                 division:'',
                 district:'',

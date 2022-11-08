@@ -2546,7 +2546,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       form: {
         id_no: '',
         name: '',
+        pregnant_woman_nid: '',
         husband_name: '',
+        husband_name_nid: '',
         mobile_no: '',
         division: '',
         district: '',
@@ -5014,6 +5016,32 @@ var render = function render() {
     directives: [{
       name: "model",
       rawName: "v-model",
+      value: _vm.form.pregnant_woman_nid,
+      expression: "form.pregnant_woman_nid"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      required: ""
+    },
+    domProps: {
+      value: _vm.form.pregnant_woman_nid
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.form, "pregnant_woman_nid", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_vm._m(3), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
       value: _vm.form.husband_name,
       expression: "form.husband_name"
     }],
@@ -5030,6 +5058,32 @@ var render = function render() {
         if ($event.target.composing) return;
 
         _vm.$set(_vm.form, "husband_name", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_vm._m(4), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.husband_name_nid,
+      expression: "form.husband_name_nid"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      required: ""
+    },
+    domProps: {
+      value: _vm.form.husband_name_nid
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.form, "husband_name_nid", $event.target.value);
       }
     }
   })])]), _vm._v(" "), _c("div", {
@@ -5424,6 +5478,37 @@ var render = function render() {
         _vm.$set(_vm.form, "how_many_wombs", $event.target.value);
       }
     }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "labelColor",
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("গ্রাভিড (কত তম গর্ভ)")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.how_many_wombs,
+      expression: "form.how_many_wombs"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "number",
+      required: ""
+    },
+    domProps: {
+      value: _vm.form.how_many_wombs
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.form, "how_many_wombs", $event.target.value);
+      }
+    }
   })])])]), _vm._v(" "), _c("div", {
     staticStyle: {
       "text-align": "center"
@@ -5458,7 +5543,11 @@ var render = function render() {
     staticClass: "col-md-4"
   }, [_c("b", [_vm._v("গর্ভবতী মহিলার নাম :")]), _vm._v(" " + _vm._s(_vm.form.name))]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
+  }, [_c("b", [_vm._v("গর্ভবতী মহিলার জাতীয় পরিচয়পত্র :")]), _vm._v(" " + _vm._s(_vm.form.pregnant_woman_nid))]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
   }, [_c("b", [_vm._v("স্বামীর নাম :")]), _vm._v(" " + _vm._s(_vm.form.husband_name))]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("b", [_vm._v("স্বামীর জাতীয় পরিচয়পত্র :")]), _vm._v(" " + _vm._s(_vm.form.husband_name_nid))]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("b", [_vm._v("মোবাইল নম্বর :")]), _vm._v(" " + _vm._s(_vm.form.mobile_no))]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
@@ -5538,7 +5627,31 @@ var staticRenderFns = [function () {
     attrs: {
       "for": ""
     }
+  }, [_vm._v("গর্ভবতী মহিলার জাতীয় পরিচয়পত্র"), _c("span", {
+    staticClass: "text-danger"
+  })]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("label", {
+    staticClass: "labelColor",
+    attrs: {
+      "for": ""
+    }
   }, [_vm._v("স্বামীর নাম"), _c("span", {
+    staticClass: "text-danger"
+  })]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("label", {
+    staticClass: "labelColor",
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("স্বামীর জাতীয় পরিচয়পত্র"), _c("span", {
     staticClass: "text-danger"
   })]);
 }];

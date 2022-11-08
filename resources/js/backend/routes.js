@@ -31,6 +31,7 @@ let unionlistedit = require('./components/unionList/form.vue').default;
 
 let sonod = require('./components/sonod/index.vue').default;
 let sonodedit = require('./components/sonod/form.vue').default;
+let Vaccination = require('./components/sonod/Vaccination.vue').default;
 let sonodview = require('./components/sonod/view.vue').default;
 
 let sonodapprove = require('./components/sonod/approve.vue').default;
@@ -106,8 +107,9 @@ export const routes = [
 
   { path:  `${prefix}/sonod/:name/:type`, component: sonod, name:'sonod',meta: { layout: adminlayout } },
 
-  { path:  `${prefix}/application/list`, component: sonod, name:'applicationlist',meta: { layout: adminlayout } },
+  { path:  `${prefix}/application/list/:type`, component: sonod, name:'applicationlist',meta: { layout: adminlayout } },
 
+  { path:  `${prefix}/sonod/action/Vaccination/:id`, component: Vaccination, name:'Vaccination',meta: { layout: adminlayout } },
   { path:  `${prefix}/sonod/action/edit/:id`, component: sonodedit, name:'sonodedit',meta: { layout: adminlayout } },
   { path:  `${prefix}/sonod/action/view/:id`, component: sonodview, name:'sonodview',meta: { layout: adminlayout } },
 
