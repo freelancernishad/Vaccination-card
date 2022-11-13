@@ -325,18 +325,12 @@ class SonodController extends Controller
 
     public function sonod_update(Request $r)
     {
-
-
-
         $id = $r->id;
         $Insertdata = $r->all();
-
         try {
-
              $sonod =   Sonod::find($id);
             $Insertdata['status'] = 'approved';
            return  $sonod->update($Insertdata);
-
             // return  $sonod;
         } catch (Exception $e) {
             return sent_error($e->getMessage(), $e->getCode());
@@ -836,7 +830,7 @@ class SonodController extends Controller
 
             // return view('userdocument',compact('row'));
             // return view('card',compact('row'));
-            $pdf = LaravelMpdf::loadView('userdocument', compact('row'));
+            $pdf = LaravelMpdf::loadView('card', compact('row'));
             return $pdf->stream("$row->id_no.pdf");
 
     }
