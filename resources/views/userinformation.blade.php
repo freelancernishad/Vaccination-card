@@ -85,8 +85,16 @@
                 <td>{{ $row->husband_name }}</td>
             </tr>
             <tr>
+                <td>পিতার জাতীয় পরিচয়পত্র</td>
+                <td>{{ $row->husband_name_nid }}</td>
+            </tr>
+            <tr>
                 <td>মাতার নাম</td>
                 <td>{{ $row->name }}</td>
+            </tr>
+            <tr>
+                <td>মাতার জাতীয় পরিচয়পত্র</td>
+                <td>{{ $row->pregnant_woman_nid }}</td>
             </tr>
 
         </table>

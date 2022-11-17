@@ -24,6 +24,7 @@ class Sonod extends Model
         'date_of_last_menstrual_period',
         'probable_date_of_delivery',
         'how_many_wombs',
+        'how_many_children',
 
 
         'date_of_birth',

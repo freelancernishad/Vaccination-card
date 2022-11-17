@@ -27,9 +27,24 @@
                     </div>
 
 
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <span for="" class="labelColor">গর্ভবতী মহিলার জাতীয় পরিচয়পত্র : <span class="text-danger"></span></span>{{ form.pregnant_woman_nid }}
+                        </div>
+                    </div>
+
+
                     <div class="col-md-4">
                         <div class="form-group">
                             <span for="" class="labelColor">স্বামীর নাম : <span class="text-danger"></span></span>{{ form.husband_name }}
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <span for="" class="labelColor">স্বামীর জাতীয় পরিচয়পত্র : <span class="text-danger"></span></span>{{ form.husband_name_nid }}
                         </div>
                     </div>
 
@@ -103,6 +118,14 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <span for="" class="labelColor">গ্রাভিড (কত তম গর্ভ) : </span>{{ form.how_many_wombs }}
+
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <span for="" class="labelColor">কততম সন্তান  : </span>{{ form.how_many_children }}
 
                         </div>
                     </div>

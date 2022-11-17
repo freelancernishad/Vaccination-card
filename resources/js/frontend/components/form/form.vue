@@ -164,8 +164,8 @@
 
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label for="" class="labelColor">গ্রাভিড (কত তম গর্ভ)</label>
-                        <input type="number" class="form-control" v-model="form.how_many_wombs" required>
+                        <label for="" class="labelColor">কত তম সন্তান </label>
+                        <input type="number" class="form-control" v-model="form.how_many_children" required>
                     </div>
                 </div>
 
@@ -267,6 +267,7 @@ export default {
                 date_of_last_menstrual_period:'',
                 probable_date_of_delivery:'',
                 how_many_wombs:'',
+                how_many_children:'',
 
             },
             getdivisions: {},

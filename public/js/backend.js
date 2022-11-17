@@ -12403,7 +12403,15 @@ var render = function render() {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
-  }, [_vm._m(2), _vm._v(_vm._s(_vm.form.husband_name) + "\n                    ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._m(2), _vm._v(_vm._s(_vm.form.pregnant_woman_nid) + "\n                    ")])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_vm._m(3), _vm._v(_vm._s(_vm.form.husband_name) + "\n                    ")])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_vm._m(4), _vm._v(_vm._s(_vm.form.husband_name_nid) + "\n                    ")])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
@@ -12494,6 +12502,15 @@ var render = function render() {
       "for": ""
     }
   }, [_vm._v("গ্রাভিড (কত তম গর্ভ) : ")]), _vm._v(_vm._s(_vm.form.how_many_wombs) + "\n\n                    ")])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("span", {
+    staticClass: "labelColor",
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("কততম সন্তান  : ")]), _vm._v(_vm._s(_vm.form.how_many_children) + "\n\n                    ")])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
@@ -12703,7 +12720,31 @@ var staticRenderFns = [function () {
     attrs: {
       "for": ""
     }
+  }, [_vm._v("গর্ভবতী মহিলার জাতীয় পরিচয়পত্র : "), _c("span", {
+    staticClass: "text-danger"
+  })]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("span", {
+    staticClass: "labelColor",
+    attrs: {
+      "for": ""
+    }
   }, [_vm._v("স্বামীর নাম : "), _c("span", {
+    staticClass: "text-danger"
+  })]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("span", {
+    staticClass: "labelColor",
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("স্বামীর জাতীয় পরিচয়পত্র : "), _c("span", {
     staticClass: "text-danger"
   })]);
 }];

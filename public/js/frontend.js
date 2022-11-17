@@ -2558,7 +2558,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         village: '',
         date_of_last_menstrual_period: '',
         probable_date_of_delivery: '',
-        how_many_wombs: ''
+        how_many_wombs: '',
+        how_many_children: ''
       },
       getdivisions: {},
       getdistricts: {},
@@ -5487,12 +5488,12 @@ var render = function render() {
     attrs: {
       "for": ""
     }
-  }, [_vm._v("গ্রাভিড (কত তম গর্ভ)")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("কত তম সন্তান ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: _vm.form.how_many_wombs,
-      expression: "form.how_many_wombs"
+      value: _vm.form.how_many_children,
+      expression: "form.how_many_children"
     }],
     staticClass: "form-control",
     attrs: {
@@ -5500,13 +5501,13 @@ var render = function render() {
       required: ""
     },
     domProps: {
-      value: _vm.form.how_many_wombs
+      value: _vm.form.how_many_children
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
 
-        _vm.$set(_vm.form, "how_many_wombs", $event.target.value);
+        _vm.$set(_vm.form, "how_many_children", $event.target.value);
       }
     }
   })])])]), _vm._v(" "), _c("div", {
