@@ -12456,6 +12456,15 @@ var render = function render() {
     attrs: {
       "for": ""
     }
+  }, [_vm._v("ইউনিয়ন : ")]), _vm._v(_vm._s(_vm.form.union) + "\n\n\n                    ")])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("span", {
+    staticClass: "labelColor",
+    attrs: {
+      "for": ""
+    }
   }, [_vm._v("পোষ্ট অফিস : ")]), _vm._v(_vm._s(_vm.form.post_office) + "\n                    ")])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {

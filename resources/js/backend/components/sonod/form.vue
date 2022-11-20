@@ -67,9 +67,18 @@
                             <span for="" class="labelColor">জেলা : </span>{{ form.district }}
                         </div>
                     </div>
+
                     <div class="col-md-4">
                         <div class="form-group">
                             <span for="" class="labelColor">উপজেলা/থানা : </span>{{ form.upazila }}
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <span for="" class="labelColor">ইউনিয়ন : </span>{{ form.union }}
 
 
                         </div>
