@@ -123,7 +123,7 @@
                             }}</option>
                         </select>
 
-                        <!-- <input type="text" class="form-control" v-model="form.applicant_present_Upazila"> -->
+
                     </div>
                 </div> -->
 
