@@ -102,30 +102,30 @@
                     <div class="form-group">
                         <label for="" class="labelColor">উপজেলা/থানা</label>
 
-                        <select class='form-control' name="thana" id="thana" v-model="form.upazila" @change="getuniounFun" required>
+                        <select class='form-control' name="thana" id="thana" v-model="thana" @change="getuniounFun" required>
                             <option value="">উপজেলা নির্বাচন করুন</option>
-                            <option v-for="thana in getthanas" :key="thana.id" :value="thana.bn_name">{{ thana.bn_name
+                            <option v-for="thana in getthanas" :key="thana.id" :value="thana.id">{{ thana.bn_name
                             }}</option>
                         </select>
 
                         <!-- <input type="text" class="form-control" v-model="form.applicant_present_Upazila"> -->
                     </div>
                 </div>
-<!--
+
 
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="" class="labelColor">ইউনিয়ন</label>
 
-                        <select class='form-control' name="thana" id="thana" v-model="form.upazila" @change="getuniounFun" required>
+                        <select class='form-control' name="thana" id="thana" v-model="form.union"  required>
                             <option value="">ইউনিয়ন নির্বাচন করুন</option>
-                            <option v-for="thana in getthanas" :key="thana.id" :value="thana.bn_name">{{ thana.bn_name
+                            <option v-for="union in getuniouns" :key="union.id" :value="union.bn_name">{{ union.bn_name
                             }}</option>
                         </select>
 
 
                     </div>
-                </div> -->
+                </div>
 
 
                 <div class="col-md-4">
@@ -233,12 +233,14 @@
 <div class="col-md-4"><b>বিভাগ :</b> {{ form.division }}</div>
 <div class="col-md-4"><b>জেলা :</b> {{ form.district }}</div>
 <div class="col-md-4"><b>উপজেলা/থানা :</b> {{ form.upazila }}</div>
+<div class="col-md-4"><b>ইউনিয়ন :</b> {{ form.union }}</div>
 <div class="col-md-4"><b>পোষ্ট অফিস :</b> {{ form.post_office }}</div>
 <div class="col-md-4"><b>ওয়ার্ড নং :</b> {{ form.word_number }}</div>
 <div class="col-md-4"><b>গ্রাম/মহল্লা :</b> {{ form.village }}</div>
 <div class="col-md-4"><b>শেষ মাসিকের তারিখ :</b> {{ form.date_of_last_menstrual_period }}</div>
 <div class="col-md-4"><b>সম্ভাব্য প্রসবের তারিখ :</b> {{ form.probable_date_of_delivery }}</div>
 <div class="col-md-4"><b>গ্রাভিড (কত তম গর্ভ) :</b> {{ form.how_many_wombs }}</div>
+<div class="col-md-4"><b>কত তম সন্তান :</b> {{ form.how_many_children }}</div>
 
 
 
@@ -281,6 +283,7 @@ export default {
                 division:'',
                 district:'',
                 upazila:'',
+                union:'',
                 post_office:'',
                 word_number:'',
                 village:'',
@@ -298,6 +301,7 @@ export default {
             Pdivision: '',
             Perdivision: '',
             applicant_present_district: '',
+            thana: '',
             applicant_permanent_district: '',
         };
     },
@@ -321,7 +325,7 @@ export default {
 
         async getdistrictFun() {
             var resdiv = await this.callApi('get', `/api/getdivisions?id=${this.Pdivision}`, []);
-            console.log(resdiv)
+            // console.log(resdiv)
             this.form.division= resdiv.data.bn_name
             var res = await this.callApi('get', `/api/getdistrict?id=${this.Pdivision}`, []);
             this.getdistricts = res.data;
@@ -340,8 +344,17 @@ export default {
         },
 
         async getuniounFun() {
+
+
+            var ress = await this.callApi('get', `/api/getthana?ownid=${this.thana}`, []);
+            // console.log(ress.data.bn_name);
+            this.form.upazila = ress.data.bn_name;
+            // this.getuniouns = ress.data;
+
             var res = await this.callApi('get', `/api/getunioun?id=${this.thana}`, []);
             this.getuniouns = res.data;
+
+
         },
 
 

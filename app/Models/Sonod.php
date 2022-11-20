@@ -18,6 +18,7 @@ class Sonod extends Model
         'division',
         'district',
         'upazila',
+        'union',
         'post_office',
         'word_number',
         'village',

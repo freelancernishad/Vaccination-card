@@ -2559,6 +2559,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         division: '',
         district: '',
         upazila: '',
+        union: '',
         post_office: '',
         word_number: '',
         village: '',
@@ -2574,6 +2575,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       Pdivision: '',
       Perdivision: '',
       applicant_present_district: '',
+      thana: '',
       applicant_permanent_district: ''
     };
   },
@@ -2625,16 +2627,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 resdiv = _context2.sent;
-                console.log(resdiv);
+                // console.log(resdiv)
                 _this2.form.division = resdiv.data.bn_name;
-                _context2.next = 7;
+                _context2.next = 6;
                 return _this2.callApi('get', "/api/getdistrict?id=".concat(_this2.Pdivision), []);
 
-              case 7:
+              case 6:
                 res = _context2.sent;
                 _this2.getdistricts = res.data;
 
-              case 9:
+              case 8:
               case "end":
                 return _context2.stop();
             }
@@ -2676,19 +2678,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
-        var res;
+        var ress, res;
         return _regeneratorRuntime().wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
                 _context4.next = 2;
-                return _this4.callApi('get', "/api/getunioun?id=".concat(_this4.thana), []);
+                return _this4.callApi('get', "/api/getthana?ownid=".concat(_this4.thana), []);
 
               case 2:
+                ress = _context4.sent;
+                // console.log(ress.data.bn_name);
+                _this4.form.upazila = ress.data.bn_name; // this.getuniouns = ress.data;
+
+                _context4.next = 6;
+                return _this4.callApi('get', "/api/getunioun?id=".concat(_this4.thana), []);
+
+              case 6:
                 res = _context4.sent;
                 _this4.getuniouns = res.data;
 
-              case 4:
+              case 8:
               case "end":
                 return _context4.stop();
             }
@@ -5225,8 +5235,8 @@ var render = function render() {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: _vm.form.upazila,
-      expression: "form.upazila"
+      value: _vm.thana,
+      expression: "thana"
     }],
     staticClass: "form-control",
     attrs: {
@@ -5242,8 +5252,7 @@ var render = function render() {
           var val = "_value" in o ? o._value : o.value;
           return val;
         });
-
-        _vm.$set(_vm.form, "upazila", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+        _vm.thana = $event.target.multiple ? $$selectedVal : $$selectedVal[0];
       }, _vm.getuniounFun]
     }
   }, [_c("option", {
@@ -5254,9 +5263,54 @@ var render = function render() {
     return _c("option", {
       key: thana.id,
       domProps: {
-        value: thana.bn_name
+        value: thana.id
       }
     }, [_vm._v(_vm._s(thana.bn_name))]);
+  })], 2)])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "labelColor",
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("ইউনিয়ন")]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.union,
+      expression: "form.union"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      name: "thana",
+      id: "thana",
+      required: ""
+    },
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+
+        _vm.$set(_vm.form, "union", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }
+    }
+  }, [_c("option", {
+    attrs: {
+      value: ""
+    }
+  }, [_vm._v("ইউনিয়ন নির্বাচন করুন")]), _vm._v(" "), _vm._l(_vm.getuniouns, function (union) {
+    return _c("option", {
+      key: union.id,
+      domProps: {
+        value: union.bn_name
+      }
+    }, [_vm._v(_vm._s(union.bn_name))]);
   })], 2)])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
@@ -5564,6 +5618,8 @@ var render = function render() {
     staticClass: "col-md-4"
   }, [_c("b", [_vm._v("উপজেলা/থানা :")]), _vm._v(" " + _vm._s(_vm.form.upazila))]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
+  }, [_c("b", [_vm._v("ইউনিয়ন :")]), _vm._v(" " + _vm._s(_vm.form.union))]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
   }, [_c("b", [_vm._v("পোষ্ট অফিস :")]), _vm._v(" " + _vm._s(_vm.form.post_office))]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("b", [_vm._v("ওয়ার্ড নং :")]), _vm._v(" " + _vm._s(_vm.form.word_number))]), _vm._v(" "), _c("div", {
@@ -5574,7 +5630,9 @@ var render = function render() {
     staticClass: "col-md-4"
   }, [_c("b", [_vm._v("সম্ভাব্য প্রসবের তারিখ :")]), _vm._v(" " + _vm._s(_vm.form.probable_date_of_delivery))]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
-  }, [_c("b", [_vm._v("গ্রাভিড (কত তম গর্ভ) :")]), _vm._v(" " + _vm._s(_vm.form.how_many_wombs))])]), _vm._v(" "), _c("form", {
+  }, [_c("b", [_vm._v("গ্রাভিড (কত তম গর্ভ) :")]), _vm._v(" " + _vm._s(_vm.form.how_many_wombs))]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("b", [_vm._v("কত তম সন্তান :")]), _vm._v(" " + _vm._s(_vm.form.how_many_children))])]), _vm._v(" "), _c("form", {
     staticStyle: {
       "margin-top": "50px"
     },
