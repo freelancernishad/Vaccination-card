@@ -2131,7 +2131,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var ttt, token;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -2156,18 +2155,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   //           Notification.customError('Please Enter Valid Email and Password');
                   //                this.loadLogin = false
                   //     }
+                  //     var ttt='';
+                  //     let token = document.head.querySelector('meta[name="csrf-token"]');
+                  //     if (token) {
+                  //        var ttt =  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+                  //     } else {
+                  //         console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+                  //     }
+                  //  this.form['_token'] = ttt;
 
 
-                  ttt = '';
-                  token = document.head.querySelector('meta[name="csrf-token"]');
-
-                  if (token) {
-                    ttt = window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
-                  } else {
-                    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
-                  }
-
-                  _this.form['_token'] = ttt;
                   axios.post("/login", _this.form).then(function (res) {
                     if (res.data == 0) {
                       Notification.customError("Please Enter Valid Email and Password");
@@ -6764,6 +6761,14 @@ try {
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+var token = document.head.querySelector('meta[name="csrf-token"]');
+
+if (token) {
+  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+} else {
+  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
+
 window.RootUrl = window.location.origin; // window.ASSETURL = '/public/';
 // window.ASSETURL = '/';
 

@@ -124,14 +124,20 @@ export default {
                 //           Notification.customError('Please Enter Valid Email and Password');
                 //                this.loadLogin = false
                 //     }
-                var ttt='';
-                let token = document.head.querySelector('meta[name="csrf-token"]');
-                if (token) {
-                   var ttt =  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
-                } else {
-                    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
-                }
-             this.form['_token'] = ttt;
+
+
+
+            //     var ttt='';
+            //     let token = document.head.querySelector('meta[name="csrf-token"]');
+            //     if (token) {
+            //        var ttt =  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+            //     } else {
+            //         console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+            //     }
+            //  this.form['_token'] = ttt;
+
+
+
 
                 axios
                     .post("/login", this.form)
