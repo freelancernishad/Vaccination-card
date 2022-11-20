@@ -53,8 +53,8 @@
                     <h4>জরুরি হটলাইন</h4>
                 </div>
 
-                <div class="column block">
-                    <img width="100%" :src="$asseturl+'assets/img/suport.jpg'" alt="" />
+                <div class="column block" style="text-align: center;">
+                    <img width="70%" :src="$asseturl+'assets/img/suport.jpg'" alt="" />
                 </div>
 
                 <div class="fb-page" data-href="https://www.facebook.com/unotetuliaofficial" data-width="350"

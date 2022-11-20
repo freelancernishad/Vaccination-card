@@ -95,6 +95,9 @@
                         <!-- <input type="text" class="form-control" v-model="form.applicant_present_district"> -->
                     </div>
                 </div>
+
+
+
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="" class="labelColor">উপজেলা/থানা</label>
@@ -108,6 +111,23 @@
                         <!-- <input type="text" class="form-control" v-model="form.applicant_present_Upazila"> -->
                     </div>
                 </div>
+<!--
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="" class="labelColor">ইউনিয়ন</label>
+
+                        <select class='form-control' name="thana" id="thana" v-model="form.upazila" @change="getuniounFun" required>
+                            <option value="">ইউনিয়ন নির্বাচন করুন</option>
+                            <option v-for="thana in getthanas" :key="thana.id" :value="thana.bn_name">{{ thana.bn_name
+                            }}</option>
+                        </select>
+
+                        <!-- <input type="text" class="form-control" v-model="form.applicant_present_Upazila"> -->
+                    </div>
+                </div> -->
+
+
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="" class="labelColor">পোষ্ট অফিস</label>

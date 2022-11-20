@@ -4,7 +4,7 @@
             <header>
                 <div class="topHeader">
                     <div class="row">
-                        <div class="topheaderItem col-md-6 col-6"><span>Some text here</span></div>
+                        <div class="topheaderItem col-md-6 col-6"><span>প্রসূতি সেবা, ইপিআই টিকা ও জন্মনিবন্ধন সহজীকরণ</span></div>
                         <div class="topheaderItem col-md-6 col-6 text-right"><span
                                 style="border-right: 1px solid #ffffff85; padding: 8px 10px;margin-right: 9px;">{{
                                         curentdate
@@ -20,7 +20,7 @@
                         <div class="middleHeaderItem col-md-6 mt-3 mb-3">
                             <router-link :to="{ name: 'home' }">
                                 <img width="50%" v-if="getType == 'main'"
-                                    :src="$asseturl + 'assets/img/mail_logo-01.png'" alt="">
+                                    :src="$asseturl + 'assets/img/shristi.png'" alt="">
                                 <img width="50%" v-else-if="getType == 'Union'" :src="getunionInfos.web_logo" alt="">
                             </router-link>
                         </div>

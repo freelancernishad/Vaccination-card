@@ -16,10 +16,10 @@
   <meta name="audience" content="Everyone">
   <meta name="robots" content="index, follow">
 
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
 
 
-
-    <title>:: ইউনিয়ন পরিষদ ডিজিটাল সেবা সিস্টেম ::</title>
+    <title>:: সৃষ্টি ::</title>
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/bangladesh-govt.png') }}" />
     <!-- <link href="https://kit-pro.fontawesome.com/releases/v5.15.2/css/pro.min.css" rel="stylesheet" onload="if(media!=='all')media='all'"> -->
     <!-- CSS only -->
@@ -114,6 +114,7 @@ p.help.text-right {
 </head>
 
 <body style="font-family: 'Kalpurush', sans-serif;">
+
 
     <div id="app">
 

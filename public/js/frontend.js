@@ -2131,6 +2131,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var ttt, token;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -2157,9 +2158,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   //     }
 
 
-                  axios.post("/login", _this.form).then(function (res) {
-                    console.log(res);
+                  ttt = '';
+                  token = document.head.querySelector('meta[name="csrf-token"]');
 
+                  if (token) {
+                    ttt = window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+                  } else {
+                    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+                  }
+
+                  _this.form['_token'] = ttt;
+                  axios.post("/login", _this.form).then(function (res) {
                     if (res.data == 0) {
                       Notification.customError("Please Enter Valid Email and Password");
                       _this.loadLogin = false;
@@ -4932,731 +4941,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* binding */ render),
 /* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
 /* harmony export */ });
-var render = function render() {
-  var _vm = this,
-      _c = _vm._self._c;
+var render = function render() {};
 
-  return _c("div", [_c("form", {
-    on: {
-      submit: function submit($event) {
-        $event.stopPropagation();
-        $event.preventDefault();
-        return _vm.onSubmit.apply(null, arguments);
-      }
-    }
-  }, [_c("div", {
-    staticClass: "panel-heading",
-    staticStyle: {
-      "font-weight": "bold",
-      "font-size": "20px",
-      background: "#159513",
-      "text-align": "center",
-      color: "white"
-    }
-  }, [_vm._v("গর্ভকালীন\n                রেজিস্টেশন ")]), _vm._v(" "), _c("div", {
-    staticClass: "form-pannel"
-  }, [_c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "form-group"
-  }, [_vm._m(0), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.id_no,
-      expression: "form.id_no"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      required: ""
-    },
-    domProps: {
-      value: _vm.form.id_no
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-
-        _vm.$set(_vm.form, "id_no", $event.target.value);
-      }
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "form-group"
-  }, [_vm._m(1), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.name,
-      expression: "form.name"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      required: ""
-    },
-    domProps: {
-      value: _vm.form.name
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-
-        _vm.$set(_vm.form, "name", $event.target.value);
-      }
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "form-group"
-  }, [_vm._m(2), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.pregnant_woman_nid,
-      expression: "form.pregnant_woman_nid"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      required: ""
-    },
-    domProps: {
-      value: _vm.form.pregnant_woman_nid
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-
-        _vm.$set(_vm.form, "pregnant_woman_nid", $event.target.value);
-      }
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "form-group"
-  }, [_vm._m(3), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.husband_name,
-      expression: "form.husband_name"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      required: ""
-    },
-    domProps: {
-      value: _vm.form.husband_name
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-
-        _vm.$set(_vm.form, "husband_name", $event.target.value);
-      }
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "form-group"
-  }, [_vm._m(4), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.husband_name_nid,
-      expression: "form.husband_name_nid"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      required: ""
-    },
-    domProps: {
-      value: _vm.form.husband_name_nid
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-
-        _vm.$set(_vm.form, "husband_name_nid", $event.target.value);
-      }
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    staticClass: "labelColor",
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v("মোবাইল নম্বর")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.mobile_no,
-      expression: "form.mobile_no"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      required: ""
-    },
-    domProps: {
-      value: _vm.form.mobile_no
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-
-        _vm.$set(_vm.form, "mobile_no", $event.target.value);
-      }
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    staticClass: "labelColor",
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v("বিভাগ")]), _vm._v(" "), _c("select", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.Pdivision,
-      expression: "Pdivision"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      name: "division",
-      id: "division",
-      required: ""
-    },
-    on: {
-      change: [function ($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
-          return o.selected;
-        }).map(function (o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val;
-        });
-        _vm.Pdivision = $event.target.multiple ? $$selectedVal : $$selectedVal[0];
-      }, _vm.getdistrictFun]
-    }
-  }, [_c("option", {
-    attrs: {
-      value: ""
-    }
-  }, [_vm._v("বিভাগ নির্বাচন করুন")]), _vm._v(" "), _vm._l(_vm.getdivisions, function (div) {
-    return _c("option", {
-      key: div.id,
-      domProps: {
-        value: div.id
-      }
-    }, [_vm._v(_vm._s(div.bn_name) + "\n                                ")]);
-  })], 2)])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    staticClass: "labelColor",
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v("জেলা")]), _vm._v(" "), _c("select", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.applicant_present_district,
-      expression: "applicant_present_district"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      name: "district",
-      id: "district",
-      required: ""
-    },
-    on: {
-      change: [function ($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
-          return o.selected;
-        }).map(function (o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val;
-        });
-        _vm.applicant_present_district = $event.target.multiple ? $$selectedVal : $$selectedVal[0];
-      }, _vm.getthanaFun]
-    }
-  }, [_c("option", {
-    attrs: {
-      value: ""
-    }
-  }, [_vm._v("জেলা নির্বাচন করুন")]), _vm._v(" "), _vm._l(_vm.getdistricts, function (dist) {
-    return _c("option", {
-      key: dist.id,
-      domProps: {
-        value: dist.id
-      }
-    }, [_vm._v(_vm._s(dist.bn_name) + "\n                            ")]);
-  })], 2)])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    staticClass: "labelColor",
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v("উপজেলা/থানা")]), _vm._v(" "), _c("select", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.upazila,
-      expression: "form.upazila"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      name: "thana",
-      id: "thana",
-      required: ""
-    },
-    on: {
-      change: [function ($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
-          return o.selected;
-        }).map(function (o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val;
-        });
-
-        _vm.$set(_vm.form, "upazila", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
-      }, _vm.getuniounFun]
-    }
-  }, [_c("option", {
-    attrs: {
-      value: ""
-    }
-  }, [_vm._v("উপজেলা নির্বাচন করুন")]), _vm._v(" "), _vm._l(_vm.getthanas, function (thana) {
-    return _c("option", {
-      key: thana.id,
-      domProps: {
-        value: thana.bn_name
-      }
-    }, [_vm._v(_vm._s(thana.bn_name))]);
-  })], 2)])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    staticClass: "labelColor",
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v("পোষ্ট অফিস")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.post_office,
-      expression: "form.post_office"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      required: ""
-    },
-    domProps: {
-      value: _vm.form.post_office
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-
-        _vm.$set(_vm.form, "post_office", $event.target.value);
-      }
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    staticClass: "labelColor",
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v("ওয়ার্ড নং")]), _vm._v(" "), _c("select", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.word_number,
-      expression: "form.word_number"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      id: "word_no",
-      required: ""
-    },
-    on: {
-      change: function change($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
-          return o.selected;
-        }).map(function (o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val;
-        });
-
-        _vm.$set(_vm.form, "word_number", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
-      }
-    }
-  }, [_c("option", {
-    attrs: {
-      value: ""
-    }
-  }, [_vm._v("ওয়াড নং")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "1"
-    }
-  }, [_vm._v("১")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "2"
-    }
-  }, [_vm._v("২")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "3"
-    }
-  }, [_vm._v("৩")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "4"
-    }
-  }, [_vm._v("৪")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "5"
-    }
-  }, [_vm._v("৫")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "6"
-    }
-  }, [_vm._v("৬")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "7"
-    }
-  }, [_vm._v("৭")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "8"
-    }
-  }, [_vm._v("৮")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "9"
-    }
-  }, [_vm._v("৯")])])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    staticClass: "labelColor",
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v("গ্রাম/মহল্লা")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.village,
-      expression: "form.village"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      required: ""
-    },
-    domProps: {
-      value: _vm.form.village
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-
-        _vm.$set(_vm.form, "village", $event.target.value);
-      }
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    staticClass: "labelColor",
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v("শেষ মাসিকের তারিখ")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.date_of_last_menstrual_period,
-      expression: "form.date_of_last_menstrual_period"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "date",
-      required: ""
-    },
-    domProps: {
-      value: _vm.form.date_of_last_menstrual_period
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-
-        _vm.$set(_vm.form, "date_of_last_menstrual_period", $event.target.value);
-      }
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    staticClass: "labelColor",
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v("সম্ভাব্য প্রসবের তারিখ")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.probable_date_of_delivery,
-      expression: "form.probable_date_of_delivery"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "date",
-      required: ""
-    },
-    domProps: {
-      value: _vm.form.probable_date_of_delivery
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-
-        _vm.$set(_vm.form, "probable_date_of_delivery", $event.target.value);
-      }
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    staticClass: "labelColor",
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v("গ্রাভিড (কত তম গর্ভ)")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.how_many_wombs,
-      expression: "form.how_many_wombs"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "number",
-      required: ""
-    },
-    domProps: {
-      value: _vm.form.how_many_wombs
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-
-        _vm.$set(_vm.form, "how_many_wombs", $event.target.value);
-      }
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    staticClass: "labelColor",
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v("কত তম সন্তান ")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.how_many_children,
-      expression: "form.how_many_children"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "number",
-      required: ""
-    },
-    domProps: {
-      value: _vm.form.how_many_children
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-
-        _vm.$set(_vm.form, "how_many_children", $event.target.value);
-      }
-    }
-  })])])]), _vm._v(" "), _c("div", {
-    staticStyle: {
-      "text-align": "center"
-    }
-  }, [_c("b-button", {
-    attrs: {
-      type: "submit",
-      variant: "primary"
-    }
-  }, [_vm._v("সাবমিট")])], 1)])]), _vm._v(" "), _c("b-modal", {
-    attrs: {
-      id: _vm.infoModal.id,
-      size: "xl",
-      title: _vm.infoModal.title,
-      "ok-only": "",
-      "ok-disabled": "",
-      "no-close-on-esc": "",
-      "no-close-on-backdrop": ""
-    },
-    scopedSlots: _vm._u([{
-      key: "modal-footer",
-      fn: function fn() {
-        return [_c("div")];
-      },
-      proxy: true
-    }])
-  }, [_c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-md-4"
-  }, [_c("b", [_vm._v("আইডি নং :")]), _vm._v(" " + _vm._s(_vm.form.id_no))]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("b", [_vm._v("গর্ভবতী মহিলার নাম :")]), _vm._v(" " + _vm._s(_vm.form.name))]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("b", [_vm._v("গর্ভবতী মহিলার জাতীয় পরিচয়পত্র :")]), _vm._v(" " + _vm._s(_vm.form.pregnant_woman_nid))]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("b", [_vm._v("স্বামীর নাম :")]), _vm._v(" " + _vm._s(_vm.form.husband_name))]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("b", [_vm._v("স্বামীর জাতীয় পরিচয়পত্র :")]), _vm._v(" " + _vm._s(_vm.form.husband_name_nid))]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("b", [_vm._v("মোবাইল নম্বর :")]), _vm._v(" " + _vm._s(_vm.form.mobile_no))]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("b", [_vm._v("বিভাগ :")]), _vm._v(" " + _vm._s(_vm.form.division))]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("b", [_vm._v("জেলা :")]), _vm._v(" " + _vm._s(_vm.form.district))]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("b", [_vm._v("উপজেলা/থানা :")]), _vm._v(" " + _vm._s(_vm.form.upazila))]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("b", [_vm._v("পোষ্ট অফিস :")]), _vm._v(" " + _vm._s(_vm.form.post_office))]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("b", [_vm._v("ওয়ার্ড নং :")]), _vm._v(" " + _vm._s(_vm.form.word_number))]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("b", [_vm._v("গ্রাম/মহল্লা :")]), _vm._v(" " + _vm._s(_vm.form.village))]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("b", [_vm._v("শেষ মাসিকের তারিখ :")]), _vm._v(" " + _vm._s(_vm.form.date_of_last_menstrual_period))]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("b", [_vm._v("সম্ভাব্য প্রসবের তারিখ :")]), _vm._v(" " + _vm._s(_vm.form.probable_date_of_delivery))]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("b", [_vm._v("গ্রাভিড (কত তম গর্ভ) :")]), _vm._v(" " + _vm._s(_vm.form.how_many_wombs))])]), _vm._v(" "), _c("form", {
-    staticStyle: {
-      "margin-top": "50px"
-    },
-    on: {
-      submit: function submit($event) {
-        $event.stopPropagation();
-        $event.preventDefault();
-        return _vm.finalSubmit.apply(null, arguments);
-      }
-    }
-  }, [_c("div", {
-    staticClass: "text-center",
-    staticStyle: {
-      width: "50%",
-      margin: "0 auto"
-    }
-  }, [_c("h3", [_vm._v("আপনার আবেদনটি সফল করার জন্য Confirm বাটন এ চাপ দিন")]), _vm._v(" "), !_vm.submitLoad ? _c("button", {
-    staticClass: "btn btn-info",
-    attrs: {
-      type: "submit"
-    }
-  }, [_vm._v("Confirm")]) : _vm.submitLoad ? _c("span", {
-    staticClass: "btn btn-info"
-  }, [_vm._v("Please Wait...")]) : _vm._e()])])])], 1);
-};
-
-var staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("label", {
-    staticClass: "labelColor",
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v("আইডি নং"), _c("span", {
-    staticClass: "text-danger"
-  })]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("label", {
-    staticClass: "labelColor",
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v("গর্ভবতী মহিলার নাম"), _c("span", {
-    staticClass: "text-danger"
-  })]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("label", {
-    staticClass: "labelColor",
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v("গর্ভবতী মহিলার জাতীয় পরিচয়পত্র"), _c("span", {
-    staticClass: "text-danger"
-  })]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("label", {
-    staticClass: "labelColor",
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v("স্বামীর নাম"), _c("span", {
-    staticClass: "text-danger"
-  })]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("label", {
-    staticClass: "labelColor",
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v("স্বামীর জাতীয় পরিচয়পত্র"), _c("span", {
-    staticClass: "text-danger"
-  })]);
-}];
-render._withStripped = true;
+var staticRenderFns = [];
 
 
 /***/ }),
@@ -5925,9 +5212,7 @@ var render = function render() {
     }
   })]), _vm._v(" "), _c("div", {
     staticClass: "serviceTitle defaltTextColor"
-  }, [_vm._v("\n                                    গর্ভকালীন রেজিস্টেশন\n                                ")])])])], 1), _vm._v(" "), _c("div", {
-    staticClass: "row"
-  })])]), _vm._v(" "), _c("side-bar", {
+  }, [_vm._v("\n                                    গর্ভকালীন রেজিস্টেশন\n                                ")])])])], 1), _vm._v(" "), _vm._m(1)])]), _vm._v(" "), _c("side-bar", {
     attrs: {
       "class-name": "col-md-3"
     }
@@ -5953,7 +5238,20 @@ var staticRenderFns = [function () {
     staticClass: "col-md-12"
   }, [_c("h6", {
     staticClass: "serviceTitle position-relative defaltColor"
-  }, [_vm._v("\n                                সেবাসমূহ\n                            ")])]);
+  }, [_vm._v("\n                                সেবা গ্রহণের জন্য রেজিস্ট্রেশন করুন\n                            ")])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-md-12"
+  }, [_c("h6", {
+    staticClass: "serviceTitle position-relative defaltColor"
+  }, [_vm._v("\n                                প্রসূতি সেবা, ইপিআই টিকা ও জন্মনিবন্ধন সহজীকরণ\n                            ")])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-12"
+  }, [_c("p", [_vm._v("\n                                সরকারিভাবে প্রান্তিক পর্যায়ের সকল নারীদের নিরাপদ মাতৃত্ব এবং মা ও নবজাতকের স্বাস্থ্যসেবা নিশ্চিত করার লক্ষ্যে পরিবার পরিকল্পনা বিভাগ কর্তৃক গর্ভবতী মায়েদের গর্ভ ও প্রসবকালীন বিভিন্ন সেবা প্রদান করে থাকে এবং প্রসবোত্তর থেকে ১৫ মাস পর্যন্ত নবজাতক/শিশুকে স্বাস্থ্য অধিদপ্তর কর্তৃক সম্প্রসারিত টিকাদান কর্মসূচি (ইপিআই) এর আওতায় বিসিজি, পেন্টাভ্যালেন্ট, পিসিভি, পোলিও এবং হাম ও রুবেলা টিকা প্রদান করে থাকে। পরবর্তীতে স্থানীয় ইউনিয়ন পরিষদ, পৌরসভা, সিটি কর্পোরেশন অথবা ক্যান্টনমেন্ট বোর্ডের আওতায় জন্ম নেয়া শিশুর তথ্য সংগ্রহ পূর্বক জন্ম ও মৃত্যু নিবন্ধন আইন অনুযায়ী জন্ম নিবন্ধন রেজিস্টারে লিপিবদ্ধ করেন। প্রাথমিকভাবে লিপিবদ্ধকৃত তথ্য অনুযায়ী পরবর্তীতে ইস্যুকৃত জন্ম সনদ একজন ব্যক্তির মৃত্যু পর্যন্ত বয়স প্রমাণের অন্যতম দলিল হিসেবে ব্যবহৃত হয়ে থাকে।তিনটি ভিন্ন ভিন্ন দপ্তর কর্তৃক প্রদানকৃত এ সকল সেবার তথ্য ম্যানুয়ালি/সনাতন পদ্ধতিতে যথাযথভাবে সংরক্ষণ করা সম্ভব হয়না। ফলে, এ তিনটি দপ্তরের তথ্য সংরক্ষণ পদ্ধতি ও সেবাসমূহ সহজীকরণের লক্ষ্যে প্রসূতি মায়ের তথ্য ডিজিটাল প্লাটফর্মে সংরক্ষণ করে একই জায়গা থেকে গর্ভকালীন ও প্রসব সেবা প্রদান, নবজাতকের ইপিআই টিকাদান কর্মসূচি বাস্তবায়নের ডিজিটাল টিকা কার্ড প্রদান এবং ০-৪৫ দিনের মধ্যে জন্ম নিবন্ধন সহজীকরণের জন্য উপজেলা প্রশাসন, তেঁতুলিয়া, পঞ্চগড় এর উদ্যোগে ২০২২-২৩ অর্থ বছরে ‌সৃষ্টি srishti.gov.bd নামক এই অনলাইন প্লাটফর্মটি নির্মাণের উদ্যোগ গ্রহণ করা হয়।\n                            ")])])]);
 }];
 render._withStripped = true;
 
@@ -6064,10 +5362,13 @@ var render = function render() {
       "font-size": "13px"
     }
   }, [_vm._v(_vm._s(_vm.getunionInfos.u_notice))]), _vm._v(" "), _c("br")]) : _vm._e(), _vm._v(" "), _vm._m(4), _vm._v(" "), _c("div", {
-    staticClass: "column block"
+    staticClass: "column block",
+    staticStyle: {
+      "text-align": "center"
+    }
   }, [_c("img", {
     attrs: {
-      width: "100%",
+      width: "70%",
       src: _vm.$asseturl + "assets/img/suport.jpg",
       alt: ""
     }
@@ -6190,7 +5491,7 @@ var render = function render() {
   }, [_vm.getType == "main" ? _c("img", {
     attrs: {
       width: "50%",
-      src: _vm.$asseturl + "assets/img/mail_logo-01.png",
+      src: _vm.$asseturl + "assets/img/shristi.png",
       alt: ""
     }
   }) : _vm.getType == "Union" ? _c("img", {
@@ -6308,7 +5609,7 @@ var staticRenderFns = [function () {
 
   return _c("div", {
     staticClass: "topheaderItem col-md-6 col-6"
-  }, [_c("span", [_vm._v("Some text here")])]);
+  }, [_c("span", [_vm._v("প্রসূতি সেবা, ইপিআই টিকা ও জন্মনিবন্ধন সহজীকরণ")])]);
 }, function () {
   var _vm = this,
       _c = _vm._self._c;
