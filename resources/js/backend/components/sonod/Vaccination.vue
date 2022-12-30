@@ -10,9 +10,24 @@
 
                         <table class="table">
                             <tr>
-                                <td width='80%'>টিকা কেন্দ্রে আসার তারিখসমূহ</td>
-                                <td width="20%">তারিখ</td>
+                                <td >টিকা কেন্দ্রে আসার তারিখসমূহ</td>
+                                <td >টিকার ডোস</td>
+                                <td >কর্মী</td>
+                                <td >কেন্দ্র</td>
+                                <td >তারিখ</td>
+                                <td >পরবর্তী টিকা গ্রহনের তারিখ</td>
                             </tr>
+
+                            <tr v-for="(tikalist,index) in tikalists" :key="index">
+                                <td>{{ index+1+'. '+tikalist.tikaname }}</td>
+                                <td>{{ tikalist.tikadose }}</td>
+                                <td>{{ tikalist.kormir_name }}</td>
+                                <td>{{ tikalist.kendro_name }}</td>
+                                <td>{{ tikalist.tikaDate }}</td>
+                                <td>{{ tikalist.nextTikaDate }}</td>
+                            </tr>
+
+<!--
                             <tr>
                                 <td>১। ১ম বার শিশুকে বিসিজি, পােলিও-১, পেন্টা-১ | (ডিপিটি, হেপা-বি, হিব) টিকা
                                     পাওয়ার তারিখ
@@ -35,16 +50,75 @@
                                 <td>৪। ৪র্থ বার শিশুকে হাম, পােলিও-৪, এবং ভিটামিন-এ
                                     পাওয়ার তারিখ (পেন্টা-১ এবং হামের ক্যালেন্ডার থেকে)।</td>
                                 <td>{{ form.forth_dose }}</td>
-                            </tr>
+                            </tr> -->
                         </table>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="" class="labelColor">টিকার নাম </label>
+
+                            <multiselect v-model="vax.tikaname" :options="options" :multiple="true" required></multiselect>
 
 
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="" class="labelColor">কত তম টিকা  </label>
+                            <select class="form-control" v-model="vax.tikadose" required>
+                                <option value="">নির্বাচন করুন</option>
+                                <option value="১ম বার">১ম বার</option>
+                                <option value="২য় বার">২য় বার</option>
+                                <option value="৩য় বার">৩য় বার</option>
+                                <option value="৪র্থ বার">৪র্থ বার</option>
+                                <option value="৫ম বার">৫ম বার</option>
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="" class="labelColor">টিকা কেন্দ্রের নাম </label>
+                            <input type="text" class="form-control" v-model="vax.kendro_name" required>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="" class="labelColor">স্বাস্থ্য সহকারী/টিকাদান কর্মীর নাম </label>
+                            <input type="text" class="form-control" v-model="vax.kormir_name" required readonly >
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="" class="labelColor">টিকা প্রদানের তারিখ</label>
+                            <input type="date" class="form-control" v-model="vax.tikaDate" required readonly>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="" class="labelColor">পরবর্তী টিকার তারিখ</label>
+                            <input type="date" class="form-control" v-model="vax.nextTikaDate" required>
+                        </div>
+                    </div>
 
 
 
 
 
                 </div>
+
                 <div style="text-align:center">
                     <button type="submit" class="btn btn-primary" :disabled="disabled" v-html="buttontex">টিকা প্রদান করুন</button>
                 </div>
@@ -55,9 +129,18 @@
     </div>
 </template>
 <script>
+
+
 export default {
+
+
+
+
+
     data() {
         return {
+            value: null,
+        options: ['বিসিজি', 'পেন্টা (ডিপিটি, হেপ-বি, হিব)', 'ওপিভি', 'পিসিভি', 'আইপিভি', 'এমআর', 'এমআর (হাম ও রুবেলা)'],
             infoModal: {
                 id: 'info-modal',
                 title: '',
@@ -73,17 +156,29 @@ export default {
             },
             waitForPayment: false,
             submitLoad: false,
-            disabled: true,
+            disabled: false,
             sameStatus: '',
             buttontex: 'টিকা প্রদান করুন',
             sonodnamedata: {},
             SonodNamesOptions: {},
             form: {
+                id:'',
                 first_dose:'',
                 second_dose:'',
                 third_dose:'',
                 forth_dose:'',
             },
+            vax:{
+                applicantId:'',
+                tikaname:'',
+                tikadose:'',
+                kendro_name:'',
+                kormir_name:'',
+                tikaDate:'',
+                nextTikaDate:'',
+            },
+
+            tikalists: {},
 
             getdivisions: {},
             getdistricts: {},
@@ -141,8 +236,10 @@ export default {
 
 
         async onSubmit() {
+            this.vax.applicantId = this.form.id
 
-            var res = await this.callApi('post', '/api/sonod/update', this.form);
+            var res = await this.callApi('post', '/api/tikalog', this.vax);
+
             Notification.customSuccess(`টিকা প্রদান সফল`);
             this.$router.push({ name: 'applicationlist', params:{type:'approved'} })
 
@@ -151,29 +248,15 @@ export default {
 
         async getdata(id) {
             var res = await this.callApi('get', `/api/sonod/single/${id}?admin=true`, []);
+
             this.form = res.data.sonod
 
-            if(this.form.first_dose && this.form.second_dose && this.form.third_dose && this.form.forth_dose){
-                this.disabled = true;
-                this.buttontex = 'টিকা দেওয়া সম্পন্ন হয়েছে';
-            }else if(this.form.first_dose && this.form.second_dose && this.form.third_dose){
-                this.disabled = false;
-                this.buttontex = '৪র্থ বারের টিকা প্রদান করুন';
-                this.form.forth_dose = this.dateformatGlobal()[3];
-            }else if(this.form.first_dose && this.form.second_dose){
-                this.disabled = false;
-                this.buttontex = '৩য় বারের টিকা প্রদান করুন';
-                this.form.third_dose = this.dateformatGlobal()[3];
-            }else if(this.form.first_dose){
-                this.disabled = false;
-                this.buttontex = '২য় বারের টিকা প্রদান করুন';
-                this.form.second_dose = this.dateformatGlobal()[3];
-            }else{
-                this.disabled = false;
+            var res2 = await this.callApi('get', `/api/tikalog?applicantId=${id}`, []);
+            this.tikalists = res2.data
 
-                this.buttontex = '১ম বারের টিকা প্রদান করুন';
-                this.form.first_dose = this.dateformatGlobal()[3];
-            }
+                this.buttontex = 'টিকা প্রদান করুন';
+                this.vax.tikaDate = this.dateformatGlobal()[0];
+
 
 
         }
@@ -181,10 +264,14 @@ export default {
     mounted() {
         this.getdata(this.$route.params.id)
         this.address();
+
+
+        this.vax.kormir_name = this.Users.names
+
     }
 };
 </script>
-<style scoped >
+<style  >
 .app-heading {
     text-align: center;
     margin: 32px 0;
@@ -219,4 +306,12 @@ export default {
     color: #493eff;
     font-weight: 600;
 }
+
+
+.multiselect {
+    border: 1px solid var(--bgColor2) !important;
+    border-radius: 4px;
+}
+
+
 </style>

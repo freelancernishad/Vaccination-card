@@ -11,6 +11,7 @@ use App\Models\Expenditure;
 use App\Models\Notifications;
 use Illuminate\Http\Request;
 use App\Models\Sonodnamelist;
+use App\Models\TikaLog;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -343,10 +344,15 @@ class SonodController extends Controller
     {
 
         $id = $r->id;
-        $Insertdata = $r->all();
+        $data = $r->all();
+        $data['id_no'] = rand(111,999).time();
+        $data['registrationDate'] = date("d-m-Y");
         try {
-             $sonod =   sonod::create($Insertdata);
+
+             $sonod =   sonod::create($data);
+
             return  $sonod;
+
         } catch (Exception $e) {
             return sent_error($e->getMessage(), $e->getCode());
         }
@@ -822,15 +828,50 @@ class SonodController extends Controller
             $pdf = LaravelMpdf::loadView('invoice', compact('row', 'sonod', 'uniouninfo'));
             $pdf->stream("$EnsonodName-$row->sonod_Id.pdf");
         }
+
     }
+
+    public function TikaLogFun($row,$filter=[])
+    {
+        $bcgcount = TikaLog::where($filter)->count();
+        $bcg = '';
+        if($bcgcount>0){
+            $bcg = TikaLog::where($filter)->first();
+        }else{
+            $bcg = ['tikaDate'=>date('d-m-Y'),'nextTikaDate'=>date('d-m-Y')];
+            $bcg = json_decode(json_encode($bcg));
+
+        }
+        return $bcg;
+
+    }
+
     public function userDocument(Request $request, $name, $id)
     {
         $row = Sonod::find($id);
 
+        $firstDose =  TikaLog::where('tikadose','=', '১ম বার')->select('tikadose','tikaDate','nextTikaDate')->distinct()->first();
+        $secondDose =  TikaLog::where('tikadose','=', '২য় বার')->select('tikadose','tikaDate','nextTikaDate')->distinct()->first();
+        $thirthDose =  TikaLog::where('tikadose','=', '৩য় বার')->select('tikadose','tikaDate','nextTikaDate')->distinct()->first();
+        $fourthDose =  TikaLog::where('tikadose','=', '৪র্থ বার')->select('tikadose','tikaDate','nextTikaDate')->distinct()->first();
+        $fifthDose =  TikaLog::where('tikadose','=', '৫ম বার')->select('tikadose','tikaDate','nextTikaDate')->distinct()->first();
+
+
+
+
+
+        //  $bcg = $this->TikaLogFun($row,['applicantId'=>$row->id,'tikaname'=>'বিসিজি','tikadose'=>'১ম বার']);
+        //  $penta = $this->TikaLogFun($row,['applicantId'=>$row->id,'tikaname'=>'পেন্টা (ডিপিটি, হেপ-বি, হিব)','tikadose'=>'১ম বার']);
+        //  $opv = $this->TikaLogFun($row,['applicantId'=>$row->id,'tikaname'=>'ওপিভি','tikadose'=>'১ম বার']);
+        //  $pcv = $this->TikaLogFun($row,['applicantId'=>$row->id,'tikaname'=>'পিসিভি','tikadose'=>'১ম বার']);
+        //  $ipv = $this->TikaLogFun($row,['applicantId'=>$row->id,'tikaname'=>'আইপিভি','tikadose'=>'১ম বার']);
+        //  $mr = $this->TikaLogFun($row,['applicantId'=>$row->id,'tikaname'=>'এমআর','tikadose'=>'১ম বার']);
+        //  $mrHam = $this->TikaLogFun($row,['applicantId'=>$row->id,'tikaname'=>'এমআর (হাম ও রুবেলা)','tikadose'=>'১ম বার']);
+
 
             // return view('userdocument',compact('row'));
             // return view('card',compact('row'));
-            $pdf = LaravelMpdf::loadView('card', compact('row'));
+            $pdf = LaravelMpdf::loadView('card', compact('row','firstDose','secondDose','thirthDose','fourthDose','fifthDose'));
             return $pdf->stream("$row->id_no.pdf");
 
     }
@@ -868,7 +909,7 @@ class SonodController extends Controller
         $admin = $request->admin;
         if($admin){
             $sonod =  Sonod::find($id);
-            $sonodnamedata =  Sonodnamelist::where(['bnname'=>$sonod->sonod_name])->first();
+
             $sonod['image'] = asset($sonod->image);
             $sonod['applicant_national_id_front_attachment'] = asset($sonod->applicant_national_id_front_attachment);
             $sonod['applicant_national_id_back_attachment'] = asset($sonod->applicant_national_id_back_attachment);
@@ -876,7 +917,7 @@ class SonodController extends Controller
 
            return $data = [
                 'sonod'=>$sonod,
-                'sonodnamedata'=>$sonodnamedata,
+
             ];
         }
 

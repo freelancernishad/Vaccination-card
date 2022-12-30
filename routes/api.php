@@ -8,6 +8,7 @@ use App\Http\Controllers\SonodController;
 use App\Http\Controllers\CharageController;
 use App\Http\Controllers\CitizenController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\TikaLogController;
 use App\Http\Controllers\VisitorController;
 use  App\Http\Controllers\api\authController;
 use App\Http\Controllers\ActionLogController;
@@ -82,24 +83,11 @@ Route::post('update/users',[RoleController::class,'updateuser']);
 
 
 
+Route::resources([
+	'tikalog' => TikaLogController::class,
+]);
 
 
-Route::get('get/sonodname/list',[SonodnamelistController::class,'index']);
-Route::get('get/sonodname/delete/{id}',[SonodnamelistController::class,'deletesonodname']);
-
-Route::get('update/sonodname/{id}',[SonodnamelistController::class,'getsonodname']);
-Route::post('update/sonodname',[SonodnamelistController::class,'updatesonodname']);
-
-
-
-Route::get('get/union/list',[UniouninfoController::class,'index']);
-Route::get('get/union/delete/{id}',[UniouninfoController::class,'deleteunion']);
-
-Route::get('update/union/{id}',[UniouninfoController::class,'getunion']);
-// Route::post('update/union',[UniouninfoController::class,'updateunion']);
-Route::post('union/info',[UniouninfoController::class, 'unionInfo']);
-Route::post('unionprofile/submit',[UniouninfoController::class, 'unionInfoUpdate']);
-Route::post('payment/update',[UniouninfoController::class, 'paymentUpdate']);
 
 
 
@@ -138,64 +126,14 @@ Route::post('contact',[UniouninfoController::class, 'contact']);
 
 
 
-Route::get('sum/amount',[SonodController::class, 'totlaAmount']);
-Route::get('count/sonod/{status}',[SonodController::class, 'counting']);
+
 Route::post('visitorcreate',[VisitorController::class, 'visitorcreate']);
 Route::get('visitorcount',[VisitorController::class, 'visitorCount']);
 
 
 
-//Category
-
-Route::get('get/category/list',[BlogCategoryController::class,'index']);
-Route::get('get/category/delete/{id}',[BlogCategoryController::class,'deletecategory']);
-Route::get('update/category/{id}',[BlogCategoryController::class,'getcategory']);
-Route::post('update/category',[BlogCategoryController::class,'updatecategory']);
 
 
-//blogs
-
-Route::get('get/blog/list',[blogController::class,'index']);
-Route::get('get/blog/delete/{id}',[blogController::class,'deleteblog']);
-Route::get('update/blog/{id}',[blogController::class,'getblog']);
-Route::post('update/blog',[blogController::class,'updateblog']);
-
-
-Route::get('reject/{id}',[ActionLogController::class,'rejectreason']);
-
-Route::post('vattax/get',[CharageController::class,'index']);
-Route::post('vattax/submit',[CharageController::class,'store']);
-
-
-
-/// Citizen
-
-Route::get('citizen/list',[CitizenController::class,'index']);
-Route::get('citizen/show/{id}',[CitizenController::class,'show']);
-Route::get('citizen/delete/{id}',[CitizenController::class,'destroy']);
-Route::post('citizen/submit',[CitizenController::class,'store']);
-
-
-/// Holding Tax
-
-Route::get('holding/bokeya/list',[HoldingBokeyaController::class,'index']);
-
-Route::post('holding/bokeya/action',[HoldingtaxController::class,'holding_tax_pay']);
-
-Route::get('holding/tax/list',[HoldingtaxController::class,'index']);
-Route::get('holding/tax/show/{id}',[HoldingtaxController::class,'show']);
-Route::get('holding/tax/delete/{id}',[HoldingtaxController::class,'destroy']);
-Route::post('holding/tax/submit',[HoldingtaxController::class,'store']);
-
-Route::post('holding/tax/search',[HoldingtaxController::class,'holdingSearch']);
-
-Route::post('report/search',[PaymentController::class,'Search']);
-
-
-
-
-Route::get('cash/expenditure',[ExpenditureController::class,'index']);
-Route::post('cash/expenditure',[ExpenditureController::class,'store']);
 
 
 Route::get('niddob/verify',[SonodController::class,'niddob']);

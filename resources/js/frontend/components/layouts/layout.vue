@@ -54,6 +54,10 @@
                                         </li>
 
                                         <li class="nav-item">
+                                            <router-link class="nav-link" :to="{ name: 'vaxapplication' }">টিকা রেজিস্টেশন</router-link>
+                                        </li>
+
+                                        <li class="nav-item">
                                             <router-link class="nav-link" :to="{ name: 'contact' }">যোগাযোগ
                                             </router-link>
                                         </li>
@@ -224,8 +228,7 @@ padding: 3px 11px;"> ইউনিয়ন পরিষদের ডিজিটা
 export default {
     props: ['user'],
     async created() {
-        var res = await this.callApi('get', '/api/get/sonodname/list', []);
-        this.$store.commit('setUpdateSonodNames', res.data)
+
 
         var url = this.$appUrl.split("//");
 
@@ -330,15 +333,10 @@ console.log(sub,subdomainget)
             var res = await this.callApi('get', `/api/visitorcount?union=${unionname}`, [])
             this.visitors = res.data;
         },
-        getCategory() {
-            axios.get(`/api/get/category/list`)
-                .then((res) => {
-                    this.categorys = res.data
-                })
-        }
+
     },
     mounted() {
-        this.getCategory();
+      
         setTimeout(() => {
             this.visitorfun();
         }, 2000);

@@ -11,6 +11,7 @@ class Sonod extends Model
     use HasFactory,SoftDeletes;
     protected $fillable = [
         'id_no',
+        'registrationDate',
         'name',
         'pregnant_woman_nid',
         'husband_name',
@@ -21,6 +22,7 @@ class Sonod extends Model
         'union',
         'post_office',
         'word_number',
+        'holding_no',
         'village',
         'date_of_last_menstrual_period',
         'probable_date_of_delivery',
@@ -29,6 +31,7 @@ class Sonod extends Model
 
 
         'date_of_birth',
+        'childBirthNo',
         'mobile_no',
         'childbirth_type',
         'gender',

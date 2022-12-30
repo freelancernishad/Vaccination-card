@@ -39,13 +39,34 @@
                         </div>
 
 
-                        <router-link class="col-lg-12 mt-3 mb-3 text-center" :to="{ name: 'childApplication' }">
+                        <router-link class="col-lg-4 mt-3 mb-3 text-center" :to="{ name: 'childApplication' }">
                             <div class="serviceBox">
                                 <div class="serviceLogo">
                                     <img src="https://www.uniontax.gov.bd/public/assets/icon/1662995863____49003.png" width="15%" alt="" />
                                 </div>
                                 <div class="serviceTitle defaltTextColor">
                                     গর্ভকালীন রেজিস্টেশন
+                                </div>
+                            </div>
+                        </router-link>
+
+                        <router-link class="col-lg-4 mt-3 mb-3 text-center" :to="{ name: 'vaxapplication' }">
+                            <div class="serviceBox">
+                                <div class="serviceLogo">
+                                    <img src="https://www.uniontax.gov.bd/public/assets/icon/1662995863____49003.png" width="15%" alt="" />
+                                </div>
+                                <div class="serviceTitle defaltTextColor">
+                                    টিকা রেজিস্ট্রেশন
+                                </div>
+                            </div>
+                        </router-link>
+                        <router-link class="col-lg-4 mt-3 mb-3 text-center" :to="{ name: 'childApplication' }">
+                            <div class="serviceBox">
+                                <div class="serviceLogo">
+                                    <img src="https://www.uniontax.gov.bd/public/assets/icon/1662995863____49003.png" width="15%" alt="" />
+                                </div>
+                                <div class="serviceTitle defaltTextColor">
+                                    টিকা কার্ড যাচাই
                                 </div>
                             </div>
                         </router-link>
