@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="{{ asset('dashboard_asset/style.css') }}">
     {{-- <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.4/css/buttons.dataTables.min.css">
     <link rel="stylesheet" href="{{ asset('css/datatables.min.css') }}"> --}}
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css?ver=1.0.0') }}">
     <link href="https://fonts.maateen.me/kalpurush/font.css" rel="stylesheet">
 <style>
 
