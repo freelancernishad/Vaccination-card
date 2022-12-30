@@ -57,7 +57,7 @@
             <b><u>{{ $row->date_of_birth }}</u></b> <br>জন্ম নিবন্ধন নং
             <b><u>{{ $row->childBirthNo }}</u></b> <br> মাতার নাম <b><u>{{ $row->name }}</u></b> জাতীয় পরিচয়পত্র নং <b><u>{{ $row->pregnant_woman_nid }}</u></b><br/>
 
-            পিতার নাম <b><u>{{ $row->husband_name }}</u></b>জাতীয় পরিচয়পত্র নং <b><u>{{ $row->husband_name_nid }}</u></b> <br> বাড়ি/জিআর/হোল্ডিং নং {{ int_en_to_bn($row->holding_no) }} ওয়ার্ড নং <b><u>{{ int_en_to_bn($row->word_number) }}</u></b> গ্রাম/মহল্লা/পাড়া <b><u>{{ $row->village }}</u></b><br/> ইউনিয়ন/জোন <b><u>{{ $row->post_office }}</u></b> উপজেলা/পৌরসভা/সিটি করপােরেশন <b><u>{{ $row->upazila }}</u></b> <br>জেলা <b><u>{{ $row->district }}</u></b> কেন্দ্রের নাম.....................সাব-রক.........<br>স্বাস্থ্য সহকারী/টিকাদান কর্মীর নাম: .........মোবাইল নম্বর: .........
+            পিতার নাম <b><u>{{ $row->husband_name }}</u></b>জাতীয় পরিচয়পত্র নং <b><u>{{ $row->husband_name_nid }}</u></b> <br> বাড়ি/জিআর/হোল্ডিং নং <b><u>{{ int_en_to_bn($row->holding_no) }}</u></b> ওয়ার্ড নং <b><u>{{ int_en_to_bn($row->word_number) }}</u></b> গ্রাম/মহল্লা/পাড়া <b><u>{{ $row->village }}</u></b><br/> ইউনিয়ন/জোন <b><u>{{ $row->post_office }}</u></b> উপজেলা/পৌরসভা/সিটি করপােরেশন <b><u>{{ $row->upazila }}</u></b> <br>জেলা <b><u>{{ $row->district }}</u></b> কেন্দ্রের নাম <b><u>@if($bcgFirstDose){{ $bcgFirstDose->kendro_name  }}@endif</u></b> সাব-রক.........<br>স্বাস্থ্য সহকারী/টিকাদান কর্মীর নাম: <b><u>@if($bcgFirstDose){{ $bcgFirstDose->kormir_name  }}@endif</u></b> মোবাইল নম্বর: <b><u>{{ int_en_to_bn($row->mobile_no)  }}</u></b>
         </p>
 
 
@@ -74,10 +74,12 @@
 <br>
 <br>
 <br>
+<br>
 
 
 
-<h4  style="text-align: center;margin-bottom:0px;font-size:14px">ডোজ অনুযায়ী শিশুকে টিকা কেন্দ্রে আনতে হবে</h4>
+
+<h4  style="text-align: center;margin-bottom:0px;font-size:14px;margin-top:30px">ডোজ অনুযায়ী শিশুকে টিকা কেন্দ্রে আনতে হবে</h4>
 
         <table width="100%" class="tikatable" border="1" style="border-collapse:collapse;font-size:11px">
             <tr >
@@ -89,7 +91,7 @@
             <tr>
                 <td width="10%">১ম বার</td>
                 <td>বিসিজি, পেন্টা-১, ওপিভি-১, পিসিভি-১ এবং আইপিভি-১ টিকা পাওয়ার তারিখ ('টিকার ক্যালেন্ডার' থেকে)</td>
-                <td style="font-size:12px">@if($firstDose){{ int_en_to_bn( date("d-m-Y",strtotime($firstDose->tikaDate))) }}@endif</td>
+                <td style="font-size:12px">@if($bcgFirstDose){{ int_en_to_bn( date("d-m-Y",strtotime($bcgFirstDose->nextTikaDate))) }}@endif</td>
             </tr>
 
 
@@ -175,15 +177,11 @@
 
 
             <tr>
-
                 <td rowspan="2">টিকার নাম</td>
                 <td colspan="5">টিকা প্রদানের তারিখ</td>
-
             </tr>
 
             <tr>
-
-
                 <td>১ম বার</td>
                 <td>২য় বার</td>
                 <td>৩য় বার</td>
@@ -194,11 +192,11 @@
 
             <tr>
                 <td>বিসিজি</td>
-                <td style='font-size:10px'>@if($firstDose){{ int_en_to_bn( date("d-m-Y",strtotime($firstDose->tikaDate))) }}@endif</td>
-                <td style='font-size:10px'></td>
-                <td style='font-size:10px'></td>
-                <td style='font-size:10px'></td>
-                <td style='font-size:10px'></td>
+                <td style='font-size:10px'>@if($bcgFirstDose){{ int_en_to_bn( date("d-m-Y",strtotime($bcgFirstDose->tikaDate))) }}@endif</td>
+                <td style='font-size:10px'>@if($bcgSecondDose){{ int_en_to_bn( date("d-m-Y",strtotime($bcgSecondDose->tikaDate))) }}@endif</td>
+                <td style='font-size:10px'>@if($bcgThirdDose){{ int_en_to_bn( date("d-m-Y",strtotime($bcgThirdDose->tikaDate))) }}@endif</td>
+                <td style='font-size:10px'>@if($bcgFourthDose){{ int_en_to_bn( date("d-m-Y",strtotime($bcgFourthDose->tikaDate))) }}@endif</td>
+                <td style='font-size:10px'>@if($bcgFifthDose){{ int_en_to_bn( date("d-m-Y",strtotime($bcgFifthDose->tikaDate))) }}@endif</td>
             </tr>
 
             <tr>
@@ -237,24 +235,13 @@
             </tr>
 
             <tr>
-                <td>এমআর</td>
+                <td>এমআর (হাম ও রুবেলা)</td>
                 <td style='font-size:10px'></td>
                 <td style='font-size:10px'></td>
                 <td style='font-size:10px'></td>
                 <td style='font-size:10px'>@if($fourthDose){{ int_en_to_bn(date("d-m-Y",strtotime($fourthDose->tikaDate))) }}@endif</td>
                 <td style='font-size:10px'>@if($fifthDose){{ int_en_to_bn(date("d-m-Y",strtotime($fifthDose->tikaDate))) }}@endif</td>
             </tr>
-
-            <tr>
-                <td>এমআর (হাম ও রুবেলা)</td>
-                <td style='font-size:10px'></td>
-                <td style='font-size:10px'></td>
-                <td style='font-size:10px'></td>
-                <td style='font-size:10px'></td>
-                <td style='font-size:10px'></td>
-            </tr>
-
-
 
         </table>
 

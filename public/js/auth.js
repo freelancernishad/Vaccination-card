@@ -2549,6 +2549,16 @@ var Notification = /*#__PURE__*/function () {
       this.deleteSound();
     }
   }, {
+    key: "customSuccess2",
+    value: function customSuccess2(mess) {
+      Swal.fire('Success!', mess, 'success');
+    }
+  }, {
+    key: "customError2",
+    value: function customError2(mess) {
+      Swal.fire('Opps!', mess, 'error');
+    }
+  }, {
     key: "cart_delete",
     value: function cart_delete() {
       new Noty({

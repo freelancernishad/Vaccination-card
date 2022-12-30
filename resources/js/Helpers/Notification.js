@@ -116,6 +116,25 @@ class Notification{
         this.deleteSound();
 	}
 
+    customSuccess2(mess){
+
+        Swal.fire(
+            'Success!',
+            mess,
+            'success'
+          )
+	}
+
+    customError2(mess){
+
+        Swal.fire(
+            'Opps!',
+            mess,
+            'error'
+          )
+	}
+
+
 	cart_delete(){
 		new Noty({
 			type: 'error',

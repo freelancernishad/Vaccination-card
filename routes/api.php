@@ -87,8 +87,7 @@ Route::resources([
 	'tikalog' => TikaLogController::class,
 ]);
 
-
-
+Route::get('check/tika',[TikaLogController::class,'tikacount']);
 
 
 Route::get('get/sonod/count',[SonodnamelistController::class,'sonodCount']);

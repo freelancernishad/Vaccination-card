@@ -2640,7 +2640,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       value: null,
-      options: ['বিসিজি', 'পেন্টা (ডিপিটি, হেপ-বি, হিব)', 'ওপিভি', 'পিসিভি', 'আইপিভি', 'এমআর', 'এমআর (হাম ও রুবেলা)'],
+      options: ['পেন্টা (ডিপিটি, হেপ-বি, হিব)', 'ওপিভি', 'পিসিভি', 'আইপিভি', 'এমআর', 'এমআর (হাম ও রুবেলা)'],
       infoModal: {
         id: 'info-modal',
         title: '',
@@ -2654,6 +2654,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         service: 0,
         totalamount: 0
       },
+      preLooding: false,
       waitForPayment: false,
       submitLoad: false,
       disabled: false,
@@ -2670,13 +2671,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       },
       vax: {
         applicantId: '',
-        tikaname: '',
+        tikaname: [],
         tikadose: '',
         kendro_name: '',
         kormir_name: '',
         tikaDate: '',
         nextTikaDate: ''
       },
+      tikatype: '',
       tikalists: {},
       getdivisions: {},
       getdistricts: {},
@@ -2798,7 +2800,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     address: function address() {
       this.getdivisionFun();
     },
-    onSubmit: function onSubmit() {
+    SelectTika: function SelectTika() {
       var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
@@ -2807,20 +2809,39 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                _this5.vax.applicantId = _this5.form.id;
+                _this5.preLooding = true;
                 _context5.next = 3;
-                return _this5.callApi('post', '/api/tikalog', _this5.vax);
+                return _this5.callApi('get', "/api/check/tika?applicantId=".concat(_this5.form.id, "&tikadose=").concat(_this5.vax.tikadose, "&tikatype=").concat(_this5.tikatype));
 
               case 3:
                 res = _context5.sent;
-                Notification.customSuccess("\u099F\u09BF\u0995\u09BE \u09AA\u09CD\u09B0\u09A6\u09BE\u09A8 \u09B8\u09AB\u09B2");
 
-                _this5.$router.push({
-                  name: 'applicationlist',
-                  params: {
-                    type: 'approved'
+                if (res.data) {
+                  Notification.customError2("".concat(_this5.vax.tikadose, " \u099F\u09BF\u0995\u09BE \u0987\u09A4\u09BF\u09AE\u09A7\u09CD\u09AF\u09C7 \u09A6\u09C7\u0993\u09DF\u09BE \u09B9\u09DF\u09C7\u099B\u09C7"));
+                  _this5.vax.tikadose = '';
+                  _this5.vax.tikaname = [];
+                } else {
+                  if (_this5.tikatype == 'বিসিজি টিকা') {
+                    _this5.options = ['বিসিজি'];
+                    _this5.vax.tikaname = ['বিসিজি'];
+                  } else if (_this5.tikatype == 'অন্যান্য টিকা') {
+                    if (_this5.vax.tikadose == '১ম বার') {
+                      _this5.vax.tikaname = ['পেন্টা (ডিপিটি, হেপ-বি, হিব)', 'ওপিভি', 'পিসিভি', 'আইপিভি'];
+                    } else if (_this5.vax.tikadose == '২য় বার') {
+                      _this5.vax.tikaname = ['পেন্টা (ডিপিটি, হেপ-বি, হিব)', 'ওপিভি', 'পিসিভি'];
+                    } else if (_this5.vax.tikadose == '৩য় বার') {
+                      _this5.vax.tikaname = ['পেন্টা (ডিপিটি, হেপ-বি, হিব)', 'ওপিভি', 'পিসিভি', 'আইপিভি'];
+                    } else if (_this5.vax.tikadose == '৪র্থ বার') {
+                      _this5.vax.tikaname = ['এমআর'];
+                    } else if (_this5.vax.tikadose == '৫ম বার') {
+                      _this5.vax.tikaname = ['এমআর'];
+                    } else {
+                      _this5.vax.tikaname = [];
+                    }
                   }
-                });
+                }
+
+                _this5.preLooding = false;
 
               case 6:
               case "end":
@@ -2830,36 +2851,77 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee5);
       }))();
     },
-    getdata: function getdata(id) {
+    SelectTikatype: function SelectTikatype() {
+      if (this.tikatype == 'বিসিজি টিকা') {
+        this.options = ['বিসিজি'];
+      } else if (this.tikatype == 'অন্যান্য টিকা') {
+        this.options = ['পেন্টা (ডিপিটি, হেপ-বি, হিব)', 'ওপিভি', 'পিসিভি', 'আইপিভি', 'এমআর', 'এমআর (হাম ও রুবেলা)'];
+      }
+
+      this.SelectTika();
+    },
+    onSubmit: function onSubmit() {
       var _this6 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
-        var res, res2;
+        var res;
         return _regeneratorRuntime().wrap(function _callee6$(_context6) {
           while (1) {
             switch (_context6.prev = _context6.next) {
               case 0:
-                _context6.next = 2;
-                return _this6.callApi('get', "/api/sonod/single/".concat(id, "?admin=true"), []);
+                _this6.vax.applicantId = _this6.form.id;
+                _context6.next = 3;
+                return _this6.callApi('post', '/api/tikalog', _this6.vax);
 
-              case 2:
+              case 3:
                 res = _context6.sent;
-                _this6.form = res.data.sonod;
-                _context6.next = 6;
-                return _this6.callApi('get', "/api/tikalog?applicantId=".concat(id), []);
+                Notification.customSuccess("\u099F\u09BF\u0995\u09BE \u09AA\u09CD\u09B0\u09A6\u09BE\u09A8 \u09B8\u09AB\u09B2");
+
+                _this6.$router.push({
+                  name: 'applicationlist',
+                  params: {
+                    type: 'approved'
+                  }
+                });
 
               case 6:
-                res2 = _context6.sent;
-                _this6.tikalists = res2.data;
-                _this6.buttontex = 'টিকা প্রদান করুন';
-                _this6.vax.tikaDate = _this6.dateformatGlobal()[0];
-
-              case 10:
               case "end":
                 return _context6.stop();
             }
           }
         }, _callee6);
+      }))();
+    },
+    getdata: function getdata(id) {
+      var _this7 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
+        var res, res2;
+        return _regeneratorRuntime().wrap(function _callee7$(_context7) {
+          while (1) {
+            switch (_context7.prev = _context7.next) {
+              case 0:
+                _context7.next = 2;
+                return _this7.callApi('get', "/api/sonod/single/".concat(id, "?admin=true"), []);
+
+              case 2:
+                res = _context7.sent;
+                _this7.form = res.data.sonod;
+                _context7.next = 6;
+                return _this7.callApi('get', "/api/tikalog?applicantId=".concat(id), []);
+
+              case 6:
+                res2 = _context7.sent;
+                _this7.tikalists = res2.data;
+                _this7.buttontex = 'টিকা প্রদান করুন';
+                _this7.vax.tikaDate = _this7.dateformatGlobal()[0];
+
+              case 10:
+              case "end":
+                return _context7.stop();
+            }
+          }
+        }, _callee7);
       }))();
     }
   },
@@ -5297,7 +5359,19 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_c("form", {
+  return _c("div", [_vm.preLooding ? _c("loader", {
+    attrs: {
+      object: "#ff9633",
+      color1: "#ffffff",
+      color2: "#17fd3d",
+      size: "5",
+      speed: "2",
+      bg: "#343a40",
+      objectbg: "#999793",
+      opacity: "80",
+      name: "circular"
+    }
+  }) : _vm._e(), _vm._v(" "), _c("form", {
     on: {
       submit: function submit($event) {
         $event.stopPropagation();
@@ -5317,15 +5391,7 @@ var render = function render() {
   }, [_vm._v("টিকা প্রদান করুন\n            ")]), _vm._v(" "), _c("div", {
     staticClass: "form-pannel"
   }, [_c("div", {
-    staticClass: "row"
-  }, [_c("table", {
-    staticClass: "table"
-  }, [_vm._m(0), _vm._v(" "), _vm._l(_vm.tikalists, function (tikalist, index) {
-    return _c("tr", {
-      key: index
-    }, [_c("td", [_vm._v(_vm._s(index + 1 + ". " + tikalist.tikaname))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(tikalist.tikadose))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(tikalist.kormir_name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(tikalist.kendro_name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(tikalist.tikaDate))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(tikalist.nextTikaDate))])]);
-  })], 2)]), _vm._v(" "), _c("div", {
-    staticClass: "row"
+    staticClass: "row tikaForm"
   }, [_c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
@@ -5335,20 +5401,41 @@ var render = function render() {
     attrs: {
       "for": ""
     }
-  }, [_vm._v("টিকার নাম ")]), _vm._v(" "), _c("multiselect", {
+  }, [_vm._v("টিকা ধরন ")]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.tikatype,
+      expression: "tikatype"
+    }],
+    staticClass: "form-control",
     attrs: {
-      options: _vm.options,
-      multiple: true,
       required: ""
     },
-    model: {
-      value: _vm.vax.tikaname,
-      callback: function callback($$v) {
-        _vm.$set(_vm.vax, "tikaname", $$v);
-      },
-      expression: "vax.tikaname"
+    on: {
+      change: [function ($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.tikatype = $event.target.multiple ? $$selectedVal : $$selectedVal[0];
+      }, _vm.SelectTikatype]
     }
-  })], 1)]), _vm._v(" "), _c("div", {
+  }, [_c("option", {
+    attrs: {
+      value: ""
+    }
+  }, [_vm._v("নির্বাচন করুন")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "বিসিজি টিকা"
+    }
+  }, [_vm._v("বিসিজি টিকা")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "অন্যান্য টিকা"
+    }
+  }, [_vm._v("অন্যান্য টিকা")])])])]), _vm._v(" "), _vm.tikatype ? _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
@@ -5369,7 +5456,7 @@ var render = function render() {
       required: ""
     },
     on: {
-      change: function change($event) {
+      change: [function ($event) {
         var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
           return o.selected;
         }).map(function (o) {
@@ -5378,7 +5465,7 @@ var render = function render() {
         });
 
         _vm.$set(_vm.vax, "tikadose", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
-      }
+      }, _vm.SelectTika]
     }
   }, [_c("option", {
     attrs: {
@@ -5404,7 +5491,29 @@ var render = function render() {
     attrs: {
       value: "৫ম বার"
     }
-  }, [_vm._v("৫ম বার")])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("৫ম বার")])])])]) : _vm._e(), _vm._v(" "), _vm.tikatype ? _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "labelColor",
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("টিকার নাম ")]), _vm._v(" "), _c("multiselect", {
+    attrs: {
+      options: _vm.options,
+      multiple: true,
+      required: ""
+    },
+    model: {
+      value: _vm.vax.tikaname,
+      callback: function callback($$v) {
+        _vm.$set(_vm.vax, "tikaname", $$v);
+      },
+      expression: "vax.tikaname"
+    }
+  })], 1)]) : _vm._e(), _vm._v(" "), _vm.tikatype ? _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
@@ -5435,7 +5544,7 @@ var render = function render() {
         _vm.$set(_vm.vax, "kendro_name", $event.target.value);
       }
     }
-  })])]), _vm._v(" "), _c("div", {
+  })])]) : _vm._e(), _vm._v(" "), _vm.tikatype ? _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
@@ -5454,8 +5563,7 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      required: "",
-      readonly: ""
+      required: ""
     },
     domProps: {
       value: _vm.vax.kormir_name
@@ -5467,7 +5575,7 @@ var render = function render() {
         _vm.$set(_vm.vax, "kormir_name", $event.target.value);
       }
     }
-  })])]), _vm._v(" "), _c("div", {
+  })])]) : _vm._e(), _vm._v(" "), _vm.tikatype ? _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
@@ -5486,8 +5594,7 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "date",
-      required: "",
-      readonly: ""
+      required: ""
     },
     domProps: {
       value: _vm.vax.tikaDate
@@ -5499,7 +5606,7 @@ var render = function render() {
         _vm.$set(_vm.vax, "tikaDate", $event.target.value);
       }
     }
-  })])]), _vm._v(" "), _c("div", {
+  })])]) : _vm._e(), _vm._v(" "), _vm.tikatype ? _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
@@ -5530,7 +5637,7 @@ var render = function render() {
         _vm.$set(_vm.vax, "nextTikaDate", $event.target.value);
       }
     }
-  })])])]), _vm._v(" "), _c("div", {
+  })])]) : _vm._e()]), _vm._v(" "), _c("div", {
     staticStyle: {
       "text-align": "center"
     }
@@ -5543,7 +5650,15 @@ var render = function render() {
     domProps: {
       innerHTML: _vm._s(_vm.buttontex)
     }
-  }, [_vm._v("টিকা প্রদান করুন")])])])])]);
+  }, [_vm._v("টিকা প্রদান করুন")])]), _vm._v(" "), _c("div", {
+    staticClass: "row"
+  }, [_c("table", {
+    staticClass: "table"
+  }, [_vm._m(0), _vm._v(" "), _vm._l(_vm.tikalists, function (tikalist, index) {
+    return _c("tr", {
+      key: index
+    }, [_c("td", [_vm._v(_vm._s(index + 1 + ". " + tikalist.tikaname))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(tikalist.tikadose))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(tikalist.kormir_name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(tikalist.kendro_name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(tikalist.tikaDate))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(tikalist.nextTikaDate))])]);
+  })], 2)])])])], 1);
 };
 
 var staticRenderFns = [function () {
@@ -8418,6 +8533,16 @@ var Notification = /*#__PURE__*/function () {
         timeout: 2000
       }).show();
       this.deleteSound();
+    }
+  }, {
+    key: "customSuccess2",
+    value: function customSuccess2(mess) {
+      Swal.fire('Success!', mess, 'success');
+    }
+  }, {
+    key: "customError2",
+    value: function customError2(mess) {
+      Swal.fire('Opps!', mess, 'error');
     }
   }, {
     key: "cart_delete",
@@ -25727,7 +25852,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.app-heading {\n    text-align: center;\n    margin: 32px 0;\n    font-size: 23px;\n    border-bottom: 1px solid #159513;\n    color: #ffffff;\n    background: #255f95;\n}\n.form-pannel {\n    border: 1px solid #159513;\n    padding: 25px 25px 25px 25px;\n}\n.panel-heading {\n    padding: 11px 0px;\n    border-top-right-radius: 6px;\n    border-top-left-radius: 6px;\n    margin-top: 20px;\n}\n.form-pannel {\n    border-bottom-left-radius: 6px;\n    border-bottom-right-radius: 6px;\n}\n.dropdown-menu {\n    z-index: 99999;\n}\n.labelColor {\n    color: #493eff;\n    font-weight: 600;\n}\n.multiselect {\n    border: 1px solid var(--bgColor2) !important;\n    border-radius: 4px;\n}\n\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.app-heading {\n    text-align: center;\n    margin: 32px 0;\n    font-size: 23px;\n    border-bottom: 1px solid #159513;\n    color: #ffffff;\n    background: #255f95;\n}\n.form-pannel {\n    border: 1px solid #159513;\n    padding: 25px 25px 25px 25px;\n}\n.panel-heading {\n    padding: 11px 0px;\n    border-top-right-radius: 6px;\n    border-top-left-radius: 6px;\n    margin-top: 20px;\n}\n.form-pannel {\n    border-bottom-left-radius: 6px;\n    border-bottom-right-radius: 6px;\n}\n.dropdown-menu {\n    z-index: 99999;\n}\n.labelColor {\n    color: #493eff;\n    font-weight: 600;\n}\n.multiselect {\n    border: 1px solid var(--bgColor2) !important;\n    border-radius: 4px;\n}\n.tikaForm{\n    border: 2px solid #0089ff;\n    margin: 13px;\n    padding: 24px 8px 24px 8px;\n}\n\n\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

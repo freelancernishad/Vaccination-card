@@ -7,6 +7,25 @@ use Illuminate\Http\Request;
 
 class TikaLogController extends Controller
 {
+
+
+    public function tikacount(Request $request)
+    {
+        $applicantId = $request->applicantId;
+        $tikadose = $request->tikadose;
+        $tikatype = $request->tikatype;
+
+        if($tikatype=='বিসিজি টিকা'){
+
+            return TikaLog::where(['applicantId'=>$applicantId,'tikadose'=>$tikadose,'tikaname'=>'বিসিজি'])->count();
+        }else{
+
+            return TikaLog::where(['applicantId'=>$applicantId,'tikadose'=>$tikadose])->where('tikaname','!=', 'বিসিজি')->count();
+        }
+
+
+    }
+
     /**
      * Display a listing of the resource.
      *
