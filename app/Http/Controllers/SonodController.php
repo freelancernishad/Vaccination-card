@@ -850,11 +850,11 @@ class SonodController extends Controller
     {
         $row = Sonod::find($id);
 
-        $firstDose =  TikaLog::where('tikadose','=', '১ম বার')->select('tikadose','tikaDate','nextTikaDate')->distinct()->first();
-        $secondDose =  TikaLog::where('tikadose','=', '২য় বার')->select('tikadose','tikaDate','nextTikaDate')->distinct()->first();
-        $thirthDose =  TikaLog::where('tikadose','=', '৩য় বার')->select('tikadose','tikaDate','nextTikaDate')->distinct()->first();
-        $fourthDose =  TikaLog::where('tikadose','=', '৪র্থ বার')->select('tikadose','tikaDate','nextTikaDate')->distinct()->first();
-        $fifthDose =  TikaLog::where('tikadose','=', '৫ম বার')->select('tikadose','tikaDate','nextTikaDate')->distinct()->first();
+        $firstDose =  TikaLog::where(['applicantId'=>$row->id,'tikadose'=> '১ম বার'])->select('tikadose','tikaDate','nextTikaDate')->distinct()->first();
+        $secondDose =  TikaLog::where(['applicantId'=>$row->id,'tikadose'=> '২য় বার'])->select('tikadose','tikaDate','nextTikaDate')->distinct()->first();
+        $thirthDose =  TikaLog::where(['applicantId'=>$row->id,'tikadose'=> '৩য় বার'])->select('tikadose','tikaDate','nextTikaDate')->distinct()->first();
+        $fourthDose =  TikaLog::where(['applicantId'=>$row->id,'tikadose'=> '৪র্থ বার'])->select('tikadose','tikaDate','nextTikaDate')->distinct()->first();
+        $fifthDose =  TikaLog::where(['applicantId'=>$row->id,'tikadose'=> '৫ম বার'])->select('tikadose','tikaDate','nextTikaDate')->distinct()->first();
 
 
 
