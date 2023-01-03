@@ -73,7 +73,7 @@
             শিশুর নাম- <b>{{ $row->childs_name }}</b>, লিঙ্গ- <b>{{ $row->gender }}</b>,  জন্ম তারিখ-
             <b>{{ $row->date_of_birth }}</b>, <br>জন্ম নিবন্ধন নং- <b>{{ $row->childBirthNo }}</b>, <br> মাতার নাম- <b>{{ $row->name }}</b>, জাতীয় পরিচয়পত্র নং- <b>{{ $row->pregnant_woman_nid }}</b>,<br/>
 
-            পিতার নাম- <b>{{ $row->husband_name }}</b>, জাতীয় পরিচয়পত্র নং- <b>{{ $row->husband_name_nid }}</b>, <br> বাড়ি/জিআর/হোল্ডিং নং- <b>{{ int_en_to_bn($row->holding_no) }}</b>, ওয়ার্ড নং- <b>{{ int_en_to_bn($row->word_number) }}</b>, গ্রাম/মহল্লা/পাড়া- <b>{{ $row->village }}</b>,<br/> ইউনিয়ন/জোন- <b>{{ $row->post_office }}</b>, উপজেলা/পৌরসভা/সিটি করপােরেশন- <b>{{ $row->upazila }}</b>, <br>জেলা- <b>{{ $row->district }}</b>, কেন্দ্রের নাম- <b>@if($bcgFirstDose){{ $bcgFirstDose->kendro_name  }}@endif</b>, সাব-রক.........<br>স্বাস্থ্য সহকারী/টিকাদান কর্মীর নাম- <b>@if($bcgFirstDose){{ $bcgFirstDose->kormir_name  }}@endif</b>, <br> মোবাইল নম্বর- <b>{{ int_en_to_bn($row->mobile_no)  }}</b>
+            পিতার নাম- <b>{{ $row->husband_name }}</b>, জাতীয় পরিচয়পত্র নং- <b>{{ $row->husband_name_nid }}</b>, <br> বাড়ি/জিআর/হোল্ডিং নং- <b>{{ int_en_to_bn($row->holding_no) }}</b>, ওয়ার্ড নং- <b>{{ int_en_to_bn($row->word_number) }}</b>, গ্রাম/মহল্লা/পাড়া- <b>{{ $row->village }}</b>,<br/> ইউনিয়ন/জোন- <b>{{ $row->post_office }}</b>, উপজেলা/পৌরসভা/সিটি করপােরেশন- <b>{{ $row->upazila }}</b>, <br>জেলা- <b>{{ $row->district }}</b>, কেন্দ্রের নাম/সাব ব্লক- <b>@if($bcgFirstDose){{ $bcgFirstDose->kendro_name  }}@endif</b>, <br>স্বাস্থ্য সহকারী/টিকাদান কর্মীর নাম- <b>@if($bcgFirstDose){{ $bcgFirstDose->kormir_name  }}@endif</b>, <br> মোবাইল নম্বর- <b>{{ int_en_to_bn($row->mobile_no)  }}</b>
         </p>
 
 
