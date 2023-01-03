@@ -33,52 +33,68 @@
             text-align: center;
         }
         .tikaTips li{
+            font-size:10px;
+        }
+        .tikaname tr td{
+            text-align: left;
             font-size:11px;
+        }
+        .pagebox{
+            height: 420px;
         }
     </style>
 </head>
 <body style="font-family: 'bangla', sans-serif;">
 
+    <div style="text-align:center">
+        <img width="250px" src="{{ base64('assets/img/shristi.png') }}" alt="">
+    </div>
+    <h2 style="text-align:center;background:#E62523;padding:5px;color:white">'সৃষ্টি' ডিজিটাল টিকাদান কার্ড (শিশু)</h2>
+
+
+
     <div style="width:46.5%;float: left;padding:1.5%;">
+
+        <div class="pagebox" style="border:2px solid black;padding:5px">
+
 
         <table width="100%">
             <tr>
-                <td></td>
-                <td style="text-align:center">
-                    <h2>'সৃষ্টি' ডিজিটাল টিকাদান কার্ড (শিশু)</h2>
+
+                <td style="text-align:left">
+                    <h2 style="font-size:18px;text-decoration:underline;margin-left:0px;">শিশুর তথ্য</h2>
                 </td>
                 <td style="text-align:right"></td>
             </tr>
         </table>
 
         <p style="text-align:left;font-size:11px;text-align:justify;line-height: 2em;">
-            রেজিস্ট্রেশন নং <b><u>{{ int_en_to_bn($row->id_no) }}</u></b> রেজিস্ট্রেশনের তারিখ: <b><u>{{ int_en_to_bn(date('d M. Y', strtotime ($row->created_at))) }}</u></b> <br>
-            শিশুর নাম : <b><u>{{ $row->childs_name }}</u></b> লিঙ্গ: <b><u>{{ $row->gender }}</u></b>  জন্ম তারিখ:
-            <b><u>{{ $row->date_of_birth }}</u></b> <br>জন্ম নিবন্ধন নং
-            <b><u>{{ $row->childBirthNo }}</u></b> <br> মাতার নাম <b><u>{{ $row->name }}</u></b> জাতীয় পরিচয়পত্র নং <b><u>{{ $row->pregnant_woman_nid }}</u></b><br/>
+            রেজিস্ট্রেশন নং- <b>{{ int_en_to_bn($row->id_no) }}</b>, রেজিস্ট্রেশনের তারিখ- <b>{{ int_en_to_bn(date('d M. Y', strtotime ($row->created_at))) }}</b>, <br>
+            শিশুর নাম- <b>{{ $row->childs_name }}</b>, লিঙ্গ- <b>{{ $row->gender }}</b>,  জন্ম তারিখ-
+            <b>{{ $row->date_of_birth }}</b>, <br>জন্ম নিবন্ধন নং- <b>{{ $row->childBirthNo }}</b>, <br> মাতার নাম- <b>{{ $row->name }}</b>, জাতীয় পরিচয়পত্র নং- <b>{{ $row->pregnant_woman_nid }}</b>,<br/>
 
-            পিতার নাম <b><u>{{ $row->husband_name }}</u></b>জাতীয় পরিচয়পত্র নং <b><u>{{ $row->husband_name_nid }}</u></b> <br> বাড়ি/জিআর/হোল্ডিং নং <b><u>{{ int_en_to_bn($row->holding_no) }}</u></b> ওয়ার্ড নং <b><u>{{ int_en_to_bn($row->word_number) }}</u></b> গ্রাম/মহল্লা/পাড়া <b><u>{{ $row->village }}</u></b><br/> ইউনিয়ন/জোন <b><u>{{ $row->post_office }}</u></b> উপজেলা/পৌরসভা/সিটি করপােরেশন <b><u>{{ $row->upazila }}</u></b> <br>জেলা <b><u>{{ $row->district }}</u></b> কেন্দ্রের নাম <b><u>@if($bcgFirstDose){{ $bcgFirstDose->kendro_name  }}@endif</u></b> সাব-রক.........<br>স্বাস্থ্য সহকারী/টিকাদান কর্মীর নাম: <b><u>@if($bcgFirstDose){{ $bcgFirstDose->kormir_name  }}@endif</u></b> মোবাইল নম্বর: <b><u>{{ int_en_to_bn($row->mobile_no)  }}</u></b>
+            পিতার নাম- <b>{{ $row->husband_name }}</b>, জাতীয় পরিচয়পত্র নং- <b>{{ $row->husband_name_nid }}</b>, <br> বাড়ি/জিআর/হোল্ডিং নং- <b>{{ int_en_to_bn($row->holding_no) }}</b>, ওয়ার্ড নং- <b>{{ int_en_to_bn($row->word_number) }}</b>, গ্রাম/মহল্লা/পাড়া- <b>{{ $row->village }}</b>,<br/> ইউনিয়ন/জোন- <b>{{ $row->post_office }}</b>, উপজেলা/পৌরসভা/সিটি করপােরেশন- <b>{{ $row->upazila }}</b>, <br>জেলা- <b>{{ $row->district }}</b>, কেন্দ্রের নাম- <b>@if($bcgFirstDose){{ $bcgFirstDose->kendro_name  }}@endif</b>, সাব-রক.........<br>স্বাস্থ্য সহকারী/টিকাদান কর্মীর নাম- <b>@if($bcgFirstDose){{ $bcgFirstDose->kormir_name  }}@endif</b>, <br> মোবাইল নম্বর- <b>{{ int_en_to_bn($row->mobile_no)  }}</b>
         </p>
 
 
-        <div style="font-size:11px">
-            <div style="text-align: center;margin-bottom:0px">নির্দেশনা</div>
-            <div style="text-align: center;margin-bottom:0px">সময়সূটি অনুযায়ী সবগুলো টিকা দেয়া শেষ করুন।</div>
+        <div style="font-size:11px;text-align: justify">
+            <div style="text-align: center;margin-bottom:0px;background:#E62523;color:white">নির্দেশনা</div>
+            <div style="text-align: center;margin-bottom:0px;background:#E62523;color:white">সময়সূটি অনুযায়ী সবগুলো টিকা দেয়া শেষ করুন।</div>
+
             আপনার এলাকায় জন্মের ২৮ দিনের মধ্যে কোন শিশুর মৃত্যু হলে; যে কোন বয়সের কেউ হামে আক্রান্ত হলে; ১৫ বছরের কম বয়সের কোন ছেলে/মেয়ের এক বা একাধিক হাত অথবা পা হঠাৎ থলথলে প্যারালাইসিস হলে অথবা ১ বছরের কম বয়সী কোনো শিশুর জন্মগতভাবে হৃদরোগ, কানে না শোনা, চোখে ছানি, চোখ ছোট বা বড় ইত্যাদি থাকে তাহলে সাথে সাথে নিকটস্থ স্বাস্থ্য কেন্দ্রে নিয়ে যান অথাব স্বাস্থ্যকর্মীকে খবর দিন।
         </div>
 
 
-
+    </div>
 
 
 <br>
 <br>
-<br>
-<br>
 
 
 
 
+<div class="pagebox" style="border:2px solid black;padding:5px">
 <h4  style="text-align: center;margin-bottom:0px;font-size:14px;margin-top:30px">ডোজ অনুযায়ী শিশুকে টিকা কেন্দ্রে আনতে হবে</h4>
 
         <table width="100%" class="tikatable" border="1" style="border-collapse:collapse;font-size:11px">
@@ -133,21 +149,52 @@
 <p style="font-size:11px">মোবাইল নম্বর:</p>
 
     </div>
+    </div>
     <div style="width:46.5%;float: right;padding:1.5%">
+
+        <div  class="pagebox" style="border:2px solid black;padding:5px">
         <table width="100%">
             <tr>
                 <td></td>
-                <td style="text-align:center">
-                    <h2>শিশুদের টিক দিয়ে প্রতিরোধযোগ্য রোগ সমূহ</h2>
+                <td style="text-align:center;">
+                    <h2 style="font-size:18px;text-decoration:underline;margin-bottom:10px">শিশুদের টিকা দিয়ে প্রতিরোধযোগ্য রোগ সমূহ</h2>
                 </td>
                 <td style="text-align:right"></td>
             </tr>
         </table>
 
-        <div style="font-size:13px;font-weight: 900;text-align:center;font-style: italic;">
-            ১। যক্ষা ২। পোলিও ৩। ডিফথেরিয়া ৪। হুপিং কাশি ৫। ধনুষ্টংকার ৬। হেপাটাইটিস-বি ৭। হিমোফাইলাস ইনফ্লেুয়েঞ্জা-বি জনিত রোগ ৮। হাম
-            ৯। মিউমোকক্কাল জনিত নিউমোনিয়া ১০। রুবেলা
+        <div style="font-size:11px;font-weight: 900;text-align:justify;font-style: italic;">
+
+            <table class='tikaname'>
+                <tr>
+                    <td>১। যক্ষা</td>
+                    <td>২। পোলিও</td>
+                    <td>৩। ডিফথেরিয়া</td>
+                </tr>
+                <tr>
+                    <td>৪। হুপিং কাশি</td>
+                    <td>৫। ধনুষ্টংকার</td>
+                    <td>৬। হেপাটাইটিস-বি</td>
+                </tr>
+                <tr>
+
+                    <td colspan="2" >৭। হিমোফাইলাস ইনফ্লেুয়েঞ্জা-বি জনিত রোগ</td>
+                    <td >৮। হাম</td>
+
+                </tr>
+                <tr>
+
+
+                    <td colspan="2">৯। মিউমোকক্কাল জনিত নিউমোনিয়া</td>
+                    <td>১০। রুবেলা</td>
+                </tr>
+
+            </table>
+
+
+
             </div>
+
 
             <ol style="list-style-type: bengali;margin-bottom:0px" class="tikaTips">
                 <li>সময়সূটি অনুযায়ী সবগুলো টিকা নিলে আপনার শিশু উপরে বর্ণিত মারাত্মক সংক্রামক রোগসমূহ হতে রক্ষা পাবে।</li>
@@ -160,8 +207,8 @@
                 <li>টিকা দিলে সামান্য জ্বর, টিকার স্থানে ব্যথা এবং সাময়িকভাবে টিকা দেয়ার স্থান শক্ত হয়ে যেতে পারে, এতে ভয়ের কিছু নেই।</li>
 
             </ol>
-            <p style="text-align:center;margin-top:0px;font-size:11px">বাস্তবায়নে: স্বাস্থ্য সেবা বিভাগ</p>
 
+        </div>
 
             <br>
             <br>
@@ -170,7 +217,7 @@
 
 
 
-
+            <div  class="pagebox" style="border:2px solid black;padding:5px">
             <h4  style="text-align: center;margin-bottom:0px;font-size:14px">শিশুকে সবগুলো টিকা দেয়ার জন্য কমপক্ষে ৫ বার টিকা কেন্দ্রে নিয়ে আসতে হবে</h4>
 
         <table width="100%" class="tikatable" border="1" style="border-collapse:collapse;font-size:11px">
@@ -247,19 +294,33 @@
 
 
 
+
+
 <br>
             <div style="text-align:center;font-size:12px">
                 <div style="margin-bottom:0px">টিকা কার্ডটি স্বয়ংক্রিয়ভাবে তৈরি</div>
                 <div style="margin-bottom:0px">কার্ডটি যাচাই করতে নিচের কিউআর কোডটি স্ক্যান করুন</div>
+                @php
+
+                $qrurl = url("/tika/verify/$row->id_no");
+
+
+
+        $qrcode = \QrCode::size(70)
+    ->format('svg')
+    ->generate($qrurl);
+    echo $output = str_replace('<?xml version="1.0" encoding="UTF-8"?>', '', $qrcode);
+            @endphp
             </div>
 
 <br>
             <div style="text-align:center;font-size:12px">
-                <div style="margin-bottom:0px">উপজেলা প্রশাসন, তেঁতুলিয়া’র একটি উদ্ভাবনী উদ্যোগ</div>
+                <div style="margin-bottom:0px">উপজেলা প্রশাসন, তেঁতুলিয়া'র একটি উদ্ভাবনী উদ্যোগ</div>
                 <div style="margin-bottom:0px">www.srishtitetulia.gov.bd</div>
             </div>
 
 
+    </div>
     </div>
 </body>
 </html>

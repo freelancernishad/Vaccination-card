@@ -11,6 +11,9 @@ use App\Http\Controllers\HoldingtaxController;
 use App\Http\Controllers\UniouninfoController;
 use App\Http\Controllers\ExpenditureController;
 use App\Http\Controllers\NotificationsController;
+use App\Models\Sonod;
+use Illuminate\Cache\RedisTaggedCache;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,6 +36,13 @@ Route::get('/smstest', function () {
 
     dd("Email is Sent.");
 
+
+});
+
+Route::get('/tika/verify/{id_no}', function ($id_no) {
+
+    $sonod = Sonod::where('id_no',$id_no)->first();
+    return redirect("/card/d/$sonod->id");
 
 });
 

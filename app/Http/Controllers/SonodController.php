@@ -879,6 +879,8 @@ class SonodController extends Controller
 
             // return view('userdocument',compact('row'));
             // return view('card',compact('row'));
+
+            
             $pdf = LaravelMpdf::loadView('card', compact('row','firstDose','secondDose','thirthDose','fourthDose','fifthDose','TikaDetials','bcgFirstDose','bcgSecondDose','bcgThirdDose','bcgFourthDose','bcgFifthDose'));
             return $pdf->stream("$row->id_no.pdf");
 
