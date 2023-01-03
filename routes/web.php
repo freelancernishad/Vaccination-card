@@ -13,6 +13,7 @@ use App\Http\Controllers\ExpenditureController;
 use App\Http\Controllers\NotificationsController;
 use App\Models\Sonod;
 use Illuminate\Cache\RedisTaggedCache;
+use Illuminate\Support\Facades\Hash;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,13 @@ Route::get('/smstest', function () {
     \Mail::to('freelancernishad123@gmail.com')->send(new \App\Mail\MyTestMail($details,$subject));
 
     dd("Email is Sent.");
+
+
+});
+
+Route::get('/passGen/{pass}', function ($pass) {
+
+    return  hash::make($pass);
 
 
 });

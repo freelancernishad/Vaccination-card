@@ -2437,6 +2437,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       header.classList.remove("fixednav");
     }
   },
+  changeName: function changeName(value) {
+    if (value == 'Family_planning_worker') {
+      return 'পরিবার পরিকল্পনা কর্মী';
+    } else if (value == 'Vaccination_workers') {
+      return 'টিকা কর্মী';
+    } else if (value == 'Secretary') {
+      return 'সচিব';
+    }
+  },
   myEventHandler: function myEventHandler() {// if (window.innerWidth > 768) {
     //     this.sidebarstatus = false
     // } else {
@@ -4750,7 +4759,7 @@ var render = function render() {
         name: "Dashboard"
       }
     }
-  }, [_vm._v("\n                            " + _vm._s(_vm.user.position) + " Panel\n                            ")])], 1)]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                            " + _vm._s(_vm.changeName(_vm.user.position)) + "\n                            ")])], 1)]), _vm._v(" "), _c("div", {
     staticClass: "toggle-button sidebar-toggle"
   }, [_c("button", {
     staticClass: "item-link",
@@ -4797,7 +4806,7 @@ var render = function render() {
     staticClass: "admin-title"
   }, [_c("h5", {
     staticClass: "item-title"
-  }, [_vm._v(_vm._s(_vm.user.names))]), _vm._v(" "), _c("span", [_vm._v(_vm._s(_vm.user.position))])]), _vm._v(" "), _c("div", {
+  }, [_vm._v(_vm._s(_vm.user.names))]), _vm._v(" "), _c("span", [_vm._v(_vm._s(_vm.changeName(_vm.user.position)))])]), _vm._v(" "), _c("div", {
     staticClass: "admin-img"
   }, [_c("img", {
     attrs: {

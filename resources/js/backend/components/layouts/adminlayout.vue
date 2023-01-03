@@ -11,7 +11,7 @@
                 <div class="header-logo">
                     <h3 style="    margin-bottom: 0;">
                         <router-link :to="{ name: 'Dashboard' }" class="text-white">
-                            {{ user.position }} Panel
+                            {{ changeName(user.position) }}
                             <!-- <img width="80%" src="http://esoft4u.tmscedu.com/asset/img/Logo123.png" alt="logo"> -->
                         </router-link>
                     </h3>
@@ -55,7 +55,7 @@
                             aria-expanded="false">
                             <div class="admin-title">
                                 <h5 class="item-title">{{ user.names }}</h5>
-                                <span>{{ user.position }}</span>
+                                <span>{{ changeName(user.position) }}</span>
                             </div>
                             <div class="admin-img">
                                 <img :src="$asseturl + 'dashboard_asset/img/figure/admin.jpg'" alt="Admin">
@@ -303,6 +303,21 @@ export default {
 
 
         },
+
+
+        changeName(value){
+            if(value=='Family_planning_worker'){
+
+                return 'পরিবার পরিকল্পনা কর্মী';
+            }else if(value=='Vaccination_workers'){
+                return 'টিকা কর্মী';
+
+            }else if(value=='Secretary'){
+                return 'সচিব';
+
+            }
+        },
+
 
         myEventHandler() {
             // if (window.innerWidth > 768) {
