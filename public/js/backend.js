@@ -3355,7 +3355,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           this.approveRoute = '/api/sonod';
           this.approveType = 'apiAction';
           this.approveData = "approved";
-          this.applicationRoute = '/card';
+          this.applicationRoute = '';
           this.applicationRoute2 = '/information';
           this.Vaccination = '';
         } else if (localStorage.getItem('position') == 'Secretary') {
@@ -4892,7 +4892,7 @@ var render = function render() {
     }
   }, [_c("i", {
     staticClass: "flaticon-dashboard"
-  }), _c("span", [_vm._v("এখনো প্রসব হয়নি")])])], 1) : _vm._e(), _vm._v(" "), _c("li", {
+  }), _c("span", [_vm._v("প্রসব সম্ভবা")])])], 1) : _vm._e(), _vm._v(" "), _c("li", {
     staticClass: "nav-item",
     on: {
       click: function click($event) {
@@ -4911,7 +4911,7 @@ var render = function render() {
     }
   }, [_c("i", {
     staticClass: "flaticon-dashboard"
-  }), _c("span", [_vm._v("প্রসব হয়ে গেছে")])])], 1)])])]), _vm._v(" "), _c("div", {
+  }), _c("span", [_vm._v("প্রসব সম্পন্ন")])])], 1)])])]), _vm._v(" "), _c("div", {
     staticClass: "dashboard-content-one"
   }, [_vm._t("default")], 2)])], 1);
 };
@@ -6200,7 +6200,35 @@ var render = function render() {
     staticClass: "card-body"
   }, [_c("table", {
     staticClass: "table table-hover table-striped sonodTable"
-  }, [_vm._m(0), _vm._v(" "), _c("tbody", {
+  }, [_c("thead", {
+    staticClass: "sonodThead"
+  }, [_vm.$route.params.type == "approved" ? _c("tr", {
+    staticClass: "sonodTr"
+  }, [_c("th", {
+    staticClass: "sonodTh"
+  }, [_vm._v("রেজিস্ট্রেশন নাম্বার")]), _vm._v(" "), _c("th", {
+    staticClass: "sonodTh"
+  }, [_vm._v("শিশুর নাম")]), _vm._v(" "), _c("th", {
+    staticClass: "sonodTh"
+  }, [_vm._v("মাতার নাম")]), _vm._v(" "), _c("th", {
+    staticClass: "sonodTh"
+  }, [_vm._v("পিতার নাম")]), _vm._v(" "), _c("th", {
+    staticClass: "sonodTh"
+  }, [_vm._v("গ্রাম/মহল্লা")]), _vm._v(" "), _c("th", {
+    staticClass: "sonodTh"
+  }, [_vm._v("কার্যক্রম")])]) : _c("tr", {
+    staticClass: "sonodTr"
+  }, [_c("th", {
+    staticClass: "sonodTh"
+  }, [_vm._v("রেজিস্ট্রেশন নাম্বার")]), _vm._v(" "), _c("th", {
+    staticClass: "sonodTh"
+  }, [_vm._v("নাম")]), _vm._v(" "), _c("th", {
+    staticClass: "sonodTh"
+  }, [_vm._v("স্বামীর নাম")]), _vm._v(" "), _c("th", {
+    staticClass: "sonodTh"
+  }, [_vm._v("গ্রাম/মহল্লা")]), _vm._v(" "), _c("th", {
+    staticClass: "sonodTh"
+  }, [_vm._v("কার্যক্রম")])])]), _vm._v(" "), _c("tbody", {
     staticClass: "sonodTbody"
   }, _vm._l(_vm.items, function (item, index) {
     return _c("tr", {
@@ -6210,13 +6238,13 @@ var render = function render() {
       staticClass: "sonodTd"
     }, [_vm._v(_vm._s(item.id_no))]), _vm._v(" "), _c("td", {
       staticClass: "sonodTd"
-    }, [_vm._v(_vm._s(item.name))]), _vm._v(" "), _c("td", {
+    }, [_vm.$route.params.type == "approved" ? _c("span", [_vm._v(_vm._s(item.childs_name))]) : _c("span", [_vm._v(_vm._s(item.name))])]), _vm._v(" "), _c("td", {
       staticClass: "sonodTd"
-    }, [_vm._v(_vm._s(item.husband_name))]), _vm._v(" "), _c("td", {
+    }, [_vm.$route.params.type == "approved" ? _c("span", [_vm._v(_vm._s(item.name))]) : _c("span", [_vm._v(_vm._s(item.husband_name))])]), _vm._v(" "), _vm.$route.params.type == "approved" ? _c("td", {
+      staticClass: "sonodTd"
+    }, [_c("span", [_vm._v(_vm._s(item.husband_name))])]) : _vm._e(), _vm._v(" "), _c("td", {
       staticClass: "sonodTd"
     }, [_vm._v(_vm._s(item.village))]), _vm._v(" "), _c("td", {
-      staticClass: "sonodTd"
-    }, [_vm._v(_vm._s(_vm.dateformatGlobal(item.created_at)[6]))]), _vm._v(" "), _c("td", {
       staticClass: "sonodTd"
     }, [_vm.editRoute != "" ? _c("router-link", {
       staticClass: "btn btn-info mr-1 mt-1",
@@ -6264,7 +6292,7 @@ var render = function render() {
         target: "_blank",
         href: _vm.applicationRoute2 + "/d/" + item.id
       }
-    }, [_vm._v("শিশুর তথ্য")]) : _vm._e(), _vm._v(" "), _vm.approveRoute != "" && item.payment_status == "Unpaid" ? _c("span", {
+    }, [_vm._v("বিস্তারিত")]) : _vm._e(), _vm._v(" "), _vm.approveRoute != "" && item.payment_status == "Unpaid" ? _c("span", {
       staticClass: "btn btn-success mr-1 mt-1",
       attrs: {
         size: "sm"
@@ -6514,28 +6542,7 @@ var render = function render() {
   })], 1)])], 1);
 };
 
-var staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("thead", {
-    staticClass: "sonodThead"
-  }, [_c("tr", {
-    staticClass: "sonodTr"
-  }, [_c("th", {
-    staticClass: "sonodTh"
-  }, [_vm._v("সনদ নাম্বার")]), _vm._v(" "), _c("th", {
-    staticClass: "sonodTh"
-  }, [_vm._v("নাম")]), _vm._v(" "), _c("th", {
-    staticClass: "sonodTh"
-  }, [_vm._v("স্বামীর নাম")]), _vm._v(" "), _c("th", {
-    staticClass: "sonodTh"
-  }, [_vm._v("গ্রাম/মহল্লা")]), _vm._v(" "), _c("th", {
-    staticClass: "sonodTh"
-  }, [_vm._v("আবেদনের তারিখ")]), _vm._v(" "), _c("th", {
-    staticClass: "sonodTh"
-  }, [_vm._v("কার্যক্রম")])])]);
-}];
+var staticRenderFns = [];
 render._withStripped = true;
 
 
@@ -8097,8 +8104,7 @@ var token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
   window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
-} else {
-  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+} else {// console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
 window.RootUrl = window.location.origin; // window.ASSETURL = '/public/';

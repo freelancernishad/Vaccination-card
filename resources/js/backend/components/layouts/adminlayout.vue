@@ -117,11 +117,11 @@
 
                         <li class="nav-item" @click="submenu(0)" v-if="this.$localStorage.getItem('position') != 'Secretary'">
                                 <router-link :to="{ name: 'applicationlist', params:{type:'applied'} }" class="nav-link"><i
-                                    class="flaticon-dashboard"></i><span>এখনো প্রসব হয়নি</span></router-link>
+                                    class="flaticon-dashboard"></i><span>প্রসব সম্ভবা</span></router-link>
                         </li>
                         <li class="nav-item" @click="submenu(0)">
                                 <router-link :to="{ name: 'applicationlist', params:{type:'approved'} }" class="nav-link"><i
-                                    class="flaticon-dashboard"></i><span>প্রসব হয়ে গেছে</span></router-link>
+                                    class="flaticon-dashboard"></i><span>প্রসব সম্পন্ন</span></router-link>
                         </li>
 
 

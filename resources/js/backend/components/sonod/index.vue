@@ -53,26 +53,50 @@
             <div class="card-body">
                 <table class="table table-hover table-striped sonodTable">
                     <thead class="sonodThead">
-                        <tr class="sonodTr">
-                            <th class="sonodTh">সনদ নাম্বার</th>
+
+
+                        <tr class="sonodTr" v-if="$route.params.type=='approved'">
+                            <th class="sonodTh">রেজিস্ট্রেশন নাম্বার</th>
+                            <!-- <th>ইউনিয়ন</th> -->
+                            <th class="sonodTh">শিশুর নাম</th>
+                            <th class="sonodTh">মাতার নাম</th>
+                            <th class="sonodTh">পিতার নাম</th>
+                            <th class="sonodTh">গ্রাম/মহল্লা</th>
+                            <!-- <th>ন্যাশনাল আইডি</th> -->
+                            <!-- <th class="sonodTh">আবেদনের তারিখ</th> -->
+                            <th class="sonodTh">কার্যক্রম</th>
+                            <!-- <th class="sonodTh">ফি</th> -->
+                        </tr>
+
+                        <tr class="sonodTr" v-else>
+                            <th class="sonodTh">রেজিস্ট্রেশন নাম্বার</th>
                             <!-- <th>ইউনিয়ন</th> -->
                             <th class="sonodTh">নাম</th>
                             <th class="sonodTh">স্বামীর নাম</th>
                             <th class="sonodTh">গ্রাম/মহল্লা</th>
                             <!-- <th>ন্যাশনাল আইডি</th> -->
-                            <th class="sonodTh">আবেদনের তারিখ</th>
+                            <!-- <th class="sonodTh">আবেদনের তারিখ</th> -->
                             <th class="sonodTh">কার্যক্রম</th>
                             <!-- <th class="sonodTh">ফি</th> -->
                         </tr>
+
+
                     </thead>
                     <tbody class="sonodTbody">
+
                         <tr class="sonodTr" v-for="(item,index) in items" :key="item.id">
                             <td class="sonodTd">{{ item.id_no }}</td>
                             <!-- <td>{{ item.unioun_name }}</td> -->
-                            <td class="sonodTd">{{ item.name }}</td>
-                            <td class="sonodTd">{{ item.husband_name }}</td>
+
+                            <td class="sonodTd"><span v-if="$route.params.type=='approved'">{{ item.childs_name }}</span><span v-else>{{ item.name }}</span> </td>
+
+                            <td class="sonodTd"><span v-if="$route.params.type=='approved'">{{ item.name }}</span><span v-else>{{ item.husband_name }}</span></td>
+
+                            <td class="sonodTd"  v-if="$route.params.type=='approved'"><span>{{ item.husband_name }}</span></td>
+
                             <td class="sonodTd">{{ item.village }}</td>
-                            <td class="sonodTd">{{ dateformatGlobal(item.created_at)[6] }}</td>
+
+                            <!-- <td class="sonodTd">{{ dateformatGlobal(item.created_at)[6] }}</td> -->
                             <td class="sonodTd">
 
                                 <router-link size="sm" :to="{ name: editRoute, params: { id: item.id } }" v-if="editRoute != ''" class="btn btn-info mr-1 mt-1">প্রসব অনুমোদন করুন</router-link>
@@ -93,7 +117,7 @@
 
                                     <a size="sm" target="_blank"
                                     :href="applicationRoute2+'/d/' + item.id"
-                                    v-if="applicationRoute2 != ''" class="btn btn-success mr-1 mt-1">শিশুর তথ্য</a>
+                                    v-if="applicationRoute2 != ''" class="btn btn-success mr-1 mt-1">বিস্তারিত</a>
 
                                 <span size="sm"
                                     @click="approve(approveRoute, item.id, approveData, $event.target, approveType,item)"
@@ -121,6 +145,9 @@
                                 পরিশোধিত
                             </td> -->
                         </tr>
+
+
+
                     </tbody>
                     <tfoot>
 
@@ -350,7 +377,7 @@ export default {
                     this.approveRoute = '/api/sonod';
                     this.approveType = 'apiAction';
                     this.approveData = `approved`;
-                    this.applicationRoute = '/card';
+                    this.applicationRoute = '';
                     this.applicationRoute2 = '/information';
                     this.Vaccination = '';
                 } else if (localStorage.getItem('position') == 'Secretary') {

@@ -104,48 +104,10 @@ Route::group(['prefix' => 'dashboard','middleware' => ['auth']], function() {
 });
 Route::get('/{vue_capture?}', function () {
 
-    $url = url()->current();
- $domain =  explode('//',$url);
-
-  $subdomain =  explode('.', $domain[1]);
-
-    if($subdomain[0]=='www'){
-
-         $subdomainCount =  count($subdomain);
-         $subdomainget = $subdomain[1];
-        if($subdomainCount>env('WITH_WWW')){
-            $sub = true;
-        }else{
-            $sub = false;
-
-        }
-    }else{
-
-
-        $subdomainCount =  count($subdomain);
-        $subdomainget = $subdomain[0];
-
-        if($subdomainCount>env('WITHOUT_WWW')){
-            $sub = true;
-        }else{
-            $sub = false;
-
-        }
-    }
-
-
- if($sub){
-
-    $uniounDetials =  Uniouninfo::where(['short_name_e'=>$subdomainget])->first();
-     return view('frontlayout',compact('uniounDetials'));
-    }else{
-
-
-
 
         // return  Uniouninfo::find(1);
  $uniounDetials['defaultColor']  = 'green';
       $uniounDetials = json_decode(json_encode($uniounDetials));
      return view('frontlayout',compact('uniounDetials'));
- }
+
 })->where('vue_capture', '[\/\w\.-]*')->name('frontend');

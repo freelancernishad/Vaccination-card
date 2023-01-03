@@ -42,7 +42,7 @@
                         <router-link class="col-lg-4 mt-3 mb-3 text-center" :to="{ name: 'childApplication' }">
                             <div class="serviceBox">
                                 <div class="serviceLogo">
-                                    <img src="https://www.uniontax.gov.bd/public/assets/icon/1662995863____49003.png" width="15%" alt="" />
+                                    <img :src="$asseturl+'assets/icon/birthing-services-icon.png'" width="150px" alt="" />
                                 </div>
                                 <div class="serviceTitle defaltTextColor">
                                     গর্ভকালীন রেজিস্টেশন
@@ -53,7 +53,7 @@
                         <router-link class="col-lg-4 mt-3 mb-3 text-center" :to="{ name: 'vaxapplication' }">
                             <div class="serviceBox">
                                 <div class="serviceLogo">
-                                    <img src="https://www.uniontax.gov.bd/public/assets/icon/1662995863____49003.png" width="15%" alt="" />
+                                    <img :src="$asseturl+'assets/icon/4277177.png'" width="130px" alt="" />
                                 </div>
                                 <div class="serviceTitle defaltTextColor">
                                     টিকা রেজিস্ট্রেশন
@@ -63,7 +63,7 @@
                         <router-link class="col-lg-4 mt-3 mb-3 text-center" :to="{ name: 'childApplication' }">
                             <div class="serviceBox">
                                 <div class="serviceLogo">
-                                    <img src="https://www.uniontax.gov.bd/public/assets/icon/1662995863____49003.png" width="15%" alt="" />
+                                    <img :src="$asseturl+'assets/icon/icon-256x256.png'" width="115px" alt="" />
                                 </div>
                                 <div class="serviceTitle defaltTextColor">
                                     টিকা কার্ড যাচাই

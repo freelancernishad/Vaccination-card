@@ -7027,8 +7027,8 @@ var render = function render() {
     staticClass: "serviceLogo"
   }, [_c("img", {
     attrs: {
-      src: "https://www.uniontax.gov.bd/public/assets/icon/1662995863____49003.png",
-      width: "15%",
+      src: _vm.$asseturl + "assets/icon/birthing-services-icon.png",
+      width: "150px",
       alt: ""
     }
   })]), _vm._v(" "), _c("div", {
@@ -7046,8 +7046,8 @@ var render = function render() {
     staticClass: "serviceLogo"
   }, [_c("img", {
     attrs: {
-      src: "https://www.uniontax.gov.bd/public/assets/icon/1662995863____49003.png",
-      width: "15%",
+      src: _vm.$asseturl + "assets/icon/4277177.png",
+      width: "130px",
       alt: ""
     }
   })]), _vm._v(" "), _c("div", {
@@ -7065,8 +7065,8 @@ var render = function render() {
     staticClass: "serviceLogo"
   }, [_c("img", {
     attrs: {
-      src: "https://www.uniontax.gov.bd/public/assets/icon/1662995863____49003.png",
-      width: "15%",
+      src: _vm.$asseturl + "assets/icon/icon-256x256.png",
+      width: "115px",
       alt: ""
     }
   })]), _vm._v(" "), _c("div", {
@@ -8636,8 +8636,7 @@ var token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
   window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
-} else {
-  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+} else {// console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
 window.RootUrl = window.location.origin; // window.ASSETURL = '/public/';
