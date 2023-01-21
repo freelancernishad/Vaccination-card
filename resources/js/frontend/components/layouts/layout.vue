@@ -176,16 +176,19 @@ padding: 3px 11px;"> ইউনিয়ন পরিষদের ডিজিটা
 
 
 
-                        <div class="col-md-4">
+             <div class="col-md-4">
                             <ul class="footerList">
                                 <li style="font-size:font-size:15px"> </li>
                                 <li
                                     style="font-size:font-size:15px;    display: flex;justify-content: center;align-items: center;">
-                                    <!-- <img style="width:40px !important" :src="$asseturl + 'assets/img/bd-logo.png'"alt=""> -->
-                                    <span style="padding: 0 15px;"> <b> কারিগরি সহায়তায়:</b> <br>Softweb</span>
+                                    <img style="width:40px !important" :src="$asseturl + 'Soft-Web-Sys.png'" alt="">
+                                    <span  style="padding: 0 15px;"> <b> কারিগরি সহায়তায়:</b> <br>
+                                        <a target="_blank" href="https://softwebsys.com/"> সফটওয়েব সিস্টেম সল্যুশন</a></span>
                                 </li>
                             </ul>
                         </div>
+
+
                         </div>
                         </div>
 
@@ -336,7 +339,7 @@ console.log(sub,subdomainget)
 
     },
     mounted() {
-      
+
         setTimeout(() => {
             this.visitorfun();
         }, 2000);
@@ -349,6 +352,22 @@ console.log(sub,subdomainget)
 }
 </script>
 <style>
+
+ul.footerList li a:hover {
+    background: #fff !important;
+    color: #0e56a1 !important;
+    text-decoration: none !important;
+    border-radius: 0 !important;
+}
+ul.footerList li a {
+    display: block;
+    padding: 6px 0;
+    font-size: 13px;
+    color: #0e0e0e;
+    border-right: 0px dotted #5a5454;
+}
+
+
 nav.navbar.navbar-expand-lg.navbar-light.bg-light {
     background: #892d53  !important;
 }
