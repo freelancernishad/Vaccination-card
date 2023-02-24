@@ -283,7 +283,7 @@ export default {
 
             var res = await this.callApi('post', '/api/sonod/update', this.form);
             Notification.customSuccess(`Your data has been Updated`);
-            this.$router.push({ name: 'applicationlist' })
+            this.$router.push({ name: 'applicationlist',params:{type:'applied'} })
 
 
         },
