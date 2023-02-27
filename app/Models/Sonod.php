@@ -24,6 +24,17 @@ class Sonod extends Model
         'word_number',
         'holding_no',
         'village',
+
+        'divisionPer',
+        'applicant_permanent_district',
+        'applicant_permanent_Upazila',
+        'applicant_permanent_post_office',
+        'applicant_permanent_word_number',
+        'applicant_permanent_village',
+
+
+
+
         'date_of_last_menstrual_period',
         'probable_date_of_delivery',
         'how_many_wombs',
