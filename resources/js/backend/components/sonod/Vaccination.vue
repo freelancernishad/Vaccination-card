@@ -118,7 +118,7 @@
         <td >কর্মী</td>
         <td >কেন্দ্র</td>
         <td >তারিখ</td>
-        <td >পরবর্তী টিকা গ্রহনের তারিখ</td>
+        <!-- <td >পরবর্তী টিকা গ্রহনের তারিখ</td> -->
     </tr>
 
     <tr v-for="(tikalist,index) in tikalists" :key="index">
@@ -127,7 +127,7 @@
         <td>{{ tikalist.kormir_name }}</td>
         <td>{{ tikalist.kendro_name }}</td>
         <td>{{ tikalist.tikaDate }}</td>
-        <td>{{ tikalist.nextTikaDate }}</td>
+        <!-- <td>{{ tikalist.nextTikaDate }}</td> -->
     </tr>
 
 <!--
