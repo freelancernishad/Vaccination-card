@@ -107,7 +107,7 @@
             <tr>
                 <td width="10%">১ম বার</td>
                 <td>বিসিজি, পেন্টা-১, ওপিভি-১, পিসিভি-১ এবং আইপিভি-১ টিকা পাওয়ার তারিখ ('টিকার ক্যালেন্ডার' থেকে)</td>
-                <td style="font-size:12px">@if($bcgFirstDose){{ int_en_to_bn( date("d-m-Y",strtotime($bcgFirstDose->nextTikaDate))) }}@endif</td>
+                <td style="font-size:12px">@if($firstDoseDate){{ int_en_to_bn($firstDoseDate) }}@endif</td>
             </tr>
 
 
@@ -128,13 +128,13 @@
             <tr>
                 <td width="10%">৪র্থ বার</td>
                 <td>এমআর ১ম ডোজ টিকা পাওয়ার তারিখ ('টিকার ক্যালেন্ডার' থেকে)</td>
-                <td style="font-size:12px">@if($thirthDose){{ int_en_to_bn(date("d-m-Y",strtotime($thirthDose->nextTikaDate))) }}@endif</td>
+                <td style="font-size:12px">@if($fourthDoseDate){{ int_en_to_bn($fourthDoseDate) }}@endif</td>
             </tr>
 
             <tr>
                 <td width="10%">৫ম বার</td>
                 <td>এমআর ২য় ডোজ টিকা পাওয়ার তারিখ ('টিকার ক্যালেন্ডার' থেকে)</td>
-                <td style="font-size:12px">@if($fourthDose){{ int_en_to_bn(date("d-m-Y",strtotime($fourthDose->nextTikaDate))) }}@endif</td>
+                <td style="font-size:12px">@if($fifthDoseDate){{ int_en_to_bn($fifthDoseDate) }}@endif</td>
             </tr>
 
 

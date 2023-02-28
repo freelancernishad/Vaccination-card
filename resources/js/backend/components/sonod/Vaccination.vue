@@ -75,15 +75,15 @@
                     <div class="col-md-4" v-if="tikatype">
                         <div class="form-group">
                             <label for="" class="labelColor">টিকা প্রদানের তারিখ</label>
-                            <input type="date" class="form-control" v-model="vax.tikaDate" required >
+                            <input type="date" class="form-control" v-model="vax.tikaDate" required  @change="NextDate">
                         </div>
                     </div>
 
 
-                    <div class="col-md-4" v-if="tikatype">
+                    <div class="col-md-4 d-none" v-if="tikatype" >
                         <div class="form-group">
                             <label for="" class="labelColor">পরবর্তী টিকার তারিখ</label>
-                            <input type="date" class="form-control" v-model="vax.nextTikaDate" required>
+                            <input type="date" class="form-control" v-model="vax.nextTikaDate" required readonly>
                         </div>
                     </div>
 
@@ -229,7 +229,12 @@ export default {
     },
 
     methods: {
-
+        NextDate(){
+            var day = new Date(this.vax.tikaDate);
+            var nextDay = new Date(day);
+            nextDay.setDate(day.getDate() + 28);
+            this.vax.nextTikaDate = this.dateformatGlobal(nextDay)[0]
+        },
 
         async getdivisionFun() {
             var res = await this.callApi('get', `/api/getdivisions`, []);
@@ -339,6 +344,7 @@ export default {
 
                 this.buttontex = 'টিকা প্রদান করুন';
                 this.vax.tikaDate = this.dateformatGlobal()[0];
+                this.NextDate();
 
 
 

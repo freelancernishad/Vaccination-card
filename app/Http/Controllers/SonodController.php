@@ -848,7 +848,10 @@ class SonodController extends Controller
 
     public function userDocument(Request $request, $name, $id)
     {
-        $row = Sonod::find($id);
+         $row = Sonod::find($id);
+        $date_of_birth = $row->date_of_birth;
+
+
 
          $TikaDetials =  TikaLog::where(['applicantId'=>$row->id,'tikadose'=> '১ম বার'])->first();
 
@@ -858,12 +861,21 @@ class SonodController extends Controller
           $bcgFourthDose =  TikaLog::where(['applicantId'=>$row->id,'tikadose'=> '৪র্থ বার','tikaname'=> 'বিসিজি'])->first();
           $bcgFifthDose =  TikaLog::where(['applicantId'=>$row->id,'tikadose'=> '৫ম বার','tikaname'=> 'বিসিজি'])->first();
 
-        $firstDose =  TikaLog::where(['applicantId'=>$row->id,'tikadose'=> '১ম বার'])->where('tikaname','!=', 'বিসিজি')->select('tikadose','tikaDate','nextTikaDate')->distinct()->first();
+         $firstDose =  TikaLog::where(['applicantId'=>$row->id,'tikadose'=> '১ম বার'])->where('tikaname','!=', 'বিসিজি')->select('tikadose','tikaDate','nextTikaDate')->distinct()->first();
         $secondDose =  TikaLog::where(['applicantId'=>$row->id,'tikadose'=> '২য় বার'])->where('tikaname','!=', 'বিসিজি')->select('tikadose','tikaDate','nextTikaDate')->distinct()->first();
         $thirthDose =  TikaLog::where(['applicantId'=>$row->id,'tikadose'=> '৩য় বার'])->where('tikaname','!=', 'বিসিজি')->select('tikadose','tikaDate','nextTikaDate')->distinct()->first();
         $fourthDose =  TikaLog::where(['applicantId'=>$row->id,'tikadose'=> '৪র্থ বার'])->where('tikaname','!=', 'বিসিজি')->select('tikadose','tikaDate','nextTikaDate')->distinct()->first();
         $fifthDose =  TikaLog::where(['applicantId'=>$row->id,'tikadose'=> '৫ম বার'])->where('tikaname','!=', 'বিসিজি')->select('tikadose','tikaDate','nextTikaDate')->distinct()->first();
 
+
+
+        $firstDoseDate = date('Y-m-d', strtotime('+42 day', strtotime($date_of_birth)));
+
+        // $secondDoseDate = date('Y-m-d', strtotime('+42 day', strtotime($date_of_birth)));
+        // $thirthDoseDate = date('Y-m-d', strtotime('+42 day', strtotime($date_of_birth)));
+
+        $fourthDoseDate = date('Y-m-d', strtotime('+270 day', strtotime($date_of_birth)));
+        $fifthDoseDate = date('Y-m-d', strtotime('+450 day', strtotime($date_of_birth)));
 
 
 
@@ -880,8 +892,8 @@ class SonodController extends Controller
             // return view('userdocument',compact('row'));
             // return view('card',compact('row'));
 
-            
-            $pdf = LaravelMpdf::loadView('card', compact('row','firstDose','secondDose','thirthDose','fourthDose','fifthDose','TikaDetials','bcgFirstDose','bcgSecondDose','bcgThirdDose','bcgFourthDose','bcgFifthDose'));
+
+            $pdf = LaravelMpdf::loadView('card', compact('row','firstDose','secondDose','thirthDose','fourthDose','fifthDose','TikaDetials','bcgFirstDose','bcgSecondDose','bcgThirdDose','bcgFourthDose','bcgFifthDose','firstDoseDate','fourthDoseDate','fifthDoseDate'));
             return $pdf->stream("$row->id_no.pdf");
 
     }
