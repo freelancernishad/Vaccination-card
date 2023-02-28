@@ -211,7 +211,7 @@ export default {
                 applicantId:'',
                 tikaname:{},
                 tikadose:'',
-                kendro_name:'',
+                kendro_name:'উপজেলা স্বাস্থ্য কমপ্লেক্স, তেঁতুলিয়া, পঞ্চগড়',
                 kormir_name:'',
                 tikaDate:'',
                 nextTikaDate:'',

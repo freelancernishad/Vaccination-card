@@ -409,7 +409,7 @@ export default {
         getProbableDate(){
             var day = new Date(this.form.date_of_last_menstrual_period);
             var nextDay = new Date(day);
-            nextDay.setDate(day.getDate() + 180);
+            nextDay.setDate(day.getDate() + 280);
             this.form.probable_date_of_delivery = this.dateformatGlobal(nextDay)[0]
         },
 
