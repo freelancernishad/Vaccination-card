@@ -306,11 +306,14 @@
 
 
 
-        $qrcode = \QrCode::size(70)
-    ->format('svg')
-    ->generate($qrurl);
-    echo $output = str_replace('<?xml version="1.0" encoding="UTF-8"?>', '', $qrcode);
-            @endphp
+    $qrcode = \QrCode::size(70)
+->format('svg')
+->generate($qrurl);
+
+echo $output = str_replace('<?xml version="1.0" encoding="UTF-8"?>', '', $qrcode);
+@endphp
+
+
             </div>
 
 <br>
