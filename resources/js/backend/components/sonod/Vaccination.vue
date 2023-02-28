@@ -43,17 +43,25 @@
 
 
 
-                    <div class="col-md-4" v-if="tikatype">
+
+
+
+                    <div class="col-md-12" v-if="tikatype">
                         <div class="form-group">
                             <label for="" class="labelColor">টিকার নাম </label>
-
-                            <multiselect v-model="vax.tikaname" :options="options" :multiple="true" required></multiselect>
-
-
-
-
+                            <!-- <multiselect v-model="vax.tikaname" :options="options" :multiple="true" required></multiselect> -->
+                        <div class="form-check" v-for="(opt,keys) in options" :key="keys">
+                            <input class="form-check-input" v-model="vax.tikaname[keys]" type="checkbox" value="" :id="'tikacheck'+keys">
+                            <label class="form-check-label" :for="'tikacheck'+keys">
+                                {{ opt }}
+                            </label>
                         </div>
                     </div>
+
+                    </div>
+
+
+
 
 
 
@@ -170,7 +178,7 @@ export default {
     data() {
         return {
             value: null,
-        options: ['পেন্টা (ডিপিটি, হেপ-বি, হিব)', 'ওপিভি', 'পিসিভি', 'আইপিভি', 'এমআর', 'এমআর (হাম ও রুবেলা)'],
+        options: {0:'পেন্টা (ডিপিটি, হেপ-বি, হিব)', 1:'ওপিভি', 2:'পিসিভি', 3:'আইপিভি', 4:'এমআর', 5:'এমআর (হাম ও রুবেলা)'},
             infoModal: {
                 id: 'info-modal',
                 title: '',
@@ -201,7 +209,7 @@ export default {
             },
             vax:{
                 applicantId:'',
-                tikaname:[],
+                tikaname:{},
                 tikadose:'',
                 kendro_name:'',
                 kormir_name:'',
@@ -282,21 +290,21 @@ export default {
 
                 if(this.tikatype=='বিসিজি টিকা'){
                 this.options= ['বিসিজি']
-                this.vax.tikaname = ['বিসিজি']
+                this.vax.tikaname = {0:'বিসিজি'}
             }else if(this.tikatype=='অন্যান্য টিকা'){
 
 
 
                 if(this.vax.tikadose=='১ম বার'){
-                this.vax.tikaname = ['পেন্টা (ডিপিটি, হেপ-বি, হিব)', 'ওপিভি', 'পিসিভি', 'আইপিভি']
+                this.vax.tikaname = {0:'পেন্টা (ডিপিটি, হেপ-বি, হিব)', 1:'ওপিভি', 2:'পিসিভি', 3:'আইপিভি'}
                 }else if(this.vax.tikadose=='২য় বার'){
-                    this.vax.tikaname = ['পেন্টা (ডিপিটি, হেপ-বি, হিব)', 'ওপিভি', 'পিসিভি']
+                    this.vax.tikaname = {0:'পেন্টা (ডিপিটি, হেপ-বি, হিব)', 1:'ওপিভি', 2:'পিসিভি'}
                 }else if(this.vax.tikadose=='৩য় বার'){
-                    this.vax.tikaname = ['পেন্টা (ডিপিটি, হেপ-বি, হিব)', 'ওপিভি', 'পিসিভি', 'আইপিভি']
+                    this.vax.tikaname = {0:'পেন্টা (ডিপিটি, হেপ-বি, হিব)', 1:'ওপিভি', 2:'পিসিভি', 3:'আইপিভি'}
                 }else if(this.vax.tikadose=='৪র্থ বার'){
-                    this.vax.tikaname = [ 'এমআর']
+                    this.vax.tikaname = {4:'এমআর'}
                 }else if(this.vax.tikadose=='৫ম বার'){
-                    this.vax.tikaname = ['এমআর']
+                    this.vax.tikaname = {4:'এমআর'}
                 }else{
                     this.vax.tikaname = []
 
@@ -314,9 +322,9 @@ export default {
 
         SelectTikatype(){
             if(this.tikatype=='বিসিজি টিকা'){
-                this.options= ['বিসিজি']
+                this.options= {0:'বিসিজি'}
             }else if(this.tikatype=='অন্যান্য টিকা'){
-                this.options= ['পেন্টা (ডিপিটি, হেপ-বি, হিব)', 'ওপিভি', 'পিসিভি', 'আইপিভি', 'এমআর', 'এমআর (হাম ও রুবেলা)']
+                this.options= {0:'পেন্টা (ডিপিটি, হেপ-বি, হিব)', 1:'ওপিভি', 2:'পিসিভি', 3:'আইপিভি', 4:'এমআর', 5:'এমআর (হাম ও রুবেলা)'}
             }
             this.SelectTika();
         },
