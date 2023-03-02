@@ -125,7 +125,7 @@
                                     class="flaticon-dashboard"></i><span>প্রসব সম্পন্ন</span></router-link>
                         </li>
 
-                        <li class="nav-item" @click="submenu(0)">
+                        <li class="nav-item" @click="submenu(0)" v-if="this.$localStorage.getItem('position') == 'Vaccination_workers'">
                                 <router-link :to="{ name: 'qr' }" class="nav-link"><i
                                     class="flaticon-dashboard"></i><span>QR Scan</span></router-link>
                         </li>
