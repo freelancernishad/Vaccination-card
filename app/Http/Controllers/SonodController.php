@@ -1341,11 +1341,23 @@ if ($sonod_name == 'ওয়ারিশান সনদ') {
         $sonod_Id = $request->sonod_Id;
 
 
-return Sonod::where(['sonod_name'=>$sonod_name,'sonod_Id'=>$sonod_Id])->first();
+        return Sonod::where(['sonod_name'=>$sonod_name,'sonod_Id'=>$sonod_Id])->first();
 
         // return $request->all();
     }
 
 
+    public function tikaCreate($id_no)
+    {
+        // return $id_no;
+
+        $sonodCount = Sonod::where('id_no',$id_no)->count();
+
+        if($sonodCount>0){
+            return Sonod::where('id_no',$id_no)->first();
+        }
+
+        return 0;
+    }
 
 }

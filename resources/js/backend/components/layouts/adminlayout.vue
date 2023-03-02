@@ -119,9 +119,15 @@
                                 <router-link :to="{ name: 'applicationlistWord', params:{type:'applied'} }" class="nav-link"><i
                                     class="flaticon-dashboard"></i><span>প্রসব সম্ভবা</span></router-link>
                         </li>
+
                         <li class="nav-item" @click="submenu(0)">
                                 <router-link :to="{ name: 'applicationlistWord', params:{type:'approved'} }" class="nav-link"><i
                                     class="flaticon-dashboard"></i><span>প্রসব সম্পন্ন</span></router-link>
+                        </li>
+
+                        <li class="nav-item" @click="submenu(0)">
+                                <router-link :to="{ name: 'qr' }" class="nav-link"><i
+                                    class="flaticon-dashboard"></i><span>QR Scan</span></router-link>
                         </li>
 
 

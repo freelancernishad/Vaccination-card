@@ -95,6 +95,10 @@ Route::post('prottoyon/update/{id}',[SonodController::class,'prottonupdate']);
 
 
 Route::get('sonod/verify/get',[SonodController::class,'verifysonodId']);
+
+Route::post('get/data/{id_no}',[SonodController::class,'tikaCreate']);
+
+
 Route::get('sonod/list',[SonodController::class,'index']);
 
 Route::post('role/assign',[authController::class,'roleAssign']);

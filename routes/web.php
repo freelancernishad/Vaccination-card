@@ -41,10 +41,11 @@ Route::get('/smstest', function () {
 });
 
 Route::get('/passGen/{pass}', function ($pass) {
-
     return  hash::make($pass);
+});
 
-
+Route::get('/qr/scan', function () {
+    return  view('qr');
 });
 
 Route::get('/tika/verify/{id_no}', function ($id_no) {

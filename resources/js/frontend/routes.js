@@ -25,6 +25,9 @@ let notice = require('./components/notice.vue').default;
 
 let home = require('./components/home.vue').default;
 let reject = require('./components/reject.vue').default;
+
+
+
 let PageNotFound = require('./components/404.vue').default;
 
 
@@ -32,6 +35,10 @@ let prefix = '/'
 export const routes = [
     { path:  `${prefix}`, component: home, name:'home',meta: { layout: layout } },
     { path: `${prefix}login`, component: login, name:'login',meta: { layout: blank } },
+
+
+
+
     { path:  `${prefix}register`, component: register, name:'register',meta: { layout: layout } },
     { path:  `${prefix}forget`, component: forget, name:'forget',meta: { layout: layout } },
     { path:  `${prefix}uniontax/profile`, component: upProfile, name:'upProfile',meta: { layout: layout } },

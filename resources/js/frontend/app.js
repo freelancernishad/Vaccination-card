@@ -2,6 +2,10 @@ require('../bootstrap');
 import Vue from 'vue'
 
 
+
+
+
+
 import { BButton, BModal,VBModal  } from 'bootstrap-vue'
 Vue.component('b-modal', BModal)
 Vue.component('b-button', BButton)

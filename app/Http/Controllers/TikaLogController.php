@@ -23,10 +23,6 @@ class TikaLogController extends Controller
         $fourthDoseDate = date('Y-m-d', strtotime('+270 day', strtotime($date_of_birth)));
         $fifthDoseDate = date('Y-m-d', strtotime('+450 day', strtotime($date_of_birth)));
 
-
-
-
-
         if($tikatype=='বিসিজি টিকা'){
 
             $countData =  TikaLog::where(['applicantId'=>$applicantId,'tikadose'=>$tikadoseSingle,'tikaname'=>'বিসিজি'])->count();

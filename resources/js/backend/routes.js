@@ -30,7 +30,7 @@ let sonodedit = require('./components/sonod/form.vue').default;
 let Vaccination = require('./components/sonod/Vaccination.vue').default;
 let sonodview = require('./components/sonod/view.vue').default;
 
-
+let qr = require('./components/sonod/qr.vue').default;
 
 
 let PageNotFound = require('./components/404.vue').default;
@@ -43,8 +43,13 @@ export const routes = [
 
   { path: `${prefix}/logout`, component: logout, name:'logout',meta: { layout: blanklayout } },
 
+
+  { path: `${prefix}/qr`, component: qr, name:'qr',meta: { layout: blanklayout } },
+
   { path:  `${prefix}`, component: home, name:'Dashboard',meta: { layout: adminlayout } },
   { path:  `${prefix}/profile`, component: profile, name:'profile',meta: { layout: adminlayout } },
+
+
 
 
 
