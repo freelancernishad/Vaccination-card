@@ -12,7 +12,7 @@ export default {
 
     data() {
         return {
-            qrbox:400,
+            qrbox:250,
             fps:10,
             scannedResult: null,
             scanner: null,
