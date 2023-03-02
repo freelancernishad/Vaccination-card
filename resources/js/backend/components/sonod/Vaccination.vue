@@ -281,8 +281,10 @@ export default {
         async SelectTika(){
             this.preLooding = true
             var res = await this.callApi('get',`/api/check/tika?applicantId=${this.form.id}&tikadose=${this.vax.tikadose}&tikatype=${this.tikatype}`);
-            if(res.data){
-                Notification.customError2(`${this.vax.tikadose} টিকা ইতিমধ্যে দেওয়া হয়েছে` );
+           console.log(res)
+
+            if(res.data.statusCode){
+                Notification.customError2(`${this.vax.tikadose} টিকা ইতিমধ্যে দেওয়া হয়েছে। পরবর্তী টিকার তারিখঃ ${res.data.nextDate}` );
                 this.vax.tikadose = '';
                 this.vax.tikaname = [];
 
@@ -337,7 +339,7 @@ export default {
             var res = await this.callApi('post', '/api/tikalog', this.vax);
 
             Notification.customSuccess(`টিকা প্রদান সফল`);
-            this.$router.push({ name: 'applicationlist', params:{type:'approved'} })
+            this.$router.push({ name: 'applicationlistWord', params:{type:'approved'} })
 
 
         },

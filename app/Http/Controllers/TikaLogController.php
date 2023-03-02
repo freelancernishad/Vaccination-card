@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sonod;
 use App\Models\TikaLog;
 use Illuminate\Http\Request;
 
@@ -12,15 +13,52 @@ class TikaLogController extends Controller
     public function tikacount(Request $request)
     {
         $applicantId = $request->applicantId;
-        $tikadose = $request->tikadose;
+        $tikadoseSingle = $request->tikadose;
         $tikatype = $request->tikatype;
+
+
+        $row = Sonod::find($applicantId);
+        $date_of_birth = $row->date_of_birth;
+
+        $fourthDoseDate = date('Y-m-d', strtotime('+270 day', strtotime($date_of_birth)));
+        $fifthDoseDate = date('Y-m-d', strtotime('+450 day', strtotime($date_of_birth)));
+
+
+
+
 
         if($tikatype=='বিসিজি টিকা'){
 
-            return TikaLog::where(['applicantId'=>$applicantId,'tikadose'=>$tikadose,'tikaname'=>'বিসিজি'])->count();
+            $countData =  TikaLog::where(['applicantId'=>$applicantId,'tikadose'=>$tikadoseSingle,'tikaname'=>'বিসিজি'])->count();
+            return $data = [
+                'statusCode' => $countData,
+                'nextDate' => 'বিসিজি টিকা যেকোনো সময় দিতে পারেন',
+            ];
+
         }else{
 
-            return TikaLog::where(['applicantId'=>$applicantId,'tikadose'=>$tikadose])->where('tikaname','!=', 'বিসিজি')->count();
+            $getTikaLog = TikaLog::where(['applicantId'=>$applicantId])->where('tikaname','!=', 'বিসিজি')->orderBy('id','desc')->first();
+
+            $tikadose = $getTikaLog->tikadose;
+
+            if($tikadose=='১ম বার' || $tikadose=='২য় বার' ){
+                $nextDate = $getTikaLog->nextTikaDate;
+            }elseif($tikadose=='৩য় বার'){
+                $nextDate = $fourthDoseDate;
+            }elseif($tikadose=='৪র্থ বার'){
+                $nextDate = $fifthDoseDate;
+            }elseif($tikadose=='৫ম বার'){
+                $nextDate = 'end';
+            }
+
+
+            $countData =  TikaLog::where(['applicantId'=>$applicantId,'tikadose'=>$tikadoseSingle])->where('tikaname','!=', 'বিসিজি')->count();
+
+            return $data = [
+                'statusCode' => $countData,
+                'nextDate' => int_en_to_bn($nextDate),
+            ];
+
         }
 
 

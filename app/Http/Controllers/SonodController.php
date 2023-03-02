@@ -747,6 +747,7 @@ class SonodController extends Controller
     {
         $sonod_name = $request->sonod_name;
         $stutus = $request->stutus;
+        $word_number = $request->word;
         $payment_status = $request->payment_status;
         $unioun_name = $request->unioun_name;
         $sondId = $request->sondId;
@@ -754,15 +755,15 @@ class SonodController extends Controller
         if ($sondId) {
             // return $sondId;
             // return 'sss';
-            return Sonod::where('status',$stutus)->where("id_no", "LIKE", "%$sondId%")->orderBy('id', 'DESC')->paginate(20);
+            return Sonod::where(['status'=>$stutus,'word_number'=>$word_number])->where("id_no", "LIKE", "%$sondId%")->orderBy('id', 'DESC')->paginate(20);
         }
         if ($unioun_name) {
             if ($payment_status) {
-                return Sonod::where('status',$stutus)->orderBy('id', 'DESC')->paginate(20);
+                return Sonod::where(['status'=>$stutus,'word_number'=>$word_number])->orderBy('id', 'DESC')->paginate(20);
             }
-            return Sonod::where('status',$stutus)->orderBy('id', 'DESC')->paginate(20);
+            return Sonod::where(['status'=>$stutus,'word_number'=>$word_number])->orderBy('id', 'DESC')->paginate(20);
         }
-        return Sonod::where('status',$stutus)->orderBy('id', 'DESC')->paginate(20);
+        return Sonod::where(['status'=>$stutus,'word_number'=>$word_number])->orderBy('id', 'DESC')->paginate(20);
 
     }
     public function sonodDownload(Request $request, $name, $id)
