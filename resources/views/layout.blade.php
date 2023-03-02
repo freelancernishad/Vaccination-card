@@ -71,7 +71,7 @@ li.page-item.active button {
 
 
 
-<script src="{{ asset('js/backend.js?ver=1.0.26') }}"></script>
+<script src="{{ asset('js/backend.js?ver=1.0.27') }}"></script>
 
 
 
@@ -83,3 +83,5 @@ li.page-item.active button {
 {{-- <script src="{{ asset('js/datatables.min.js') }}"></script> --}}
 </body>
 </html>
+
+

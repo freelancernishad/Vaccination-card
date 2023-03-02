@@ -38,10 +38,15 @@ export default {
 
         var textSplit = decodedText.split("verify");
 
+   
         if(textSplit.length==2){
             var textSplitId = textSplit[1].split("/");
+           
             if(textSplitId.length==2){
                 var id_no = textSplitId[1];
+                if(id_no==''){
+                    id_no = '1122'
+                }
                 this.tikaCreate(id_no);
                 this.scanner.pause(true, true);
             }
