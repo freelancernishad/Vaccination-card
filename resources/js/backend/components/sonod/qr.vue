@@ -64,7 +64,7 @@ export default {
     //   this.scanner.resume();
     },
 
-    async tikaCreate(id_no){
+    async tikaCreate(id_no=112233){
         var res = await this.callApi('post',`/api/get/data/${id_no}`);
 
         if(res.data){
