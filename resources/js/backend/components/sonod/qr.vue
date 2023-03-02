@@ -76,7 +76,8 @@ export default {
             this.$router.push({ name: 'Vaccination', params:{id:res.data.id} })
         }else{
             Notification.customError2('কোনো তথ্য খুজে পাওয়া যায়নি');
-            this.scanner.render(this.onScanSuccess);
+            window.location.reload();
+            // this.scanner.render(this.onScanSuccess);
         }
         // console.log(res)
     }
