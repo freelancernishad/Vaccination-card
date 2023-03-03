@@ -29,7 +29,7 @@ export default {
 
 // This method will trigger user permissions
 Html5Qrcode.getCameras().then(devices => {
-    console.log(devices)
+    // console.log(devices)
     var cameraId = '';
   if (devices && devices.length==1) {
      cameraId = devices[0].id;
@@ -48,15 +48,15 @@ Html5Qrcode.getCameras().then(devices => {
         this.onScanSuccess(decodedText, decodedResult)
     },
     (errorMessage) => {
-        console.log(errorMessage)
+        // console.log(errorMessage)
     })
     .catch((err) => {
-        console.log(err)
+        // console.log(err)
     });
 
 
 }).catch(err => {
-    console.log(err)
+    // console.log(err)
 });
 
     // this.scanner.render(this.onScanSuccess);
@@ -66,7 +66,7 @@ Html5Qrcode.getCameras().then(devices => {
     methods: {
 
     onScanSuccess (decodedText, decodedResult) {
-        console.log(decodedText)
+        // console.log(decodedText)
 
         // http://localhost:8000/tika/verify/7461677568790
 
@@ -107,6 +107,7 @@ Html5Qrcode.getCameras().then(devices => {
         var res = await this.callApi('post',`/api/get/data/${id_no}`);
 
         if(res.data){
+            this.scanner.stop();
             this.$router.push({ name: 'Vaccination', params:{id:res.data.id} })
         }else{
             Notification.customError2('কোনো তথ্য খুজে পাওয়া যায়নি');
@@ -123,7 +124,9 @@ Html5Qrcode.getCameras().then(devices => {
 
   beforeDestroy() {
     if (this.scanner) {
-      this.scanner.clear(); // clear the scanner
+
+        this.scanner.clear();
+    //   this.scanner.clear(); // clear the scanner
     }
   },
 
