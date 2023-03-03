@@ -30,9 +30,12 @@ export default {
 // This method will trigger user permissions
 Html5Qrcode.getCameras().then(devices => {
     console.log(devices)
-  if (devices && devices.length) {
-    var cameraId = devices[0].id;
+    var cameraId = '';
+  if (devices && devices.length==1) {
+     cameraId = devices[0].id;
 
+  }else if (devices && devices.length>1){
+     cameraId = devices[1].id;
   }
 
   this.scanner.start(

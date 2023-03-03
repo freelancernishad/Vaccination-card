@@ -3805,9 +3805,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
     html5_qrcode__WEBPACK_IMPORTED_MODULE_0__.Html5Qrcode.getCameras().then(function (devices) {
       console.log(devices);
+      var cameraId = '';
 
-      if (devices && devices.length) {
-        var cameraId = devices[0].id;
+      if (devices && devices.length == 1) {
+        cameraId = devices[0].id;
+      } else if (devices && devices.length > 1) {
+        cameraId = devices[1].id;
       }
 
       _this.scanner.start(cameraId, {
