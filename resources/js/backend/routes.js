@@ -30,7 +30,7 @@ let sonodedit = require('./components/sonod/form.vue').default;
 let Vaccination = require('./components/sonod/Vaccination.vue').default;
 let sonodview = require('./components/sonod/view.vue').default;
 
-let qr = require('./components/sonod/qr.vue').default;
+let qr = require('./components/sonod/qr2.vue').default;
 
 
 let PageNotFound = require('./components/404.vue').default;

@@ -25,7 +25,7 @@ export default {
       qrbox: this.qrbox,
     };
 
-    this.scanner = new Html5QrcodeScanner('qrcamera', config);
+    this.scanner = new Html5Qrcode(/* element id */ "qrcamera");
 
 // This method will trigger user permissions
 Html5Qrcode.getCameras().then(devices => {
@@ -34,10 +34,29 @@ Html5Qrcode.getCameras().then(devices => {
     var cameraId = devices[0].id;
 
   }
+
+  this.scanner.start(
+    cameraId,
+    {
+        fps: 10,    // Optional, frame per seconds for qr code scanning
+        qrbox: { width: 250, height: 250 }  // Optional, if you want bounded box UI
+    },
+    (decodedText, decodedResult) => {
+        this.onScanSuccess(decodedText, decodedResult)
+    },
+    (errorMessage) => {
+        console.log(errorMessage)
+    })
+    .catch((err) => {
+        console.log(err)
+    });
+
+
 }).catch(err => {
+    console.log(err)
 });
 
-    this.scanner.render(this.onScanSuccess);
+    // this.scanner.render(this.onScanSuccess);
   },
 
 

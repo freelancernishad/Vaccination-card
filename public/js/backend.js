@@ -3761,10 +3761,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/backend/components/sonod/qr.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/backend/components/sonod/qr.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/backend/components/sonod/qr2.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/backend/components/sonod/qr2.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3782,6 +3782,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -3792,12 +3793,41 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   mounted: function mounted() {
+    var _this = this;
+
     var config = {
       fps: this.fps,
       qrbox: this.qrbox
     };
-    this.scanner = new html5_qrcode__WEBPACK_IMPORTED_MODULE_0__.Html5QrcodeScanner('qrcamera', config);
-    this.scanner.render(this.onScanSuccess);
+    this.scanner = new html5_qrcode__WEBPACK_IMPORTED_MODULE_0__.Html5Qrcode(
+    /* element id */
+    "qrcamera"); // This method will trigger user permissions
+
+    html5_qrcode__WEBPACK_IMPORTED_MODULE_0__.Html5Qrcode.getCameras().then(function (devices) {
+      console.log(devices);
+
+      if (devices && devices.length) {
+        var cameraId = devices[0].id;
+      }
+
+      _this.scanner.start(cameraId, {
+        fps: 10,
+        // Optional, frame per seconds for qr code scanning
+        qrbox: {
+          width: 250,
+          height: 250
+        } // Optional, if you want bounded box UI
+
+      }, function (decodedText, decodedResult) {
+        _this.onScanSuccess(decodedText, decodedResult);
+      }, function (errorMessage) {
+        console.log(errorMessage);
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    })["catch"](function (err) {
+      console.log(err);
+    }); // this.scanner.render(this.onScanSuccess);
   },
   methods: {
     onScanSuccess: function onScanSuccess(decodedText, decodedResult) {
@@ -3833,7 +3863,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     tikaCreate: function tikaCreate() {
       var _arguments = arguments,
-          _this = this;
+          _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
         var id_no, res;
@@ -3843,13 +3873,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 id_no = _arguments.length > 0 && _arguments[0] !== undefined ? _arguments[0] : 112233;
                 _context.next = 3;
-                return _this.callApi('post', "/api/get/data/".concat(id_no));
+                return _this2.callApi('post', "/api/get/data/".concat(id_no));
 
               case 3:
                 res = _context.sent;
 
                 if (res.data) {
-                  _this.$router.push({
+                  _this2.$router.push({
                     name: 'Vaccination',
                     params: {
                       id: res.data.id
@@ -6774,10 +6804,10 @@ render._withStripped = true;
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/backend/components/sonod/qr.vue?vue&type=template&id=0e869299&":
-/*!**********************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/backend/components/sonod/qr.vue?vue&type=template&id=0e869299& ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/backend/components/sonod/qr2.vue?vue&type=template&id=7b392c2e&":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/backend/components/sonod/qr2.vue?vue&type=template&id=7b392c2e& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -8409,7 +8439,7 @@ var Vaccination = (__webpack_require__(/*! ./components/sonod/Vaccination.vue */
 
 var sonodview = (__webpack_require__(/*! ./components/sonod/view.vue */ "./resources/js/backend/components/sonod/view.vue")["default"]);
 
-var qr = (__webpack_require__(/*! ./components/sonod/qr.vue */ "./resources/js/backend/components/sonod/qr.vue")["default"]);
+var qr = (__webpack_require__(/*! ./components/sonod/qr2.vue */ "./resources/js/backend/components/sonod/qr2.vue")["default"]);
 
 var PageNotFound = (__webpack_require__(/*! ./components/404.vue */ "./resources/js/backend/components/404.vue")["default"]);
 
@@ -54188,7 +54218,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nul.nav.sub-group-menu.menu-open.child {\r\n    padding: 0 !important;\n}\nul.nav.sub-group-menu.menu-open.child li {\r\n    padding: 10px 0;\n}\n.slide-enter-active {\r\n    transition-duration: 0.3s;\r\n    transition-timing-function: ease-in;\n}\n.slide-leave-active {\r\n    transition-duration: 0.3s;\r\n    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);\n}\n.slide-enter-to,\r\n.slide-leave {\r\n    max-height: 100px;\r\n    overflow: hidden;\n}\n.slide-enter,\r\n.slide-leave-to {\r\n    overflow: hidden;\r\n    max-height: 0;\n}\na.nav-link span {\r\n    font-size: 14px !important;\n}\ntextarea.form-control {\r\n    background: #b9b9b9 !important;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nul.nav.sub-group-menu.menu-open.child {\n    padding: 0 !important;\n}\nul.nav.sub-group-menu.menu-open.child li {\n    padding: 10px 0;\n}\n.slide-enter-active {\n    transition-duration: 0.3s;\n    transition-timing-function: ease-in;\n}\n.slide-leave-active {\n    transition-duration: 0.3s;\n    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);\n}\n.slide-enter-to,\n.slide-leave {\n    max-height: 100px;\n    overflow: hidden;\n}\n.slide-enter,\n.slide-leave-to {\n    overflow: hidden;\n    max-height: 0;\n}\na.nav-link span {\n    font-size: 14px !important;\n}\ntextarea.form-control {\n    background: #b9b9b9 !important;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -54212,7 +54242,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.app-heading {\n    text-align: center;\n    margin: 32px 0;\n    font-size: 23px;\n    border-bottom: 1px solid #159513;\n    color: #ffffff;\n    background: #255f95;\n}\n.form-pannel {\n    border: 1px solid #159513;\n    padding: 25px 25px 25px 25px;\n}\n.panel-heading {\n    padding: 11px 0px;\n    border-top-right-radius: 6px;\n    border-top-left-radius: 6px;\n    margin-top: 20px;\n}\n.form-pannel {\n    border-bottom-left-radius: 6px;\n    border-bottom-right-radius: 6px;\n}\n.dropdown-menu {\n    z-index: 99999;\n}\n.labelColor {\n    color: #493eff;\n    font-weight: 600;\n}\n.multiselect {\n    border: 1px solid var(--bgColor2) !important;\n    border-radius: 4px;\n}\n.tikaForm{\n    border: 2px solid #0089ff;\n    margin: 13px;\n    padding: 24px 8px 24px 8px;\n}\n\n\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.app-heading {\r\n    text-align: center;\r\n    margin: 32px 0;\r\n    font-size: 23px;\r\n    border-bottom: 1px solid #159513;\r\n    color: #ffffff;\r\n    background: #255f95;\n}\n.form-pannel {\r\n    border: 1px solid #159513;\r\n    padding: 25px 25px 25px 25px;\n}\n.panel-heading {\r\n    padding: 11px 0px;\r\n    border-top-right-radius: 6px;\r\n    border-top-left-radius: 6px;\r\n    margin-top: 20px;\n}\n.form-pannel {\r\n    border-bottom-left-radius: 6px;\r\n    border-bottom-right-radius: 6px;\n}\n.dropdown-menu {\r\n    z-index: 99999;\n}\n.labelColor {\r\n    color: #493eff;\r\n    font-weight: 600;\n}\n.multiselect {\r\n    border: 1px solid var(--bgColor2) !important;\r\n    border-radius: 4px;\n}\n.tikaForm{\r\n    border: 2px solid #0089ff;\r\n    margin: 13px;\r\n    padding: 24px 8px 24px 8px;\n}\r\n\r\n\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -54236,7 +54266,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.app-heading[data-v-35912088] {\n    text-align: center;\n    margin: 32px 0;\n    font-size: 23px;\n    border-bottom: 1px solid #159513;\n    color: #ffffff;\n    background: #255f95;\n}\n.form-pannel[data-v-35912088] {\n    border: 1px solid #159513;\n    padding: 25px 25px 25px 25px;\n}\n.panel-heading[data-v-35912088] {\n    padding: 11px 0px;\n    border-top-right-radius: 6px;\n    border-top-left-radius: 6px;\n    margin-top: 20px;\n}\n.form-pannel[data-v-35912088] {\n    border-bottom-left-radius: 6px;\n    border-bottom-right-radius: 6px;\n}\n.dropdown-menu[data-v-35912088] {\n    z-index: 99999;\n}\n.labelColor[data-v-35912088] {\n    color: #493eff;\n    font-weight: 600;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.app-heading[data-v-35912088] {\r\n    text-align: center;\r\n    margin: 32px 0;\r\n    font-size: 23px;\r\n    border-bottom: 1px solid #159513;\r\n    color: #ffffff;\r\n    background: #255f95;\n}\n.form-pannel[data-v-35912088] {\r\n    border: 1px solid #159513;\r\n    padding: 25px 25px 25px 25px;\n}\n.panel-heading[data-v-35912088] {\r\n    padding: 11px 0px;\r\n    border-top-right-radius: 6px;\r\n    border-top-left-radius: 6px;\r\n    margin-top: 20px;\n}\n.form-pannel[data-v-35912088] {\r\n    border-bottom-left-radius: 6px;\r\n    border-bottom-right-radius: 6px;\n}\n.dropdown-menu[data-v-35912088] {\r\n    z-index: 99999;\n}\n.labelColor[data-v-35912088] {\r\n    color: #493eff;\r\n    font-weight: 600;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -54260,7 +54290,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nth.position-relative[data-v-2856bc0a] {\n    font-size: 13px;\n}\nth[data-v-2856bc0a] {\n    font-size: 11px;\n}\ntd[data-v-2856bc0a] {\n    font-size: 12px !important;\n}\nli.page-item.active a[data-v-2856bc0a] {\n    color: white !important;\n}\n@media\nonly screen and (max-width: 760px),\n(min-device-width: 768px) and (max-device-width: 1024px)  {\n\n\t/* Force table to not be like tables anymore */\n.sonodTable[data-v-2856bc0a], .sonodThead[data-v-2856bc0a], .sonodTbody[data-v-2856bc0a], .sonodTh[data-v-2856bc0a], .sonodTd[data-v-2856bc0a], .sonodTr[data-v-2856bc0a] {\n\t\tdisplay: block;\n}\n\n\t/* Hide table headers (but not display: none;, for accessibility) */\n.sonodThead .sonodTr[data-v-2856bc0a] {\n\t\tposition: absolute;\n\t\ttop: -9999px;\n\t\tleft: -9999px;\n}\n.sonodTr[data-v-2856bc0a] { border: 1px solid #ccc;\n}\n.sonodTr[data-v-2856bc0a]:nth-child(odd) {\n      background: #ccc;\n}\n.sonodTd[data-v-2856bc0a] {\n\t\t/* Behave  like a \"row\" */\n\t\tborder: none;\n\t\tborder-bottom: 1px solid #eee;\n\t\tposition: relative;\n        padding-top: 12px;\n    padding-bottom: 12px;\n\t\tpadding-left: 50%;\n}\n.sonodTd[data-v-2856bc0a]:before {\n\t\t/* Now like a table header */\n\t\tposition: absolute;\n\t\t/* Top/left values mimic padding */\n\t\ttop: 6px;\n\t\tleft: 6px;\n\t\twidth: 45%;\n\t\tpadding-right: 10px;\n\t\twhite-space: nowrap;\n}\n\n\t/*\n\tLabel the data\n\t*/\n.sonodTd[data-v-2856bc0a]:nth-of-type(1):before { content: \"সনদ নাম্বার\";\n}\n.sonodTd[data-v-2856bc0a]:nth-of-type(2):before { content: \"নাম\";\n}\n.sonodTd[data-v-2856bc0a]:nth-of-type(3):before { content: \"পিতার/স্বামীর নাম\";\n}\n.sonodTd[data-v-2856bc0a]:nth-of-type(4):before { content: \"গ্রাম/মহল্লা\";\n}\n.sonodTd[data-v-2856bc0a]:nth-of-type(5):before { content: \"আবেদনের তারিখ\";\n}\n.sonodTd[data-v-2856bc0a]:nth-of-type(6):before { content: \"কার্যক্রম\";\n}\n.sonodTd[data-v-2856bc0a]:nth-of-type(7):before { content: \"ফি\";\n}\n}\n\n\n\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nth.position-relative[data-v-2856bc0a] {\r\n    font-size: 13px;\n}\nth[data-v-2856bc0a] {\r\n    font-size: 11px;\n}\ntd[data-v-2856bc0a] {\r\n    font-size: 12px !important;\n}\nli.page-item.active a[data-v-2856bc0a] {\r\n    color: white !important;\n}\n@media\r\nonly screen and (max-width: 760px),\r\n(min-device-width: 768px) and (max-device-width: 1024px)  {\r\n\r\n\t/* Force table to not be like tables anymore */\n.sonodTable[data-v-2856bc0a], .sonodThead[data-v-2856bc0a], .sonodTbody[data-v-2856bc0a], .sonodTh[data-v-2856bc0a], .sonodTd[data-v-2856bc0a], .sonodTr[data-v-2856bc0a] {\r\n\t\tdisplay: block;\n}\r\n\r\n\t/* Hide table headers (but not display: none;, for accessibility) */\n.sonodThead .sonodTr[data-v-2856bc0a] {\r\n\t\tposition: absolute;\r\n\t\ttop: -9999px;\r\n\t\tleft: -9999px;\n}\n.sonodTr[data-v-2856bc0a] { border: 1px solid #ccc;\n}\n.sonodTr[data-v-2856bc0a]:nth-child(odd) {\r\n      background: #ccc;\n}\n.sonodTd[data-v-2856bc0a] {\r\n\t\t/* Behave  like a \"row\" */\r\n\t\tborder: none;\r\n\t\tborder-bottom: 1px solid #eee;\r\n\t\tposition: relative;\r\n        padding-top: 12px;\r\n    padding-bottom: 12px;\r\n\t\tpadding-left: 50%;\n}\n.sonodTd[data-v-2856bc0a]:before {\r\n\t\t/* Now like a table header */\r\n\t\tposition: absolute;\r\n\t\t/* Top/left values mimic padding */\r\n\t\ttop: 6px;\r\n\t\tleft: 6px;\r\n\t\twidth: 45%;\r\n\t\tpadding-right: 10px;\r\n\t\twhite-space: nowrap;\n}\r\n\r\n\t/*\r\n\tLabel the data\r\n\t*/\n.sonodTd[data-v-2856bc0a]:nth-of-type(1):before { content: \"সনদ নাম্বার\";\n}\n.sonodTd[data-v-2856bc0a]:nth-of-type(2):before { content: \"নাম\";\n}\n.sonodTd[data-v-2856bc0a]:nth-of-type(3):before { content: \"পিতার/স্বামীর নাম\";\n}\n.sonodTd[data-v-2856bc0a]:nth-of-type(4):before { content: \"গ্রাম/মহল্লা\";\n}\n.sonodTd[data-v-2856bc0a]:nth-of-type(5):before { content: \"আবেদনের তারিখ\";\n}\n.sonodTd[data-v-2856bc0a]:nth-of-type(6):before { content: \"কার্যক্রম\";\n}\n.sonodTd[data-v-2856bc0a]:nth-of-type(7):before { content: \"ফি\";\n}\n}\r\n\r\n\r\n\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -54308,7 +54338,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.modal-dialog.modal-xl {\n    max-width: 1200px;\n}\n.app-heading {\n    text-align: center;\n    margin: 32px 0;\n    font-size: 23px;\n    border-bottom: 1px solid #159513;\n    color: #159513;\n}\n.customcheckbox {\n    padding: 0 !important;\n    width: 22px;\n    height: 26px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.modal-dialog.modal-xl {\r\n    max-width: 1200px;\n}\n.app-heading {\r\n    text-align: center;\r\n    margin: 32px 0;\r\n    font-size: 23px;\r\n    border-bottom: 1px solid #159513;\r\n    color: #159513;\n}\n.customcheckbox {\r\n    padding: 0 !important;\r\n    width: 22px;\r\n    height: 26px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -62892,10 +62922,10 @@ component.options.__file = "resources/js/backend/components/sonod/index.vue"
 
 /***/ }),
 
-/***/ "./resources/js/backend/components/sonod/qr.vue":
-/*!******************************************************!*\
-  !*** ./resources/js/backend/components/sonod/qr.vue ***!
-  \******************************************************/
+/***/ "./resources/js/backend/components/sonod/qr2.vue":
+/*!*******************************************************!*\
+  !*** ./resources/js/backend/components/sonod/qr2.vue ***!
+  \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -62903,8 +62933,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _qr_vue_vue_type_template_id_0e869299___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./qr.vue?vue&type=template&id=0e869299& */ "./resources/js/backend/components/sonod/qr.vue?vue&type=template&id=0e869299&");
-/* harmony import */ var _qr_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./qr.vue?vue&type=script&lang=js& */ "./resources/js/backend/components/sonod/qr.vue?vue&type=script&lang=js&");
+/* harmony import */ var _qr2_vue_vue_type_template_id_7b392c2e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./qr2.vue?vue&type=template&id=7b392c2e& */ "./resources/js/backend/components/sonod/qr2.vue?vue&type=template&id=7b392c2e&");
+/* harmony import */ var _qr2_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./qr2.vue?vue&type=script&lang=js& */ "./resources/js/backend/components/sonod/qr2.vue?vue&type=script&lang=js&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -62914,9 +62944,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 ;
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _qr_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _qr_vue_vue_type_template_id_0e869299___WEBPACK_IMPORTED_MODULE_0__.render,
-  _qr_vue_vue_type_template_id_0e869299___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _qr2_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _qr2_vue_vue_type_template_id_7b392c2e___WEBPACK_IMPORTED_MODULE_0__.render,
+  _qr2_vue_vue_type_template_id_7b392c2e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
   null,
@@ -62926,7 +62956,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/backend/components/sonod/qr.vue"
+component.options.__file = "resources/js/backend/components/sonod/qr2.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -63238,10 +63268,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/backend/components/sonod/qr.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/backend/components/sonod/qr.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************/
+/***/ "./resources/js/backend/components/sonod/qr2.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/backend/components/sonod/qr2.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -63249,8 +63279,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_qr_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./qr.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/backend/components/sonod/qr.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_qr_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_qr2_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./qr2.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/backend/components/sonod/qr2.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_qr2_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -63455,19 +63485,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/backend/components/sonod/qr.vue?vue&type=template&id=0e869299&":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/backend/components/sonod/qr.vue?vue&type=template&id=0e869299& ***!
-  \*************************************************************************************/
+/***/ "./resources/js/backend/components/sonod/qr2.vue?vue&type=template&id=7b392c2e&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/backend/components/sonod/qr2.vue?vue&type=template&id=7b392c2e& ***!
+  \**************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_qr_vue_vue_type_template_id_0e869299___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_qr_vue_vue_type_template_id_0e869299___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_qr2_vue_vue_type_template_id_7b392c2e___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_qr2_vue_vue_type_template_id_7b392c2e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_qr_vue_vue_type_template_id_0e869299___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./qr.vue?vue&type=template&id=0e869299& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/backend/components/sonod/qr.vue?vue&type=template&id=0e869299&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_qr2_vue_vue_type_template_id_7b392c2e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./qr2.vue?vue&type=template&id=7b392c2e& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/backend/components/sonod/qr2.vue?vue&type=template&id=7b392c2e&");
 
 
 /***/ }),
