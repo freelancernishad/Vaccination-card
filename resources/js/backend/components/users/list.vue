@@ -42,7 +42,11 @@
                     <td>{{ item.unioun }}</td>
                     <td>{{ item.thana }}</td>
                     <td>{{ item.district }}</td>
-                    <td>{{ item.position }}</td>
+
+
+                    <td>{{ changeName(item.position) }}</td>
+
+
                     <td><router-link size="sm" :to="{ name: 'userlistedit', params: { id: item.id } }"
                     class="btn btn-info mr-1 mt-1">
                     Edit
@@ -147,6 +151,13 @@ export default {
                 })
                 .catch()
         },
+
+
+
+
+
+
+
 
     },
     mounted() {

@@ -20,7 +20,19 @@ class RoleController extends Controller
     }
     public function getuser(Request $request,$id)
     {
-       return User::find($id);
+       $data =  User::find($id);
+
+       if($data->words){
+
+           $data['words'] = json_decode($data->words);
+        }else{
+            $data['words'] = [];
+
+       }
+
+       return $data;
+
+
 
     }
 
@@ -30,15 +42,17 @@ class RoleController extends Controller
         $id = $request->id;
 
 
-          $data = $request->except(['password']);
+          $data = $request->except(['password','words']);
 
-       
+           $words = json_encode($request->words);
+          $data['words'] = $words;
+
 
           if($id){
             $users = User::find($id);
 $changepass =   $request->changepass;
             if($changepass){
-                
+
                 $oldpassword =   $request->oldpassword;
                $oldpasscheck =  Hash::check($oldpassword, $users->password);
                if($oldpasscheck){
@@ -59,15 +73,15 @@ $changepass =   $request->changepass;
 
                 return 0;
                }
-                
+
 
             }else{
                 return $users->update($data);
             }
 
 
-       
-        
+
+
             }else{
                 $data['password'] = hash::make($request->password);
                 return User::create($data);

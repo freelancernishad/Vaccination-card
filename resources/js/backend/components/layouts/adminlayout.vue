@@ -125,9 +125,16 @@
                                     class="flaticon-dashboard"></i><span>প্রসব সম্পন্ন</span></router-link>
                         </li>
 
+
                         <li class="nav-item" @click="submenu(0)" v-if="this.$localStorage.getItem('position') == 'Vaccination_workers'">
                                 <router-link :to="{ name: 'qr' }" class="nav-link"><i
                                     class="flaticon-dashboard"></i><span>QR Scan</span></router-link>
+                        </li>
+
+
+                        <li class="nav-item" @click="submenu(0)" v-if="this.$localStorage.getItem('position') == 'Admin'">
+                                <router-link :to="{ name: 'userlist' }" class="nav-link"><i
+                                    class="flaticon-dashboard"></i><span>ইউজার</span></router-link>
                         </li>
 
 
@@ -311,18 +318,6 @@ export default {
         },
 
 
-        changeName(value){
-            if(value=='Family_planning_worker'){
-
-                return 'পরিবার পরিকল্পনা কর্মী';
-            }else if(value=='Vaccination_workers'){
-                return 'টিকা কর্মী';
-
-            }else if(value=='Secretary'){
-                return 'সচিব';
-
-            }
-        },
 
 
         myEventHandler() {

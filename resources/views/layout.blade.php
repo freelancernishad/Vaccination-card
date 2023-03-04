@@ -59,10 +59,16 @@ li.page-item.active button {
 </head>
 <body style="font-family: 'Kalpurush', sans-serif;">
 
+    @php
+     $users = Auth::user();
+     $users['words'] = json_decode($users->words);
+
+        // die();
+    @endphp
 
 
     <div id="app">
-        <component :is="$route.meta.layout || 'div'"   :user="{{Auth::user()}}" :permission="{{ Auth::user()->roles}}" :roles="{{ $roles }}">
+        <component :is="$route.meta.layout || 'div'"   :user="{{$users}}" :permission="{{ Auth::user()->roles}}" :roles="{{ $roles }}">
             <router-view />
           </component>
 

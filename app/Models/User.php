@@ -30,6 +30,7 @@ class User extends Authenticatable
         'thana',
         'gram',
         'word',
+        'words',
         'description',
         'image',
         'status',

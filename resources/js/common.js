@@ -36,6 +36,26 @@ export default {
            return  User.dateformat(date);
         },
 
+
+        changeName(value){
+            if(value=='Admin'){
+                return 'এডমিন';
+            }else if(value=='Family_planning_worker'){
+
+                return 'পরিবার পরিকল্পনা কর্মী';
+            }else if(value=='Vaccination_workers'){
+                return 'টিকা কর্মী';
+
+            }else if(value=='Secretary'){
+                return 'সচিব';
+            }
+        },
+
+
+
+
+
+
          getMonthFromString(mon){
             return new Date(Date.parse(mon +" 10, 2022")).getMonth()+1
          },

@@ -332,7 +332,16 @@ export default {
 
             if(this.$route.params.type=='applied'){
 
-                if (localStorage.getItem('position') == 'Vaccination_workers') {
+                if (localStorage.getItem('position') == 'Admin') {
+                    this.editRoute='';
+                    this.viewRoute = 'sonodview';
+                    this.approveRoute = '';
+                    this.approveType = '';
+                    this.approveData = ``;
+                    this.applicationRoute = '';
+                    this.applicationRoute2 = '';
+                    this.Vaccination = '';
+                }else if (localStorage.getItem('position') == 'Vaccination_workers') {
                     this.editRoute='sonodedit';
                     this.viewRoute = 'sonodview';
                     this.approveRoute = '/api/sonod';
@@ -362,7 +371,16 @@ export default {
                 }
             }else if(this.$route.params.type=='approved'){
                 // console.log(localStorage.getItem('position'))
-                if (localStorage.getItem('position') == 'Vaccination_workers') {
+                if (localStorage.getItem('position') == 'Admin') {
+                    this.editRoute='';
+                    this.viewRoute = 'sonodview';
+                    this.approveRoute = '';
+                    this.approveType = '';
+                    this.approveData = ``;
+                    this.applicationRoute = '';
+                    this.applicationRoute2 = '';
+                    this.Vaccination = '';
+                }else if (localStorage.getItem('position') == 'Vaccination_workers') {
                     this.editRoute='';
                     this.viewRoute = 'sonodview';
                     this.approveRoute = '/api/sonod';

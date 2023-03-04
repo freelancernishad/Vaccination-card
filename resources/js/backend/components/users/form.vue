@@ -25,9 +25,9 @@
 
           <select v-model="form.position" class="form-control">
             <option value="">নির্বাচন করুন</option>
-            <option value="District_admin">জেলা এডমিন</option>
-            <option value="Thana_admin">উপজেলা এডমিন</option>
-            <option value="Chairman">চেয়ারম্যান</option>
+            <option value="Admin">এডমিন</option>
+            <option value="Family_planning_worker">পরিবার পরিকল্পনা কর্মী</option>
+            <option value="Vaccination_workers">টিকা কর্মী</option>
             <option value="Secretary">সচিব</option>
           </select>
 
@@ -75,6 +75,18 @@
           </select>
 
         </div>
+
+
+
+
+        <div class="col-md-12" >
+                        <div class="form-group">
+                            <label for="" >ওয়ার্ড </label>
+
+                        <Checkbox v-for="(opt,keys) in options" :inputId="keys+'word'" :key="keys" :label="opt.name" :inputValue="opt.word" v-model="form.words" />
+                    </div>
+
+                    </div>
 
         <!-- <div class="form-group col-md-6" v-if="form.thana=='পঞ্চগড় সদর'">
           <label for="">ইউনিয়ন</label>
@@ -146,12 +158,33 @@
 </template>
 
 <script>
+
+import Checkbox from "./Checkbox.vue";
+
 export default {
+
+    components: {
+    Checkbox,
+  },
+
     data(){
         return {
+            selectedOptions: [],
+            options: {
+                1:{word:'1',name:'১নং ওয়ার্ড'},
+                2:{word:'2',name:'২নং ওয়ার্ড'},
+                3:{word:'3',name:'৩নং ওয়ার্ড'},
+                4:{word:'4',name:'৪নং ওয়ার্ড'},
+                5:{word:'5',name:'৫নং ওয়ার্ড'},
+                6:{word:'6',name:'৬নং ওয়ার্ড'},
+                7:{word:'7',name:'৭নং ওয়ার্ড'},
+                8:{word:'8',name:'৮নং ওয়ার্ড'},
+                9:{word:'9',name:'৯নং ওয়ার্ড'},
+            },
             form:{
                 id:null,
                 unioun:null,
+                words:[],
                 names:'Chairman',
                 email:null,
                 phone:'01909756552',
@@ -186,7 +219,7 @@ export default {
         async onSubmit() {
 
             var res = await this.callApi('post', '/api/update/users', this.form);
-             this.$router.push({ name: 'userlist'})
+            //  this.$router.push({ name: 'userlist'})
             Notification.customSuccess('User Update Success');
 
         },
@@ -194,10 +227,11 @@ export default {
 
         unionlist(){
 
+            var userid = localStorage.getItem('userid');
             var position = this.Users.position
             var thana = this.Users.thana
             var district = this.Users.district
-            axios.get(`/api/get/union/list?position=${position}&thana=${thana}&district=${district}`)
+            axios.get(`/api/get/union/list?position=${position}&userid=${userid}`)
                 .then(({ data }) => {
                     // console.log(data)
                 this.unions = data
