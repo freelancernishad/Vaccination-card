@@ -109,12 +109,20 @@
                         <div class="form-group">
                             <label for="" class="labelColor">উপজেলা/থানা</label>
 
-                        <select  class='form-control' name="thana" id="thana" v-model="form.upazila" @change="getuniounFun" >
+                        <select  class='form-control' name="thana" id="thana" v-model="applicant_present_thana" @change="getuniounFun" >
                             <option value="">উপজেলা নির্বাচন করুন</option>
-                            <option v-for="thana in getthanas" :key="thana.id" :value="thana.bn_name">{{ thana.bn_name }}</option>
+                            <option v-for="thana in getthanas" :key="thana.id" :value="thana.id">{{ thana.bn_name }}</option>
                         </select>
+                    </div>
 
-                            <!-- <input type="text" class="form-control" v-model="form.applicant_present_Upazila"> -->
+                        <div class="form-group">
+                            <label for="" class="labelColor">ইউনিয়ন</label>
+                            <select  class='form-control' name="union" id="union" v-model="form.union" @change="getuniounFunPer" >
+                                <option value="">ইউনিয়ন নির্বাচন করুন</option>
+                                <option v-for="uion in getuniouns" :key="uion.id" :value="uion.bn_name">{{ uion.bn_name }}</option>
+                            </select>
+                            <!-- <input type="text" class="form-control" v-model="form.union"> -->
+
                         </div>
                         <div class="form-group">
                             <label for="" class="labelColor">পোষ্ট অফিস</label>
@@ -179,14 +187,28 @@
 
                             <!-- <input type="text" class="form-control" v-model="form.applicant_permanent_district"> -->
                         </div>
+
+
                         <div class="form-group">
                             <label for="" class="labelColor">উপজেলা/থানা</label>
                             <select  class='form-control' name="thana" id="thana" v-model="form.applicant_permanent_Upazila" @change="getuniounFunPer" >
                                 <option value="">উপজেলা নির্বাচন করুন</option>
-                                <option v-for="thana in getthanasPer" :key="thana.id" :value="thana.bn_name">{{ thana.bn_name }}</option>
+                                <option v-for="thana in getthanasPer" :key="thana.id" :value="thana.id">{{ thana.bn_name }}</option>
                             </select>
                             <!-- <input type="text" class="form-control" v-model="form.applicant_permanent_Upazila"> -->
                         </div>
+
+                        <div class="form-group">
+                            <label for="" class="labelColor">ইউনিয়ন</label>
+                            <select  class='form-control' name="thana" id="thana" v-model="form.applicant_permanent_Upazila" @change="getuniounFunPer" >
+                                <option value="">ইউনিয়ন নির্বাচন করুন</option>
+                                <option v-for="thana in getthanasPer" :key="thana.id" :value="thana.id">{{ thana.bn_name }}</option>
+                            </select>
+                            <!-- <input type="text" class="form-control" v-model="form.applicant_permanent_Upazila"> -->
+                        </div>
+
+
+
                         <div class="form-group">
                             <label for="" class="labelColor">পোষ্ট অফিস</label>
                             <input type="text" class="form-control" v-model="form.applicant_permanent_post_office">
@@ -392,6 +414,8 @@ export default {
             Perdivision:'',
             applicant_present_district:'',
             applicant_permanent_district:'',
+            applicant_present_thana:'',
+            applicant_permanent_thana:'',
         };
     },
     watch: {
@@ -474,9 +498,13 @@ export default {
         },
 
         async getuniounFun(){
+            var ress = await this.callApi('get', `/api/getthana?ownid=${this.applicant_present_thana}`, []);
+            // console.log(ress.data.bn_name);
+            this.form.upazila = ress.data.bn_name;
+            // this.getuniouns = ress.data;
 
 
-        var res = await this.callApi('get',`/api/getunioun?id=${this.thana}`,[]);
+        var res = await this.callApi('get',`/api/getunioun?id=${this.applicant_present_thana}`,[]);
         this.getuniouns = res.data;
         },
 

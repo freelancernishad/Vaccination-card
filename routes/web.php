@@ -115,6 +115,10 @@ Route::group(['prefix' => 'dashboard','middleware' => ['auth']], function() {
 
 
 
+Route::get('/report/download', [SonodController::class,'ReportDownload']);
+
+
+
     Route::get('/{vue_capture?}', function () {
         // return   Auth::user()->roles->permission;
         $roles = Role::all();

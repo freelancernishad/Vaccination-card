@@ -534,7 +534,7 @@ export default {
                 if (sondId) {
                     var res = await this.callApi('get', `/api/sonod/list?id_no=${sondId}`, []);
                 } else {
-                    var res = await this.callApi('get', `/api/sonod/list?page=${page}&stutus=${this.$route.params.type}&word=${this.$route.params.word}`, []);
+                    var res = await this.callApi('get', `/api/sonod/list?page=${page}&stutus=${this.$route.params.type}&word=${this.$route.params.word}&unioun=${this.$localStorage.getItem('unioun')}`, []);
                 }
                 // console.log('sdf')
                 // var res = await this.callApi('get', `/api/sonod/list?page=${page}&sonod_name=${this.$route.params.name}${unioun}&filter[stutus]=${stutus}&filter[payment_status]=${payment_status}`, []);

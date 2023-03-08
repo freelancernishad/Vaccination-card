@@ -138,6 +138,12 @@
                         </li>
 
 
+                        <li class="nav-item" @click="submenu(0)" >
+                                <router-link :to="{ name: 'reportlistWord', params:{type:'approved'} }" class="nav-link"><i
+                                    class="flaticon-dashboard"></i><span>প্রতিবেদন</span></router-link>
+                        </li>
+
+
 <!--
                         <li class="nav-item" @click="submenu(0)">
                             <router-link :to="{ name: 'applicationlist' }" class="nav-link"><i

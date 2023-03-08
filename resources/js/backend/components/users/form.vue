@@ -52,10 +52,10 @@
           <select v-model="form.thana" class="form-control">
 
             <option value="">উপজেলা নির্বাচন করুন</option>
-            <option value="পঞ্চগড় সদর">পঞ্চগড় সদর</option>
+            <!-- <option value="পঞ্চগড় সদর">পঞ্চগড় সদর</option>
             <option value="দেবীগঞ্জ">দেবীগঞ্জ</option>
             <option value="বোদা">বোদা</option>
-            <option value="আটোয়ারী">আটোয়ারী</option>
+            <option value="আটোয়ারী">আটোয়ারী</option> -->
             <option value="তেঁতুলিয়া">তেঁতুলিয়া</option>
 
 
@@ -67,12 +67,18 @@
         <div class="form-group col-md-6">
           <label for="">ইউনিয়ন</label>
 
-          <select v-model="form.unioun" class="form-control" required>
-            <option value="">নির্বাচন করুন</option>
 
-            <option v-for="un in unions" :key="un.id" :value="un.short_name_e">{{ un.full_name }}</option>
-
+          <select id="unioun" v-model="form.unioun" class="searchFrom form-control">
+            <option value="">ইউনিয়ন নির্বাচন করুন</option>
+            <option>বাংলাবান্ধা</option>
+            <option>ভজনপুর</option>
+            <option>বুড়াবুড়ী</option>
+            <option>দেবনগর</option>
+            <option>শালবাহান</option>
+            <option>তেঁতুলিয়া</option>
+            <option>তিরনইহাট</option>
           </select>
+
 
         </div>
 
@@ -193,7 +199,7 @@ export default {
                 position:'Chairman',
                 full_unioun_name:null,
                 district:'পঞ্চগড়',
-                thana:'',
+                thana:'তেঁতুলিয়া',
                 gram:null,
                 word:null,
                 description:null,
@@ -219,26 +225,12 @@ export default {
         async onSubmit() {
 
             var res = await this.callApi('post', '/api/update/users', this.form);
-            //  this.$router.push({ name: 'userlist'})
+             this.$router.push({ name: 'userlist'})
             Notification.customSuccess('User Update Success');
 
         },
 
 
-        unionlist(){
-
-            var userid = localStorage.getItem('userid');
-            var position = this.Users.position
-            var thana = this.Users.thana
-            var district = this.Users.district
-            axios.get(`/api/get/union/list?position=${position}&userid=${userid}`)
-                .then(({ data }) => {
-                    // console.log(data)
-                this.unions = data
-
-                })
-                .catch()
-            },
 
     },
     mounted(){
@@ -247,10 +239,7 @@ export default {
             this.getsonodById();
         }
 
-        setTimeout(()=>{
-            this.unionlist();
 
-        }, 3000);
 
     }
 }

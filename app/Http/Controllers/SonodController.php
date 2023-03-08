@@ -22,6 +22,9 @@ use Rakibhstu\Banglanumber\NumberToBangla;
 use Meneses\LaravelMpdf\Facades\LaravelMpdf;
 use Symfony\Component\VarDumper\Caster\RedisCaster;
 
+use Carbon\Carbon;
+
+
 class SonodController extends Controller
 {
     public function prottonupdate(Request $request, $id)
@@ -745,9 +748,16 @@ class SonodController extends Controller
     }
     public function index(Request $request)
     {
+
+
+
+
+
         $sonod_name = $request->sonod_name;
         $stutus = $request->stutus;
         $word_number = $request->word;
+        $unioun = $request->unioun;
+
         $payment_status = $request->payment_status;
         $unioun_name = $request->unioun_name;
         $sondId = $request->sondId;
@@ -755,15 +765,46 @@ class SonodController extends Controller
         if ($sondId) {
             // return $sondId;
             // return 'sss';
-            return Sonod::where(['status'=>$stutus,'word_number'=>$word_number])->where("id_no", "LIKE", "%$sondId%")->orderBy('id', 'DESC')->paginate(20);
+            return Sonod::where(['status'=>$stutus,'word_number'=>$word_number,'union'=>$unioun])->where("id_no", "LIKE", "%$sondId%")->orderBy('id', 'DESC')->paginate(20);
         }
         if ($unioun_name) {
             if ($payment_status) {
-                return Sonod::where(['status'=>$stutus,'word_number'=>$word_number])->orderBy('id', 'DESC')->paginate(20);
+                return Sonod::where(['status'=>$stutus,'word_number'=>$word_number,'union'=>$unioun])->orderBy('id', 'DESC')->paginate(20);
             }
-            return Sonod::where(['status'=>$stutus,'word_number'=>$word_number])->orderBy('id', 'DESC')->paginate(20);
+            return Sonod::where(['status'=>$stutus,'word_number'=>$word_number,'union'=>$unioun])->orderBy('id', 'DESC')->paginate(20);
         }
-        return Sonod::where(['status'=>$stutus,'word_number'=>$word_number])->orderBy('id', 'DESC')->paginate(20);
+
+
+        $dataType = $request->dataType;
+
+        if($dataType){
+
+            $sonods =  Sonod::where(['status'=>$stutus,'word_number'=>$word_number,'union'=>$unioun]);
+
+            $from = $request->from;
+            $to = $request->to;
+
+            if($dataType=='month'){
+                $month = $request->month;
+                $year = date('Y');
+
+                $startDate = Carbon::createFromFormat('Y-m-d', $year.'-'.Carbon::parse($month)->format('m').'-01');
+
+                  $to = $startDate->copy()->endOfMonth();
+                  $from =  $startDate->toDateString();
+
+            }
+            $sonods->whereBetween('date_of_birth', [$from, $to]);
+
+            return $sonods->orderBy('id', 'DESC')->paginate(20);
+
+        }
+
+
+
+
+
+        return Sonod::where(['status'=>$stutus,'word_number'=>$word_number,'union'=>$unioun])->orderBy('id', 'DESC')->paginate(20);
 
     }
     public function sonodDownload(Request $request, $name, $id)
@@ -1359,5 +1400,41 @@ if ($sonod_name == 'ওয়ারিশান সনদ') {
 
         return 0;
     }
+
+
+
+    public function ReportDownload(Request $request)
+    {
+        $stutus = $request->stutus;
+        $word_number = $request->word;
+        $unioun = $request->unioun;
+        $dataType = $request->dataType;
+        if($dataType){
+            $sonods =  Sonod::where(['status'=>$stutus,'word_number'=>$word_number,'union'=>$unioun]);
+            $from = $request->from;
+            $to = $request->to;
+            if($dataType=='month'){
+                $month = $request->month;
+                $year = date('Y');
+                $startDate = Carbon::createFromFormat('Y-m-d', $year.'-'.Carbon::parse($month)->format('m').'-01');
+
+                  $to = $startDate->copy()->endOfMonth();
+                  $from =  $startDate->toDateString();
+            }
+            $sonods->whereBetween('date_of_birth', [$from, $to]);
+           $rows =   $sonods->orderBy('id', 'DESC')->get();
+
+                    //  return $rows;
+
+                     $pdf = LaravelMpdf::loadView('sonod.sonodReports', compact('rows','from','to'));
+                     return $pdf->stream("5555.pdf");
+
+        }
+
+
+
+    }
+
+
 
 }

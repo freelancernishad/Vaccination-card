@@ -24,8 +24,13 @@ let userlistedit = require('./components/users/form.vue').default;
 
 
 let sonodWord = require('./components/sonod/word.vue').default;
-
 let sonod = require('./components/sonod/index.vue').default;
+
+
+let reportlistWord = require('./components/reports/word.vue').default;
+let reportlist = require('./components/reports/index.vue').default;
+
+
 let sonodedit = require('./components/sonod/form.vue').default;
 let Vaccination = require('./components/sonod/Vaccination.vue').default;
 let sonodview = require('./components/sonod/view.vue').default;
@@ -62,8 +67,15 @@ export const routes = [
 
 
   { path:  `${prefix}/application/list/:type`, component: sonodWord, name:'applicationlistWord',meta: { layout: adminlayout } },
-
   { path:  `${prefix}/application/list/:word/:type`, component: sonod, name:'applicationlist',meta: { layout: adminlayout } },
+
+
+
+
+  { path:  `${prefix}/report/list/:type`, component: reportlistWord, name:'reportlistWord',meta: { layout: adminlayout } },
+  { path:  `${prefix}/report/list/:word/:type`, component: reportlist, name:'reportlist',meta: { layout: adminlayout } },
+
+
 
   { path:  `${prefix}/sonod/action/Vaccination/:id`, component: Vaccination, name:'Vaccination',meta: { layout: adminlayout } },
   { path:  `${prefix}/sonod/action/edit/:id`, component: sonodedit, name:'sonodedit',meta: { layout: adminlayout } },
