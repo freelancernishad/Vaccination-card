@@ -16,11 +16,16 @@
 
         <div class="card">
             <div class="card-header">
-                <!-- <h3>আইডি নং দিয়ে খুঁজুন</h3>
-                <div class="form-group" style="width:250px">
-                    <input type="text" class="form-control" v-model="sonod_id" @input="searchSondId">
-                </div> -->
+                 <h3>রেজিস্ট্রেশন নাম্বার দিয়ে খুঁজুন</h3>
+                 <form @submit.stop.prevent="searchSondId">
+                <div class="form-group d-flex" style="width:300px">
+                    <input type="text" class="form-control" v-model="sonod_id" >
 
+                    <button type="button" disabled class="btn btn-info" v-if="searching" style="font-size: 22px;margin-left: 11px;">অপেক্ষা করুন</button>
+                    <button type="submit" class="btn btn-info" v-else style="font-size: 22px;margin-left: 11px;">খুঁজুন</button>
+
+                </div>
+            </form>
 
 
                 <nav aria-label="Page navigation example" v-if="TotalRows>20">
@@ -249,6 +254,7 @@ export default {
     },
     data() {
         return {
+            searching: false,
             preLooding: true,
             nidverify: false,
             dobverify: false,
@@ -532,7 +538,7 @@ export default {
                     var unioun = ``
                 }
                 if (sondId) {
-                    var res = await this.callApi('get', `/api/sonod/list?id_no=${sondId}`, []);
+                    var res = await this.callApi('get', `/api/sonod/list?stutus=${this.$route.params.type}&word=${this.$route.params.word}&unioun=${this.$localStorage.getItem('unioun')}&id_no=${sondId}`, []);
                 } else {
                     var res = await this.callApi('get', `/api/sonod/list?page=${page}&stutus=${this.$route.params.type}&word=${this.$route.params.word}&unioun=${this.$localStorage.getItem('unioun')}`, []);
                 }

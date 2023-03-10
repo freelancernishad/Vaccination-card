@@ -191,7 +191,7 @@
 
                         <div class="form-group">
                             <label for="" class="labelColor">উপজেলা/থানা</label>
-                            <select  class='form-control' name="thana" id="thana" v-model="form.applicant_permanent_Upazila" @change="getuniounFunPer" >
+                            <select  class='form-control' name="thana" id="thana" v-model="applicant_permanent_thana" @change="getuniounFunPer" >
                                 <option value="">উপজেলা নির্বাচন করুন</option>
                                 <option v-for="thana in getthanasPer" :key="thana.id" :value="thana.id">{{ thana.bn_name }}</option>
                             </select>
@@ -200,9 +200,9 @@
 
                         <div class="form-group">
                             <label for="" class="labelColor">ইউনিয়ন</label>
-                            <select  class='form-control' name="thana" id="thana" v-model="form.applicant_permanent_Upazila" @change="getuniounFunPer" >
+                            <select  class='form-control' name="union" id="union" v-model="form.applicant_permanent_union" @change="getuniounFunPer" >
                                 <option value="">ইউনিয়ন নির্বাচন করুন</option>
-                                <option v-for="thana in getthanasPer" :key="thana.id" :value="thana.id">{{ thana.bn_name }}</option>
+                                <option v-for="union in getuniounsPer" :key="union.id" :value="union.bn_name">{{ union.bn_name }}</option>
                             </select>
                             <!-- <input type="text" class="form-control" v-model="form.applicant_permanent_Upazila"> -->
                         </div>
@@ -384,6 +384,7 @@ export default {
                 divisionPer:'',
                 applicant_permanent_district:'',
                 applicant_permanent_Upazila:'',
+                applicant_permanent_union:'',
                 applicant_permanent_post_office:'',
                 applicant_permanent_village:'',
                 applicant_permanent_word_number:'',
@@ -446,7 +447,10 @@ export default {
                 this.getdistrictFunPer();
                 this.applicant_permanent_district = this.applicant_present_district
                 this.getthanaFunPer();
-                this.form.applicant_permanent_Upazila = this.form.upazila
+                this.applicant_permanent_thana = this.applicant_present_thana
+                this.getuniounFunPer();
+
+                this.form.applicant_permanent_union = this.form.union
 
 
                 this.form.applicant_permanent_village = this.form.village
@@ -459,6 +463,13 @@ export default {
 
 
             } else {
+
+                this.Perdivision = '';
+                this.applicant_permanent_district = '';
+                this.applicant_permanent_thana = '';
+                this.form.applicant_permanent_union = '';
+
+
                 this.form.applicant_permanent_village = null
                 this.form.applicant_permanent_road_block_sector = null
                 this.form.applicant_permanent_word_number = null
@@ -519,7 +530,7 @@ export default {
         },
 
         async getdistrictFunPer(){
-            var resdiv = await this.callApi('get', `/api/getdivisions?id=${this.getdivisionsPer}`, []);
+            var resdiv = await this.callApi('get', `/api/getdivisions?id=${this.Perdivision}`, []);
             // console.log(resdiv)
             this.form.divisionPer= resdiv.data.bn_name
 
@@ -541,7 +552,11 @@ export default {
         },
 
         async getuniounFunPer(){
-        var res = await this.callApi('get',`/api/getunioun?id=${this.thana}`,[]);
+
+            var resw = await this.callApi('get',`/api/getthana?ownid=${this.applicant_permanent_thana}`,[]);
+        this.form.applicant_permanent_Upazila = resw.data.bn_name;
+
+        var res = await this.callApi('get',`/api/getunioun?id=${this.applicant_permanent_thana}`,[]);
         this.getuniounsPer = res.data;
         },
 

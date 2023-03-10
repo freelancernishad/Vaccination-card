@@ -28,6 +28,7 @@ class Sonod extends Model
         'divisionPer',
         'applicant_permanent_district',
         'applicant_permanent_Upazila',
+        'applicant_permanent_union',
         'applicant_permanent_post_office',
         'applicant_permanent_word_number',
         'applicant_permanent_village',

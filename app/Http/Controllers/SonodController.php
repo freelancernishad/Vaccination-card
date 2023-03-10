@@ -760,7 +760,7 @@ class SonodController extends Controller
 
         $payment_status = $request->payment_status;
         $unioun_name = $request->unioun_name;
-        $sondId = $request->sondId;
+        $sondId = $request->id_no;
 
         if ($sondId) {
             // return $sondId;
