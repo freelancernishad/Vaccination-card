@@ -237,12 +237,39 @@ export default {
     },
 
     methods: {
+
+
         NextDate(){
+
+            var increaseDay = 0;
+
             var day = new Date(this.vax.tikaDate);
+
+
+
+            if(this.vax.tikadose=='১ম বার'){
+                increaseDay = 28 //২য় বার
+            }else if(this.vax.tikadose=='২য় বার'){
+                increaseDay = 28  //৩য় বার
+            }else if(this.vax.tikadose=='৩য় বার'){
+                increaseDay = 270 //৪র্থ বার
+                day = new Date(this.form.date_of_birth);
+            }else if(this.vax.tikadose=='৪র্থ বার'){
+                increaseDay = 450 //৫ম বার
+                day = new Date(this.form.date_of_birth);
+            }else if(this.vax.tikadose=='৫ম বার'){
+                increaseDay = 0
+            }
             var nextDay = new Date(day);
-            nextDay.setDate(day.getDate() + 28);
+            nextDay.setDate(day.getDate() + increaseDay);
+
+
             this.vax.nextTikaDate = this.dateformatGlobal(nextDay)[0]
+            // console.log(this.vax.nextTikaDate)
         },
+
+
+
 
         async getdivisionFun() {
             var res = await this.callApi('get', `/api/getdivisions`, []);
@@ -281,7 +308,7 @@ export default {
         async SelectTika(){
             this.preLooding = true
             var res = await this.callApi('get',`/api/check/tika?applicantId=${this.form.id}&tikadose=${this.vax.tikadose}&tikatype=${this.tikatype}`);
-           console.log(res)
+        //    console.log(res)
 
             if(res.data.statusCode){
                 Notification.customError2(`${this.vax.tikadose} টিকা ইতিমধ্যে দেওয়া হয়েছে। পরবর্তী টিকার তারিখঃ ${res.data.nextDate}` );
@@ -314,6 +341,7 @@ export default {
 
                 }
             }
+            this.NextDate();
             this.preLooding = false
 
 

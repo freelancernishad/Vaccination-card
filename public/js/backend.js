@@ -2924,10 +2924,28 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     NextDate: function NextDate() {
+      var increaseDay = 0;
       var day = new Date(this.vax.tikaDate);
+
+      if (this.vax.tikadose == '১ম বার') {
+        increaseDay = 28; //২য় বার
+      } else if (this.vax.tikadose == '২য় বার') {
+        increaseDay = 28; //৩য় বার
+      } else if (this.vax.tikadose == '৩য় বার') {
+        increaseDay = 270; //৪র্থ বার
+
+        day = new Date(this.form.date_of_birth);
+      } else if (this.vax.tikadose == '৪র্থ বার') {
+        increaseDay = 450; //৫ম বার
+
+        day = new Date(this.form.date_of_birth);
+      } else if (this.vax.tikadose == '৫ম বার') {
+        increaseDay = 0;
+      }
+
       var nextDay = new Date(day);
-      nextDay.setDate(day.getDate() + 28);
-      this.vax.nextTikaDate = this.dateformatGlobal(nextDay)[0];
+      nextDay.setDate(day.getDate() + increaseDay);
+      this.vax.nextTikaDate = this.dateformatGlobal(nextDay)[0]; // console.log(this.vax.nextTikaDate)
     },
     getdivisionFun: function getdivisionFun() {
       var _this = this;
@@ -3049,8 +3067,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 3:
                 res = _context5.sent;
-                console.log(res);
 
+                //    console.log(res)
                 if (res.data.statusCode) {
                   Notification.customError2("".concat(_this5.vax.tikadose, " \u099F\u09BF\u0995\u09BE \u0987\u09A4\u09BF\u09AE\u09A7\u09CD\u09AF\u09C7 \u09A6\u09C7\u0993\u09DF\u09BE \u09B9\u09DF\u09C7\u099B\u09C7\u0964 \u09AA\u09B0\u09AC\u09B0\u09CD\u09A4\u09C0 \u099F\u09BF\u0995\u09BE\u09B0 \u09A4\u09BE\u09B0\u09BF\u0996\u0983 ").concat(res.data.nextDate));
                   _this5.vax.tikadose = '';
@@ -3095,6 +3113,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     }
                   }
                 }
+
+                _this5.NextDate();
 
                 _this5.preLooding = false;
 

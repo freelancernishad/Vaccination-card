@@ -18,6 +18,7 @@ class TikaLog extends Model
         'kormir_name',
         'tikaDate',
         'nextTikaDate',
+        'sms',
     ];
 
 }

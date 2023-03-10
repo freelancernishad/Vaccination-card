@@ -12,6 +12,7 @@ use App\Http\Controllers\UniouninfoController;
 use App\Http\Controllers\ExpenditureController;
 use App\Http\Controllers\NotificationsController;
 use App\Models\Sonod;
+use App\Models\TikaLog;
 use Illuminate\Cache\RedisTaggedCache;
 use Illuminate\Support\Facades\Hash;
 
@@ -25,6 +26,63 @@ use Illuminate\Support\Facades\Hash;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+
+Route::get('/sms/sent/upcomming', function () {
+
+
+    $targetDate = date('Y-m-d', strtotime(' +3 day'));
+   $tikalogs =  TikaLog::select(['applicantId','tikadose','nextTikaDate'])->distinct()->where(['sms'=>0,'nextTikaDate'=>$targetDate])->get();
+    $SmsPhoneNumbers = [];
+    foreach ($tikalogs as $tikalog) {
+
+        $messageDose = '';
+
+        if($tikalog->tikadose=='১ম বার'){
+            $messageDose = '২য় বার';
+        }else if($tikalog->tikadose=='২য় বার'){
+            $messageDose = '৩য় বার';
+        }else if($tikalog->tikadose=='৩য় বার'){
+            $messageDose = '৪র্থ বার';
+        }else if($tikalog->tikadose=='৪র্থ বার'){
+            $messageDose = '৫ম বার';
+        }else if($tikalog->tikadose=='৫ম বার'){
+            $messageDose = '';
+        }
+
+        $applicantId = $tikalog->applicantId;
+        $tikadose = $tikalog->tikadose;
+        $sonod = Sonod::find($applicantId);
+
+        array_push(
+            $SmsPhoneNumbers,
+            [
+                'Mobile'=>$sonod->mobile_no,
+                'message'=>"$sonod->childs_name এর $messageDose টিকা প্রদানের তারিখঃ ".int_en_to_bn(date("d-m-Y",strtotime($tikalog->nextTikaDate))),
+            ]
+        );
+
+        // $tikalogUpdate = TikaLog::where(['applicantId'=>$applicantId,'tikadose'=>$tikadose])->get();
+        // foreach ($tikalogUpdate as $TikaUp) {
+        //    $tika = TikaLog::find($TikaUp->id);
+        //    $tika->update(['sms'=>1]);
+        // }
+    }
+
+
+    // return $SmsPhoneNumbers;
+    foreach ($SmsPhoneNumbers as  $value) {
+        // return $value['Mobile'];
+        // return $value['message'];
+       echo SmsNocSmsSend($value['message'],$value['Mobile']);
+    }
+
+
+
+
+});
+
 Route::get('/smstest', function () {
 
     $details = [
